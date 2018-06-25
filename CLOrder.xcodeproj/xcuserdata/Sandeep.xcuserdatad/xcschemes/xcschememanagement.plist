@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>SchemeUserState</key>
+	<dict>
+		<key>CLOrder.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>0</integer>
+		</dict>
+		<key>India's Tandoori Brentwood.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>3</integer>
+		</dict>
+		<key>WaBaGrill.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
+		<key>ZafranPot.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>9F0D28EF1E00020D00C7EA2B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>9F0D29671E00321F00C7EA2B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>9F0D29DA1E00322700C7EA2B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>9F4CB1E41CBCD87700A10531</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>9F4CB1FD1CBCD87800A10531</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>9F4CB2081CBCD87800A10531</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+	</dict>
+</dict>
+</plist>
