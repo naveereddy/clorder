@@ -24,14 +24,10 @@
 @synthesize  fromhamburger;
 - (void)viewDidLoad {
     [super viewDidLoad];
-//    UIImageView *bgImg = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
-//    bgImg.image = [UIImage imageNamed:APP_BG_IMG];
-//    [self.view addSubview:bgImg];
+
     self.view.backgroundColor=[UIColor whiteColor];
     self.title = [NSString stringWithFormat:@"%@",@"Order History"];
-    
 
-    
     UIButton *leftBar = [UIButton buttonWithType:UIButtonTypeCustom];
     leftBar.frame = CGRectMake(0, 0, 20, 20);
     [leftBar setImage:[UIImage imageNamed:@"left-arrow"] forState:UIControlStateNormal];
