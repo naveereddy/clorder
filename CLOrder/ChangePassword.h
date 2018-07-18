@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <GoogleSignIn/GoogleSignIn.h>
+#import <FBSDKLoginKit/FBSDKLoginKit.h>
 
 @interface ChangePassword : UIViewController<UITextFieldDelegate>{
     IBOutlet UITextField *oldPasswordtext;

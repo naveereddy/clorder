@@ -14,6 +14,7 @@
 #import "APIRequest.h"
 #import "OrderConfirmationV.h"
 
+
 #define kPayPalEnvironment PayPalEnvironmentNoNetwork
 
 
@@ -22,6 +23,13 @@
     //    NSMutableDictionary *cardDic;
     NSUserDefaults *user;
     NSDictionary *payThrough;
+    PKPaymentButton *applePay;
+    UIButton *payWithCard;
+    UIButton *payPalBtn;
+    UIButton *saveBtn;
+    CGFloat paymentButtonsHeight;
+    NSString *OrderId;
+
 }
 
 @synthesize paypalConfig, environment, resultText;
@@ -29,6 +37,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.braintreeClient = [[BTAPIClient alloc] initWithAuthorization:PRODUCTION_BAINTREE_AUTH];
     self.title = @"PAYMENT INFO";
     self.view.backgroundColor = [UIColor whiteColor];
     [[UINavigationBar appearance] setBackgroundImage:[[UIImage imageNamed:APP_BG_IMG]
@@ -43,39 +52,54 @@
     self.navigationItem.leftBarButtonItems = [NSArray arrayWithObject:leftBarItem];
     
     user = [NSUserDefaults standardUserDefaults];
-    
-    cardTbl = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-150)];
+    paymentButtonsHeight=200;
+    cardTbl = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT-paymentButtonsHeight-64)];
     cardTbl.dataSource = self;
     cardTbl.delegate = self;
-    [self.view addSubview:cardTbl];
     
-    UIButton *payWithCard = [UIButton buttonWithType:UIButtonTypeCustom];
-    payWithCard.frame = CGRectMake(0, SCREEN_HEIGHT-145, SCREEN_WIDTH, 40);
+    
+    applePay = [[PKPaymentButton alloc] initWithPaymentButtonType:PKPaymentButtonTypePlain paymentButtonStyle:PKPaymentButtonStyleBlack];
+    applePay.frame = CGRectMake(20, SCREEN_HEIGHT-195, SCREEN_WIDTH-40, 40);
+    [applePay setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [applePay setBackgroundColor:APP_COLOR];
+    applePay.tag=128;
+    [applePay addTarget:self action:@selector(applePayBtnAct) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:applePay];
+    [applePay setTitle:@"Apple pay" forState:UIControlStateNormal];
+     applePay.titleLabel.font = APP_FONT_BOLD_18;
+    
+    payPalBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    payPalBtn.frame = CGRectMake(20, SCREEN_HEIGHT-145, SCREEN_WIDTH-40, 40);
+    [payPalBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [payPalBtn setBackgroundColor:APP_COLOR];
+    [payPalBtn addTarget:self action:@selector(payWithPaypal) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:payPalBtn];
+    payPalBtn.tag=4;
+    payPalBtn.titleLabel.font = APP_FONT_BOLD_18;
+    [payPalBtn setTitle:@"Pay with PayPal" forState:UIControlStateNormal];
+    payPalBtn.hidden = true;
+    
+    payWithCard = [UIButton buttonWithType:UIButtonTypeCustom];
+    payWithCard.frame = CGRectMake(20, SCREEN_HEIGHT-95, SCREEN_WIDTH-40, 40);
     [payWithCard setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [payWithCard setBackgroundColor:APP_COLOR];
+    payWithCard.tag=2;
     [payWithCard addTarget:self action:@selector(saveBtnAct) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:payWithCard];
     [payWithCard setTitle:@"Pay With Card" forState:UIControlStateNormal];
     payWithCard.titleLabel.font = APP_FONT_BOLD_18;
     
-    
-    UIButton *payPalBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    payPalBtn.frame = CGRectMake(0, SCREEN_HEIGHT-95, SCREEN_WIDTH, 40);
-    [payPalBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [payPalBtn setBackgroundColor:APP_COLOR];
-    [payPalBtn addTarget:self action:@selector(payWithPaypal) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:payPalBtn];
-    payPalBtn.titleLabel.font = APP_FONT_BOLD_18;
-    [payPalBtn setTitle:@"Pay with PayPal" forState:UIControlStateNormal];
-    payPalBtn.hidden = true;
-    
-    UIButton *saveBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    saveBtn.frame = CGRectMake(0, SCREEN_HEIGHT-45, SCREEN_WIDTH, 40);
+    saveBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    saveBtn.frame = CGRectMake(20, SCREEN_HEIGHT-45, SCREEN_WIDTH-40, 40);
     [saveBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [saveBtn setBackgroundColor:APP_COLOR];
+     saveBtn.tag=1;
     [saveBtn addTarget:self action:@selector(saveBtnAct) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:saveBtn];
     saveBtn.titleLabel.font = APP_FONT_BOLD_18;
+    
+    [self showingPaymentButtonsBasedOnPymenySettings];
+    cardTbl.frame=CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT-paymentButtonsHeight-64);
 
     if ([[CartObj instance].itemsForCart count]) {
         [saveBtn setTitle:@"Pay Cash" forState:UIControlStateNormal];
@@ -87,37 +111,78 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasShown:) name:UIKeyboardDidShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
-    
-    
 }
-
-
+-(void)showingPaymentButtonsBasedOnPymenySettings{
+    [saveBtn setHidden:YES];
+    [payPalBtn setHidden:YES];
+    [payWithCard setHidden:YES];
+    [applePay setHidden:YES];
+    NSInteger paymentMode=[[user objectForKey:@"PaymentSetting"] integerValue];
+    NSArray *values=@[@"128",@"64",@"32",@"16",@"8",@"4",@"2",@"1"];
+    NSMutableArray *temp=[[NSMutableArray alloc] initWithCapacity:0];
+    NSArray *buttons=@[saveBtn, payWithCard , payPalBtn, applePay];
+    for(int i=0 ; i< values.count ; i++){
+        if([[values objectAtIndex:i] integerValue] <= paymentMode){
+            paymentMode=paymentMode-[[values objectAtIndex:i] integerValue];
+            if([[values objectAtIndex:i] integerValue]==128 || [[values objectAtIndex:i] integerValue] == 4 || [[values objectAtIndex:i] integerValue] == 2 || [[values objectAtIndex:i] integerValue] == 1){
+                [temp addObject:[values objectAtIndex:i]];
+            }
+            if(paymentMode == 0){
+                [self enableRegardingButton:[[values objectAtIndex:i] integerValue]];
+                break;
+            }else{
+                [self enableRegardingButton:[[values objectAtIndex:i] integerValue]];
+            }
+        }
+    }
+    paymentButtonsHeight=temp.count * 50;
+    NSArray* reversedArray = [[temp reverseObjectEnumerator] allObjects];
+    for(int i=0; i< reversedArray.count ; i++){
+        if([[reversedArray objectAtIndex:i] integerValue] == 2){
+            [self.view addSubview:cardTbl];
+        }
+        for(int j=0; j<buttons.count; j++){
+            if([[reversedArray objectAtIndex:i] integerValue] == ((UIButton *)[buttons objectAtIndex:j]).tag){
+                ((UIButton *)[buttons objectAtIndex:j]).frame=CGRectMake(20, SCREEN_HEIGHT-(((i+1)*50)-5), SCREEN_WIDTH-40, 40);
+            }
+        }
+    }
+}
+-(void)enableRegardingButton:(NSInteger)paymentMode{
+    switch (paymentMode) {
+        case 1:
+            [saveBtn setHidden:NO];
+            break;
+        case 2:
+            [payWithCard setHidden:NO];
+            break;
+        case 4:
+            [payPalBtn setHidden:NO];
+            break;
+        case 128:
+            [applePay setHidden:NO];
+            break;
+        default:
+            break;
+    }
+}
 -(void) viewWillAppear:(BOOL)animated{
     cardArray = [[NSMutableArray alloc] initWithArray:[user objectForKey:@"PaymentInformation"]];
     [cardTbl reloadData];
 }
-
-
 -(void) leftBarAct{
     [self.navigationController popViewControllerAnimated:YES];
 }
 -(void) addCardBtnAct{
-    //    UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:self];
-    
     AddCardVC *addCardView = [[AddCardVC alloc] init];
     addCardView.newCard = YES;
     [self.navigationController pushViewController:addCardView animated:YES];
 }
-
-
-
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 2;
 }
-
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if (section==0) {
-        //        return 5;
         return cardArray.count;
     }else{
         return 1;
@@ -280,10 +345,17 @@
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:[NSString stringWithFormat:@"Maximum amount for cash order is $%.2lf", [[user objectForKey:@"maxCashValue"] doubleValue]] delegate:self cancelButtonTitle:@"Ok" otherButtonTitles: nil];
             [alert show];
         }
-        
-        
     }else{
-        [self.navigationController popToRootViewControllerAnimated:YES];
+        NSMutableArray *locationsary=[NSMutableArray arrayWithCapacity:0];
+        for (NSData *data in [[NSUserDefaults standardUserDefaults] objectForKey:@"Locations"]) {
+            NSDictionary *dic=[NSKeyedUnarchiver unarchiveObjectWithData:data];
+            [locationsary addObject:dic];
+        }
+        if([locationsary count] > 1){
+            [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:1] animated:YES];
+        }else{
+            [self.navigationController popToRootViewControllerAnimated:YES];
+        }
     }
 }
 
@@ -353,15 +425,10 @@
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     NSString *orderDtStr = [[user objectForKey:@"OrderDate"] stringByAppendingString:[NSString stringWithFormat:@" %@",[user objectForKey:@"OrderTime"]]];
     
-    
-//    dateFormatter.timeZone = [NSTimeZone systemTimeZone];
     [dateFormatter setDateFormat:@"MM/dd/yyyy hh:mm a"];
     NSDate *orderDt = [[NSDate alloc] init];
     orderDt = [dateFormatter dateFromString:orderDtStr];
-    
-    NSString *timeStamp;// = [dateFormatter stringFromDate:orderDt];
-    
-    
+    NSString *timeStamp;
     timeStamp = [NSString stringWithFormat:@"%@", orderDt];
     timeStamp = [timeStamp substringToIndex:16];
     timeStamp = [timeStamp stringByReplacingOccurrencesOfString:@" " withString:@"T"];
@@ -370,32 +437,10 @@
     bool isFutureOrder = NO;
     NSDateFormatter *formatForToday =  [[NSDateFormatter alloc] init];
     [formatForToday setDateFormat:@"yyyy-MM-dd hh:mm:ss"];
-//    formatForToday.timeZone = [NSTimeZone timeZoneWithName:@"GMT-8"];
     NSString *currentDateStr = [formatForToday stringFromDate: [NSDate date]];
-//    formatForToday.timeZone = [NSTimeZone timeZoneWithName:@"GMT-8"];
     NSDate *mydate = [formatForToday dateFromString:currentDateStr];
-    
-    
-//    NSTimeZone *tzz = [NSTimeZone systemTimeZone];
-//    NSInteger second = [tzz secondsFromGMTForDate: mydate];
-//    mydate =  [NSDate dateWithTimeInterval: second sinceDate: mydate];
-//    
-//    NSTimeZone *tz = [NSTimeZone defaultTimeZone];
-//    NSInteger seconds = [tz secondsFromGMTForDate: orderDt];
-//    orderDt =  [NSDate dateWithTimeInterval: seconds sinceDate: orderDt];
-    
-//    NSString *timeStamp = [dateFormatter stringFromDate:orderDt];
-//
-//    
-//    timeStamp = [NSString stringWithFormat:@"%@", orderDt];
-//    timeStamp = [timeStamp substringToIndex:16];
-//    timeStamp = [timeStamp stringByReplacingOccurrencesOfString:@" " withString:@"T"];
-    
     dateFormatter.dateFormat = @"yyyy-MM-dd hh:mm:ss";
     
-//    NSTimeZone *gmt = [NSTimeZone timeZoneWithAbbreviation:@"GMT-12"];
-//    [dateFormatter setTimeZone:gmt];
-
     NSLog(@"%@\n%@\n%@", [mydate dateByAddingTimeInterval:45*60], orderDt, [NSDate date]);
     
     if ([[[NSDate date] dateByAddingTimeInterval:45*60] compare:orderDt] == NSOrderedAscending) {
@@ -427,9 +472,6 @@
     [APIRequest placeOrder:dic completion:^(NSMutableData *buffer) {
         if (!buffer){
             NSLog(@"Unknown ERROR");
-//            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"Something went wrong, Please try again" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles: nil];
-//            [alert show];
-            //            [Loader showErrorAlert:NETWORK_ERROR_MSG];
         }else{
             
             NSString *res = [[NSString alloc] initWithData:buffer encoding:NSUTF8StringEncoding];
@@ -441,9 +483,11 @@
                 [[CartObj instance].userInfo setObject:[resObj objectForKey:@"OrderId"] forKey:@"OrderId"];
                 [[CartObj instance].userInfo setObject:[resObj objectForKey:@"OrderDate"] forKey:@"OrderDate"];
                 [[CartObj instance].userInfo setObject:[NSNumber numberWithBool:[[resObj objectForKey:@"isFutureOrder"] boolValue]] forKey:@"isFutureOrder"];
-
+                OrderId=[NSString stringWithFormat:@"%@",[resObj objectForKey:@"OrderId"]];
                 if ([[user objectForKey:@"PaymentType"] intValue] == 4){
                     [self goForPayment:[NSString stringWithFormat:@"%@",[resObj objectForKey:@"OrderId"]]];
+                }else if([[user objectForKey:@"PaymentType"] intValue] == 128){
+                    [self goForApplePayment:[NSString stringWithFormat:@"%@",[resObj objectForKey:@"OrderId"]]];
                 } else {
                     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"Order placed successfully" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles: nil];
                     [alert setTag:4000];
@@ -480,14 +524,16 @@
     payThrough = [[NSDictionary alloc] init];
     [self placeOrderReq:payThrough];
 }
+-(void)applePayBtnAct{
+    [user setObject:[NSNumber numberWithInteger:128] forKey:@"PaymentType"];
+    payThrough = [[NSDictionary alloc] init];
+    [self placeOrderReq:payThrough];
+//    [self goForApplePayment:@"ApplePayorderID"];
+}
 
 -(void)goForPayment:(NSString *)orderId{
-
-//    [PayPalMobile initializeWithClientIdsForEnvironments:@{/*PayPalEnvironmentProduction : @"access_token$sandbox$cdphrs9mxpghkb6s$3c1dcd6e3bce7440eaf77ed5785a7eb6",*/
-//                                                           PayPalEnvironmentSandbox : @"access_token$sandbox$cdphrs9mxpghkb6s$3c1dcd6e3bce7440eaf77ed5785a7eb6"}];
     
     [PayPalMobile preconnectWithEnvironment:PayPalEnvironmentProduction];
-
     paypalConfig = [[PayPalConfiguration alloc] init];
     paypalConfig.acceptCreditCards = YES;
     paypalConfig.merchantName = @"";
@@ -512,18 +558,14 @@
     payment.paymentDetails = paymentDetails;
     payment.payeeEmail = [NSString stringWithFormat:@"%@", [[user objectForKey:@"userInfo"] objectForKey:@"Email"]];
     
-    
-    
     PayPalPaymentViewController *paypalVC = [[PayPalPaymentViewController alloc] initWithPayment:payment configuration:paypalConfig delegate:self];
     [self presentViewController:paypalVC animated:YES completion:nil];
 }
-
-
 - (void)payPalPaymentViewController:(PayPalPaymentViewController *)paymentViewController didCompletePayment:(PayPalPayment *)completedPayment {
     NSLog(@"PayPal Payment Success!--------%@",[completedPayment description]);
     self.resultText = [completedPayment description];
-    
-    [self sendCompletedPaymentToServer:completedPayment]; // Payment was processed successfully; send to server for verification and fulfillment
+    NSDictionary *dic=[[NSDictionary alloc] initWithObjectsAndKeys:completedPayment.custom,@"OrderId",CLIENT_ID,@"ClientId",@"Success",@"PaymentResponse",[user objectForKey:@"PaymentType"],@"PaymentType",nil];
+    [self sendCompletedPaymentToServer:dic]; // Payment was processed successfully; send to server for verification and fulfillment
     [paymentViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -535,20 +577,12 @@
 
 #pragma mark Proof of payment validation
 
-- (void)sendCompletedPaymentToServer:(PayPalPayment *)completedPayment {
+- (void)sendCompletedPaymentToServer:(NSDictionary *)dic{
     // TODO: Send completedPayment.confirmation to server
-    NSLog(@"Here is your proof of payment:\n\n%@\n\nSend this to your server for confirmation and fulfillment.", completedPayment.confirmation);
-    
-    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:CLIENT_ID,@"ClientId",completedPayment.custom,@"OrderId",@"Success",@"PaypalResponse", nil];
-    
     [APIRequest confirmPaypalOrder:dic completion:^(NSMutableData *buffer) {
         if (!buffer){
             NSLog(@"Unknown ERROR");
-            //            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"Something went wrong, Please try again" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles: nil];
-            //            [alert show];
-            //            [Loader showErrorAlert:NETWORK_ERROR_MSG];
         }else{
-            
             NSString *res = [[NSString alloc] initWithData:buffer encoding:NSUTF8StringEncoding];
             // handle the response here
             NSError *error = nil;
@@ -566,9 +600,6 @@
         }
     }];
 }
-
-
-
 //#pragma mark PayPalFuturePaymentDelegate methods
 
 - (void)payPalFuturePaymentViewController:(PayPalFuturePaymentViewController *)futurePaymentViewController
@@ -589,27 +620,13 @@
     // TODO: Send authorization to server
     NSLog(@"Here is your authorization:\n\n%@\n\nSend this to your server to complete future payment setup.", authorization);
 }
-
-
 #pragma mark - Authorize Profile Sharing
 
-//- (IBAction)getUserAuthorizationForProfileSharing:(id)sender {
-//    
-//    NSSet *scopeValues = [NSSet setWithArray:@[kPayPalOAuth2ScopeOpenId, kPayPalOAuth2ScopeEmail, kPayPalOAuth2ScopeAddress, kPayPalOAuth2ScopePhone]];
-//    
-//    PayPalProfileSharingViewController *profileSharingPaymentViewController = [[PayPalProfileSharingViewController alloc] initWithScopeValues:scopeValues configuration:self.paypalConfig delegate:self];
-//    [self presentViewController:profileSharingPaymentViewController animated:YES completion:nil];
-//}
-
-
 //#pragma mark PayPalProfileSharingDelegate methods
-//
 - (void)payPalProfileSharingViewController:(PayPalProfileSharingViewController *)profileSharingViewController
              userDidLogInWithAuthorization:(NSDictionary *)profileSharingAuthorization {
     NSLog(@"PayPal Profile Sharing Authorization Success!");
     self.resultText = [profileSharingAuthorization description];
-    
-//    [self sendProfileSharingAuthorizationToServer:profileSharingAuthorization];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 //
@@ -617,20 +634,9 @@
     NSLog(@"PayPal Profile Sharing Authorization Canceled");
     [self dismissViewControllerAnimated:YES completion:nil];
 }
-//
-//- (void)sendProfileSharingAuthorizationToServer:(NSDictionary *)authorization {
-//    // TODO: Send authorization to server
-//    NSLog(@"Here is your authorization:\n\n%@\n\nSend this to your server to complete profile sharing setup.", authorization);
-//}
-
-
-
-
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    
     if (buttonIndex == 1) {
         if (alertView.tag == 5000 ) {
-//            [self goForPayment];
             [self placeOrderReq:payThrough];
         }else{
             NSMutableDictionary *cardDic = [[NSMutableDictionary alloc] initWithDictionary:[[cardArray objectAtIndex:alertView.tag] mutableCopy]];
@@ -642,10 +648,8 @@
     if (buttonIndex == 0 && alertView.tag == 4000) {
         OrderConfirmationV *nextView = [[OrderConfirmationV alloc] init];
         [self.navigationController pushViewController:nextView animated:YES];
-        //        [self.navigationController popToRootViewControllerAnimated:YES];
     }
 }
-
 -(void)updateCard:(NSInteger)index{
     NSArray *cardArr = [[NSArray alloc] initWithObjects:[cardArray objectAtIndex:index], nil];
     NSDictionary *dic = [[NSDictionary alloc] initWithObjectsAndKeys:
@@ -672,9 +676,6 @@
         [APIRequest updateClorderUser:dic completion:^(NSMutableData *buffer) {
             if (!buffer){
                 NSLog(@"Unknown ERROR");
-//                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"Something went wrong, Please try again" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles: nil];
-//                [alert show];
-                //            [Loader showErrorAlert:NETWORK_ERROR_MSG];
             }else{
                 
                 NSString *res = [[NSString alloc] initWithData:buffer encoding:NSUTF8StringEncoding];
@@ -682,17 +683,7 @@
                 NSError *error = nil;
                 NSDictionary *resObj = [NSJSONSerialization JSONObjectWithData:buffer options:NSJSONReadingAllowFragments error:&error];
                 NSLog(@"Response :\n %@",resObj);
-                //            cardArray = [[NSMutableArray alloc] initWithArray:[resObj objectForKey:@"PaymentInformation"]];
-                //            for (int i = 0; i < cardArray.count; i++) {
-                //                if ([[[cardArray objectAtIndex:i] objectForKey:@"IsDeleted"] intValue] == 1) {
-                //                    [cardArray removeObjectAtIndex:i];
-                //                }
-                //            }
-                
-                //            [cardArray replaceObjectAtIndex:alertView.tag withObject:cardDic];
-                
                 if ([[resObj objectForKey:@"isSuccess"] boolValue]) {
-                    
                     if (![[resObj objectForKey:@"PaymentInformation"] isKindOfClass:[NSNull class]]) {
                         cardArray = [[NSMutableArray alloc] initWithArray:[resObj objectForKey:@"PaymentInformation"]];
                     }
@@ -710,11 +701,98 @@
             }
         }];
     }
-    
-    
+}
+-(void)goForApplePayment:(NSString *)orderId{
+    if([PKPaymentAuthorizationViewController canMakePayments]){
+        PKPaymentRequest *request = [[PKPaymentRequest alloc] init];
+        request.countryCode = @"US";
+        request.currencyCode = @"USD";
+        request.supportedNetworks = @[PKPaymentNetworkAmex, PKPaymentNetworkMasterCard, PKPaymentNetworkVisa];
+        request.merchantCapabilities = PKMerchantCapability3DS;
+        request.merchantIdentifier = PRODUCTION_MERCHNAT;
+        request.requiredShippingAddressFields=PKAddressFieldAll;
+        request.shippingContact=[self addingAddresstoApplepay];
+        
+//        PKContact *contact = [[PKContact alloc] init];
+//        NSPersonNameComponents *name = [[NSPersonNameComponents alloc] init];
+//        name.givenName = orderId;
+//        contact.name = name;
+//
+//        request.billingContact=contact;
+//        PKPaymentSummaryItem *price = [PKPaymentSummaryItem summaryItemWithLabel:@"cartPrice" amount:[NSDecimalNumber decimalNumberWithString:[user objectForKey:@"cartPrice"]]];
+        PKPaymentSummaryItem *tax = [PKPaymentSummaryItem summaryItemWithLabel:@"Tax" amount:[NSDecimalNumber decimalNumberWithString:[user objectForKey:@"TaxCost"]]];
+        PKPaymentSummaryItem *discount = [PKPaymentSummaryItem summaryItemWithLabel:@"Discount" amount:[NSDecimalNumber decimalNumberWithString:[user objectForKey:@"DiscountAmount"]]];
+        PKPaymentSummaryItem *subtotal = [PKPaymentSummaryItem summaryItemWithLabel:@"Price" amount:[NSDecimalNumber decimalNumberWithString:[user objectForKey:@"SubTotal"]]];
+        PKPaymentSummaryItem *total = [PKPaymentSummaryItem summaryItemWithLabel:@"Grand Total" amount:[NSDecimalNumber decimalNumberWithString:[user objectForKey:@"cartPrice"]]];
+        request.paymentSummaryItems = @[subtotal,tax,discount,total];
+        
+        PKPaymentAuthorizationViewController *paymentPane = [[PKPaymentAuthorizationViewController alloc] initWithPaymentRequest:request];
+        paymentPane.delegate = self;
+        [self presentViewController:paymentPane animated:YES completion:nil];
+    }else{
+        NSLog(@"Can't Make payments");
+    }
+}
+- (void)paymentAuthorizationViewController:(PKPaymentAuthorizationViewController *)controller
+                       didAuthorizePayment:(PKPayment *)payment
+                                completion:(void (^)(PKPaymentAuthorizationStatus))completion{
+    NSLog(@"token %@", [payment.token description]);
+    BTApplePayClient *applePayClient = [[BTApplePayClient alloc]
+                                        initWithAPIClient:self.braintreeClient];
+    [applePayClient tokenizeApplePayPayment:payment completion:^(BTApplePayCardNonce *tokenizedApplePayPayment, NSError *error) {
+            if (tokenizedApplePayPayment) {
+                // On success, send nonce to your server for processing.
+                    // If applicable, address information is accessible in `payment`.
+                        NSLog(@"nonce = %@", tokenizedApplePayPayment.nonce);
+                NSMutableDictionary *dic=[[NSMutableDictionary alloc] init];
+                [dic setObject:CLIENT_ID forKey:@"ClientId"];
+                [dic setObject:tokenizedApplePayPayment.nonce forKey:@"PaymentResponse"];
+                [dic setObject:[user objectForKey:@"PaymentType"] forKey:@"PaymentType"];
+                [dic setObject:OrderId forKey:@"OrderId"];
+                [self sendCompletedPaymentToServer:dic];
+                        // Then indicate success or failure via the completion callback, e.g.
+                completion(PKPaymentAuthorizationStatusSuccess);
+            
+             } else {
+                        // Tokenization failed. Check `error` for the cause of the failure.
+                        // Indicate failure via the completion callback:
+                            completion(PKPaymentAuthorizationStatusFailure);
+            }
+    }];
+}
+- (void)paymentAuthorizationViewControllerDidFinish:(PKPaymentAuthorizationViewController *)controller{
+    [controller dismissViewControllerAnimated:YES completion:nil];
+}
+- (void)paymentAuthorizationViewController:(PKPaymentAuthorizationViewController *)controller
+                   didSelectShippingMethod:(PKShippingMethod *)shippingMethod
+                                completion:(void (^)(PKPaymentAuthorizationStatus status, NSArray<PKPaymentSummaryItem *> *summaryItems))completion{
     
 }
+- (void)paymentAuthorizationViewController:(PKPaymentAuthorizationViewController *)controller
+                  didSelectShippingContact:(PKContact *)contact
+                                completion:(void (^)(PKPaymentAuthorizationStatus status, NSArray<PKShippingMethod *> *shippingMethods,
+                                                     NSArray<PKPaymentSummaryItem *> *summaryItems))completion{
+    
+}
+-(PKContact *)addingAddresstoApplepay{
+    NSPersonNameComponents *name = [[NSPersonNameComponents alloc] init];
+    name.givenName = [[CartObj instance].userInfo objectForKey:@"FullName"];
+    
+    CNMutablePostalAddress *address = [[CNMutablePostalAddress alloc] init];
+    address.street = [[[CartObj instance].userInfo objectForKey:@"UserAddress"] objectForKey:@"Address1"];
+    address.city = [[[CartObj instance].userInfo objectForKey:@"UserAddress"] objectForKey:@"City"];
+    address.postalCode = [[[CartObj instance].userInfo objectForKey:@"UserAddress"] objectForKey:@"ZipPostalCode"];
+    
+    CNPhoneNumber *phone = [[CNPhoneNumber alloc] initWithStringValue:[[[CartObj instance].userInfo objectForKey:@"UserAddress"] objectForKey:@"PhoneNumber"]];
 
+    PKContact *contact = [[PKContact alloc] init];
+    contact.name = name;
+    contact.emailAddress=[[CartObj instance].userInfo objectForKey:@"Email"];
+    contact.postalAddress=address;
+    contact.phoneNumber=phone;
+    
+    return contact;
+}
 -(BOOL)textFieldShouldReturn:(UITextField *)textField{
     [textField resignFirstResponder];
     return YES;

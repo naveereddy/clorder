@@ -22,9 +22,7 @@
     [self createUI];
     if ([[CartObj instance].freeItemDic objectForKey:@"ItemIdofFreeItem"]) {
         [self getFreeItem];
-        
     }
-    
     UIButton *leftBar = [UIButton buttonWithType:UIButtonTypeCustom];
     leftBar.frame = CGRectMake(0, 0, 20, 20);
     [leftBar setImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
@@ -39,6 +37,7 @@
 }
 
 -(void)createUI{
+    
     orderListTbl = [[UITableView alloc] initWithFrame:CGRectMake(0, 325, SCREEN_WIDTH, 420+[self heightForOrderListTbl])];
     orderListTbl.scrollEnabled = YES;
     orderListTbl.delegate = self;
@@ -142,7 +141,6 @@
     [self CurrentLocationIdentifier];
 
 }
-
 -(void)getFreeItem{
     [APIRequest getModifiersForItem:[NSDictionary dictionaryWithObjectsAndKeys:CLIENT_ID, @"clientId",
                                      [[CartObj instance].freeItemDic objectForKey:@"ItemIdofFreeItem"], @"ItemID",
@@ -253,9 +251,7 @@
 -(void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation{
     
 }
-
 -(void)doneBtnAct{
-    
     [user removeObjectForKey:@"cartPrice"];
     [user removeObjectForKey:@"subTotalPrice"];
     [user removeObjectForKey:@"cart"];
@@ -268,9 +264,8 @@
     [[CartObj instance].itemsForCart removeAllObjects];
     [CartObj clearInstance];
     
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:1] animated:YES];
 }
-
 -(void) leftBarAct{
 //    [self.navigationController popViewControllerAnimated:YES];
 }

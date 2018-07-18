@@ -9,15 +9,18 @@
 #ifndef AppHeader_h
 #define AppHeader_h
 
-//#define CLIENT_ID @"177"
-#define CLIENT_ID [NSString stringWithFormat:@"%@",[[NSBundle mainBundle] objectForInfoDictionaryKey:@"ClientId"]]
+#define CLIENT_ID [[NSUserDefaults standardUserDefaults] objectForKey:@"MainClientId"]
+#define ORDER_ONLINE [NSString stringWithFormat:@"%@",[[NSBundle mainBundle] objectForInfoDictionaryKey:@"OrderOnlineStatus"]]
+
+
+#define SANBOX_MERCHNAT @"merchant.com.clorder.OrderOnlineBrianTreeTest"
+#define PRODUCTION_MERCHNAT @"merchant.com.clorder.orderonline"
+
+#define SANBOX_BAINTREE_AUTH @"sandbox_m32bhjjg_x8xhk82f9y5vzx8k"
+#define PRODUCTION_BAINTREE_AUTH @"production_hkggt9bz_9qx7w4yw7cdm4mbk"
 
 #define APP_BG_IMG @"home_screen_bg.png"
-#define APP_LOGO @"home_logo.png"
 #define ORDER_FROM_RIBBON @"order_from.png"
-#define BLUE_BTN_BG @"blue-bg.png"
-#define PICK_ANOTHER @"pick-another.png"
-#define SIGN_IN_CREATE @"sign_create_btn.png"
 #define APP_COLOR_LIGHT_WHITE [UIColor colorWithRed:240/255.0 green:240/255.0 blue:240/255.0 alpha:1.0]
 #define APP_COLOR [UIColor colorWithRed:250/255.0 green:91/255.0 blue:91/255.0 alpha:1.0]
 #define APP_COLOR_LIGHT [UIColor colorWithRed:243/255.0 green:241/255.0 blue:242/255.0 alpha:1.0]
@@ -47,5 +50,11 @@
 #define FRAME_HEIGHT frame.size.height
 
 #define  GOOGLE_API_KEY @"AIzaSyCZjRFntVLR5DNvDTIB73JHiS6PkrO7cC0"
+
+#define SYSTEM_VERSION_EQUAL_TO(v)                  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedSame)
+#define SYSTEM_VERSION_GREATER_THAN(v)              ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedDescending)
+#define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
+#define SYSTEM_VERSION_LESS_THAN(v)                 ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedAscending)
+#define SYSTEM_VERSION_LESS_THAN_OR_EQUAL_TO(v)     ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedDescending)
 
 #endif /* AppHeader_h */

@@ -52,26 +52,26 @@
     [leftBar addTarget:self action:@selector(leftBarAct) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItems = [NSArray arrayWithObject:leftBarItem];
     
-    UIView *bottomView = [[UIView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT-40, SCREEN_WIDTH, 40)];
+    UIView *bottomView = [[UIView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT-50, SCREEN_WIDTH, 50)];
     [self.view addSubview:bottomView];
     bottomView.backgroundColor = APP_COLOR;
     [bottomView setUserInteractionEnabled:YES];
     
     UIButton *addOrder = [UIButton buttonWithType:UIButtonTypeCustom];
-    addOrder.frame = CGRectMake(10, 5, SCREEN_WIDTH-150, 30);
+    addOrder.frame = CGRectMake(10, 5, SCREEN_WIDTH-150, 40);
     [addOrder.titleLabel setTextAlignment:NSTextAlignmentCenter];
     [addOrder setTitle:@"NEXT-STEP" forState:UIControlStateNormal];
     [addOrder addTarget:self action:@selector(nextAct) forControlEvents:UIControlEventTouchUpInside];
     [bottomView addSubview:addOrder];
     addOrder.titleLabel.font = [UIFont fontWithName:@"Lora-Regular" size:16];
     
-    UIImageView *image=[[UIImageView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-145, 10, 20, 20)];
+    UIImageView *image=[[UIImageView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-145, 15, 20, 20)];
     [image setImage:[UIImage imageNamed:@"right_arrow_border"]];
     [bottomView addSubview:image];
     
     UIButton *checkOutBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     checkOutBtn.titleLabel.font = [UIFont fontWithName:@"Lora-Regular" size:16];
-    checkOutBtn.frame = CGRectMake(SCREEN_WIDTH-100, 5, 100, 30);
+    checkOutBtn.frame = CGRectMake(SCREEN_WIDTH-100, 5, 100, 40);
     [checkOutBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [checkOutBtn addTarget:self action:@selector(nextAct) forControlEvents:UIControlEventTouchUpInside];
     [bottomView addSubview:checkOutBtn];
@@ -163,7 +163,6 @@
 
 -(void) nextAct {
     if ([self validatingFields]) {
-        
         NSDictionary *dic = [[NSDictionary alloc] initWithObjectsAndKeys:
                              addressText.text, @"Address1",
                              buildingText.text, @"Address2",
@@ -188,8 +187,6 @@
             [userInfoDic setObject:nameText.text forKey:@"LastName"];
             [userInfoDic setObject:nameText.text forKey:@"FirstName"];
             [userInfoDic setObject:emailText.text forKey:@"Email"];
-            
-            
         }
         [user  setObject:userInfoDic forKey:@"userInfo"];
         if (isNewUser) {
@@ -217,7 +214,7 @@
                     NSError *error = nil;
                     NSDictionary *resObj = [NSJSONSerialization JSONObjectWithData:buffer options:NSJSONReadingAllowFragments error:&error];
                     NSLog(@"Response :\n %@",resObj);
-                    
+                    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"skipNow"];
                 }
             }];
         }
@@ -233,6 +230,7 @@
 //                    checkOutV.orderId = orderId;
                     [self.navigationController pushViewController:checkOutV animated:YES];
                 }else {
+                    
                     AllDayMenuVC *nextView = [[AllDayMenuVC alloc] init];
                     [self.navigationController pushViewController:nextView animated:YES];
                 }
@@ -313,12 +311,6 @@
         headerLbl.text = @"DELIVERY ADDRESS";
     }
     
-    
-//    UILabel *nameLbl = [[UILabel alloc] initWithFrame:CGRectMake(20, 30, SCREEN_WIDTH-40, 25)];
-//    [mainScroll addSubview:nameLbl];
-//    nameLbl.text = @"Name*";
-//    nameLbl.font = [UIFont boldSystemFontOfSize:16];
-    
     nameText = [[UITextField alloc] initWithFrame:CGRectMake(20, 20, SCREEN_WIDTH-40, 40)];
     [mainScroll addSubview:nameText];
     [nameText setPlaceholder:@"Name"];
@@ -365,65 +357,6 @@
     zipText.placeholder = @"Zip code*";
     zipText.delegate = self;
     [zipText.layer addSublayer:[self bottomborderAdding:self.view.frame.size.width-40 height:40]];
-    
-//    nameText.layer.borderColor = [[UIColor blackColor] CGColor];
-//    nameText.layer.borderWidth = 1.0;
-//    nameText.layer.cornerRadius = 3.0;
-    
-//    UILabel *addressLbl = [[UILabel alloc] initWithFrame:CGRectMake(20, 90, SCREEN_WIDTH-40, 25)];
-//    [mainScroll addSubview:addressLbl];
-//    addressLbl.text = @"Address*";
-//    addressLbl.font = [UIFont boldSystemFontOfSize:16];
-
-
-//    addressText.layer.borderColor = [[UIColor blackColor] CGColor];
-//    addressText.layer.borderWidth = 1.0;
-//    addressText.layer.cornerRadius = 3.0;
-    
-//    UILabel *buildingLbl = [[UILabel alloc] initWithFrame:CGRectMake(20, 150, SCREEN_WIDTH-40, 25)];
-//    [mainScroll addSubview:buildingLbl];
-//    buildingLbl.text = @"Apt/Suit/Building";
-//    buildingLbl.font = [UIFont boldSystemFontOfSize:16];
-
-
-//    buildingText.layer.borderColor = [[UIColor blackColor] CGColor];
-//    buildingText.layer.borderWidth = 1.0;
-//    buildingText.layer.cornerRadius = 3.0;
-    
-//    UILabel *cityLbl = [[UILabel alloc] initWithFrame:CGRectMake(20, 210, SCREEN_WIDTH-40, 25)];
-//    [mainScroll addSubview:cityLbl];
-//    cityLbl.text = @"City*";
-//    cityLbl.font = [UIFont boldSystemFontOfSize:16];
-
-//    cityText.layer.borderColor = [[UIColor blackColor] CGColor];
-//    cityText.layer.borderWidth = 1.0;
-//    cityText.layer.cornerRadius = 3.0;
-    
-//    UILabel *zipLbl = [[UILabel alloc] initWithFrame:CGRectMake(20, 270, SCREEN_WIDTH-40, 25)];
-//    [mainScroll addSubview:zipLbl];
-//    zipLbl.font = [UIFont boldSystemFontOfSize:16];
-
-//    zipText.layer.borderColor = [[UIColor blackColor] CGColor];
-//    zipText.layer.borderWidth = 1.0;
-//    zipText.layer.cornerRadius = 3.0;
-    
-//    UILabel *phoneLbl = [[UILabel alloc] initWithFrame:CGRectMake(20, 330, SCREEN_WIDTH-40, 25)];
-//    [mainScroll addSubview:phoneLbl];
-//    phoneLbl.text = @"Phone number*";
-//    phoneLbl.font = [UIFont boldSystemFontOfSize:16];
-
-//    phoneText.layer.borderColor = [[UIColor blackColor] CGColor];
-//    phoneText.layer.borderWidth = 1.0;
-//    phoneText.layer.cornerRadius = 3.0;
-    
-//    UILabel *emailLbl = [[UILabel alloc] initWithFrame:CGRectMake(20, 390, SCREEN_WIDTH-40, 25)];
-//    [mainScroll addSubview:emailLbl];
-//    emailLbl.text = @"Email address*";
-//    emailLbl.font = [UIFont boldSystemFontOfSize:16];
-
-//    emailText.layer.borderColor = [[UIColor blackColor] CGColor];
-//    emailText.layer.borderWidth = 1.0;
-//    emailText.layer.cornerRadius = 3.0;
     
     if (isNewUser) {
         nameText.userInteractionEnabled = NO;
@@ -491,7 +424,7 @@
     [optionPickerTool setItems:[[NSArray alloc] initWithObjects:button1, nil]];
     addressText.inputAccessoryView=optionPickerTool;
     
-    adresspicker = [[UIPickerView alloc] initWithFrame:CGRectMake(20, self.view.frame.size.height-200, self.view.frame.size.width-40, 200)];
+    adresspicker = [[UIPickerView alloc] initWithFrame:CGRectMake(20, self.view.frame.size.height-220, self.view.frame.size.width-40, 220)];
     addressText.inputView = adresspicker;
     
     adresspicker.delegate = self;
@@ -528,9 +461,19 @@
 }
 
 -(void) leftBarAct{
-    NSArray *vcArr = [[NSArray alloc] initWithArray:[self.navigationController viewControllers]];
-    [self.navigationController popToViewController:[vcArr objectAtIndex:0]  animated:YES];
-    //    [self.navigationController popViewControllerAnimated:YES];
+    
+    NSMutableArray *locationsary=[NSMutableArray arrayWithCapacity:0];
+    for (NSData *data in [[NSUserDefaults standardUserDefaults] objectForKey:@"Locations"]) {
+        NSDictionary *dic=[NSKeyedUnarchiver unarchiveObjectWithData:data];
+        [locationsary addObject:dic];
+    }
+    if([locationsary count] > 1){
+        NSArray *vcArr = [[NSArray alloc] initWithArray:[self.navigationController viewControllers]];
+        [self.navigationController popToViewController:[vcArr objectAtIndex:1]  animated:YES];
+    }else{
+        NSArray *vcArr = [[NSArray alloc] initWithArray:[self.navigationController viewControllers]];
+        [self.navigationController popToViewController:[vcArr objectAtIndex:0]  animated:YES];
+    }
 }
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField{
@@ -539,7 +482,6 @@
         GoogleSearchView *search = [[GoogleSearchView alloc] init];
         search.object=self;
         [self.navigationController pushViewController:search animated:YES];
-
     }else{
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasShown:) name:UIKeyboardDidShowNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
@@ -587,7 +529,7 @@
     }
     return YES;
 }
--(void)addressSelection:(NSString *)address{
+-(void)addressSelection:(NSString *)address locationDetails:(CLLocationCoordinate2D )location{
     addressText.text=address;
 }
 

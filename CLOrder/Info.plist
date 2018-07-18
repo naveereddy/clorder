@@ -52,9 +52,9 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>2</string>
 	<key>ClientId</key>
-	<string>727</string>
+	<string>5</string>
 	<key>FacebookAppID</key>
 	<string>1743014702690004</string>
 	<key>FacebookDisplayName</key>
@@ -77,12 +77,16 @@
 	</dict>
 	<key>NSCameraUsageDescription</key>
 	<string>OrderFoodOnline wants to access your camera</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>$(PRODUCT_NAME) wants to use your location data</string>
 	<key>NSLocationUsageDescription</key>
 	<string>$(PRODUCT_NAME) wants to use your location data</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>$(PRODUCT_NAME) wants to use your location data</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>OrderFoodOnline wants to access your photo library</string>
+	<key>OrderOnlineStatus</key>
+	<string></string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Lora-Regular.ttf</string>
@@ -107,7 +111,5 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>statusBar</key>
-	<string></string>
 </dict>
 </plist>

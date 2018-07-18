@@ -19,6 +19,7 @@
     int clientCategoriesArrIndex;
     NSString *spclNoteStr;
     NSMutableArray *imagesdataArray;
+    UIButton *cartIcon;
 }
 @synthesize categoryId, itemName, clientCategoriesArr;
 
@@ -53,7 +54,7 @@
     [leftArrow addTarget:self action:@selector(leftArrowAct) forControlEvents:UIControlEventTouchUpInside];
     [actionsView addSubview:leftArrow];
     
-    ItemTbl = [[UITableView alloc] initWithFrame:CGRectMake(0, 64+40, SCREEN_WIDTH, SCREEN_HEIGHT-64-64-40)];
+    ItemTbl = [[UITableView alloc] initWithFrame:CGRectMake(0, 64+40, SCREEN_WIDTH, SCREEN_HEIGHT-64-40)];
     ItemTbl.delegate = self;
     ItemTbl.dataSource = self;
     ItemTbl.separatorColor = [UIColor clearColor];
@@ -65,10 +66,21 @@
     
 
     
-    UIButton *cartIcon = [UIButton buttonWithType:UIButtonTypeCustom];
-    cartIcon.frame = CGRectMake(0, 0, 20, 20);
+    cartIcon = [UIButton buttonWithType:UIButtonTypeCustom];
+    cartIcon.frame = CGRectMake(0, 0, 44, 44);
+    [cartIcon setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [cartIcon.titleLabel setFont:[UIFont fontWithName:@"Lora-Bold" size:12]];
+    [cartIcon.titleLabel.layer setBorderColor:[[UIColor whiteColor] CGColor]];
+    [cartIcon.titleLabel.layer setBorderWidth:1];
+    [cartIcon.titleLabel.layer setCornerRadius:8];
+    [cartIcon.titleLabel setBackgroundColor:[UIColor blackColor]];
+    cartIcon.titleLabel.layer.masksToBounds = YES;
+    [cartIcon setNeedsLayout];
+    [cartIcon layoutIfNeeded];
     [cartIcon setImage:[UIImage imageNamed:@"cart"] forState:UIControlStateNormal];
     [cartIcon addTarget:self action:@selector(cartBtnAct) forControlEvents:UIControlEventTouchUpInside];
+    cartIcon.titleEdgeInsets = UIEdgeInsetsMake(-10,0,0,0);
+    cartIcon.imageEdgeInsets = UIEdgeInsetsMake(10,10,0,0);
     UIBarButtonItem * rightBarItem1 = [[UIBarButtonItem alloc] initWithCustomView:cartIcon];
     self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:rightBarItem1, nil];
     
@@ -81,8 +93,10 @@
     self.navigationItem.leftBarButtonItems = [NSArray arrayWithObjects:leftBarItem, nil];
 }
 -(void)viewWillAppear:(BOOL)animated{
+    [cartIcon setTitle:[NSString stringWithFormat:@" %lu ",(unsigned long)[CartObj instance].itemsForCart.count] forState:UIControlStateNormal];
+
     UIView *bottomView = [[UIView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT-64, SCREEN_WIDTH, 64)];
-    [self.view addSubview:bottomView];
+//    [self.view addSubview:bottomView];
     [bottomView setBackgroundColor:APP_COLOR];
     [bottomView setUserInteractionEnabled:YES];
     
@@ -241,18 +255,18 @@
     UIImageView *images=[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 50, 50)];
     [cell addSubview:images];
     images.contentMode=UIViewContentModeScaleAspectFit;
+    images.tag=indexPath.row;
     images.image=[UIImage imageNamed:@"menu-placeholder"];
 
-    if(((Item *)[imagesdataArray objectAtIndex:indexPath.row]).categoryId){
+    if(((Item *)[imagesdataArray objectAtIndex:indexPath.row]).imagedata && indexPath.row == images.tag){
         images.image=[UIImage imageWithData:((Item *)[imagesdataArray objectAtIndex:indexPath.row]).imagedata];
     }else{
         dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
-            NSInteger xedni = indexPath.row;
             NSString *path =[[clientItemsArr objectAtIndex:indexPath.row] objectForKey:@"ImageUrl"];
             NSData *dta = [NSData dataWithContentsOfURL:[NSURL URLWithString:path]];
             UIImage *image = [UIImage imageWithData:dta];
             dispatch_async(dispatch_get_main_queue(), ^(void){
-                if (indexPath.row == xedni){
+                if (indexPath.row == images.tag){
                     if(dta){
                         images.image=image;
                         if([imagesdataArray count] > indexPath.row){

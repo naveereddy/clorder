@@ -42,6 +42,8 @@
     NSMutableArray *cartOptArray;
     NSMutableArray *choiceTxtArr;
     int indexOfChoiceText;
+    UIButton *cartIcon;
+
 }
 
 @synthesize item, replaceIndex;
@@ -71,11 +73,24 @@
         quantity = [[item objectForKey:@"MinQuantity"] intValue];
     }
     
-    UIButton *carticon = [UIButton buttonWithType:UIButtonTypeCustom];
-    carticon.frame = CGRectMake(0, 0, 20, 20);
-    [carticon setImage:[UIImage imageNamed:@"cart"] forState:UIControlStateNormal];
-    [carticon addTarget:self action:@selector(cartAction) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem * rightBarItem1 = [[UIBarButtonItem alloc] initWithCustomView:carticon];
+    cartIcon = [UIButton buttonWithType:UIButtonTypeCustom];
+    cartIcon.frame = CGRectMake(0, 0, 44, 44);
+    [cartIcon setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [cartIcon.titleLabel setFont:[UIFont fontWithName:@"Lora-Bold" size:12]];
+    [cartIcon.titleLabel.layer setBorderColor:[[UIColor whiteColor] CGColor]];
+    [cartIcon.titleLabel setBackgroundColor:[UIColor blackColor]];
+    [cartIcon.titleLabel.layer setBorderWidth:1];
+    [cartIcon.titleLabel.layer setCornerRadius:8];
+    cartIcon.titleLabel.layer.masksToBounds = YES;
+    [cartIcon setNeedsLayout];
+    [cartIcon layoutIfNeeded];
+    [cartIcon setImage:[UIImage imageNamed:@"cart"] forState:UIControlStateNormal];
+    [cartIcon addTarget:self action:@selector(cartBtnAct) forControlEvents:UIControlEventTouchUpInside];
+    cartIcon.titleEdgeInsets = UIEdgeInsetsMake(-10,0,0,0);
+    cartIcon.imageEdgeInsets = UIEdgeInsetsMake(10,10,0,0);
+    UIBarButtonItem * rightBarItem1 = [[UIBarButtonItem alloc] initWithCustomView:cartIcon];
+    self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:rightBarItem1, nil];
+    
     
     self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:rightBarItem1, nil];
     
@@ -122,7 +137,11 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasShown:) name:UIKeyboardDidShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
 }
--(void) cartAction{
+-(void)viewWillAppear:(BOOL)animated{
+    [cartIcon setTitle:[NSString stringWithFormat:@" %lu ",(unsigned long)[CartObj instance].itemsForCart.count] forState:UIControlStateNormal];
+    
+}
+-(void) cartBtnAct{
     if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"AddMore"] boolValue]) {
         [self.navigationController popViewControllerAnimated:YES];
     }else{

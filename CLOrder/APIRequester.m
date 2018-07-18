@@ -49,7 +49,9 @@
     requestBody = requestObj;
     NSLog(@"Request URL : %@",requestURL);
     NSLog(@"Request Obj : %@",requestObj);
-    if (!syncInProgress){
+    if([requestURL containsString:@"FetchClientChildLocations"]){
+        
+    }else if (!syncInProgress){
         [AppDelegate loaderShow:YES];
     }
     //    NSMutableDictionary *payload = [[NSMutableDictionary alloc] init];
@@ -93,7 +95,9 @@
     } else {
         [delegate performSelector:callback withObject:responseData];
     }
-    if (!syncInProgress){
+    if([requestURL containsString:@"FetchClientChildLocations"]){
+        
+    }else if(!syncInProgress){
         [AppDelegate loaderShow:NO];
     }
 }
@@ -108,7 +112,9 @@
     } else {
         [delegate performSelector:callback withObject:nil];
     }
-    if (!syncInProgress){
+    if([requestURL containsString:@"FetchClientChildLocations"]){
+        
+    }else if(!syncInProgress){
         [AppDelegate loaderShow:NO];
     }
 }

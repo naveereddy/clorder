@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreLocation/CoreLocation.h>
 
 @interface DeliveryVC : UIViewController<UITextFieldDelegate, UIPickerViewDelegate , UIPickerViewDataSource>
 @property (assign, nonatomic) BOOL isGuest;
 @property (assign, nonatomic) BOOL isNewUser;
 @property (nonatomic, assign) BOOL toCart;
--(void)addressSelection:(NSString *)address;
+-(void)addressSelection:(NSString *)address locationDetails:(CLLocationCoordinate2D )location;
 @end

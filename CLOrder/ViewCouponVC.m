@@ -30,7 +30,7 @@
     couponTbl.delegate = self;
     [self.view addSubview:couponTbl];
     
-    [APIRequest getRestaurentPromotions:[NSDictionary dictionaryWithObjectsAndKeys:CLIENT_ID, @"clientId", nil] completion:^(NSMutableData *buffer) {
+    [APIRequest getRestaurentPromotions:[NSDictionary dictionaryWithObjectsAndKeys:CLIENT_ID,@"clientId", nil] completion:^(NSMutableData *buffer) {
         if (!buffer){
             NSLog(@"Unknown ERROR");
 //            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"Something went wrong, Please try again" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles: nil];

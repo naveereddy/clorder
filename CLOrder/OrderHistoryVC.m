@@ -99,7 +99,16 @@
     if(fromhamburger){
         [self.navigationController popViewControllerAnimated:YES];
     }else{
-        [self.navigationController popToRootViewControllerAnimated:YES];
+        NSMutableArray *locationsary=[NSMutableArray arrayWithCapacity:0];
+        for (NSData *data in [[NSUserDefaults standardUserDefaults] objectForKey:@"Locations"]) {
+            NSDictionary *dic=[NSKeyedUnarchiver unarchiveObjectWithData:data];
+            [locationsary addObject:dic];
+        }
+        if([locationsary count] > 1){
+            [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:1] animated:YES];
+        }else{
+            [self.navigationController popToRootViewControllerAnimated:YES];
+        }
     }
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
