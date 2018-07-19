@@ -15,8 +15,6 @@
 		012459E420E0CE3100645535 /* EditProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 012459E320E0CE3100645535 /* EditProfile.m */; };
 		012459E720E0CE4D00645535 /* ChangePassword.m in Sources */ = {isa = PBXBuildFile; fileRef = 012459E620E0CE4D00645535 /* ChangePassword.m */; };
 		012459EA20E0EF6300645535 /* SideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 012459E920E0EF6300645535 /* SideMenu.m */; };
-		0139493520DA287D00D0A32A /* Lora-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0139493320DA287D00D0A32A /* Lora-Bold.ttf */; };
-		0139493620DA287D00D0A32A /* Lora-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0139493420DA287D00D0A32A /* Lora-Regular.ttf */; };
 		013C0C6320D2764B004CB653 /* TextFieldEdit.m in Sources */ = {isa = PBXBuildFile; fileRef = 013C0C6220D2764B004CB653 /* TextFieldEdit.m */; };
 		0156B81420ECA7ED00D79DE1 /* LocationsList.m in Sources */ = {isa = PBXBuildFile; fileRef = 0156B81320ECA7ED00D79DE1 /* LocationsList.m */; };
 		015F67A020D8E4FC001D9F7F /* Menu.m in Sources */ = {isa = PBXBuildFile; fileRef = 015F679F20D8E4FC001D9F7F /* Menu.m */; };
@@ -28,6 +26,8 @@
 		01BA29B520EF89D5005C6D9E /* RestuarentListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 01BA29B420EF89D5005C6D9E /* RestuarentListVC.m */; };
 		01BA29B820EFA3D5005C6D9E /* CardcellForRes.m in Sources */ = {isa = PBXBuildFile; fileRef = 01BA29B720EFA3D5005C6D9E /* CardcellForRes.m */; };
 		01BA29BB20EFA502005C6D9E /* ListOfRestuarents.m in Sources */ = {isa = PBXBuildFile; fileRef = 01BA29BA20EFA502005C6D9E /* ListOfRestuarents.m */; };
+		01CAC4952100A80E001F5BC6 /* Lora-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 01CAC4932100A80E001F5BC6 /* Lora-Bold.ttf */; };
+		01CAC4962100A80E001F5BC6 /* Lora-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 01CAC4942100A80E001F5BC6 /* Lora-Regular.ttf */; };
 		01D3A71720F4971C00A2B015 /* libPayPalMobile.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 01D3A70F20F4971C00A2B015 /* libPayPalMobile.a */; };
 		01E6F9DF20E240180080E414 /* recapcha.html in Resources */ = {isa = PBXBuildFile; fileRef = 01E6F9DE20E240180080E414 /* recapcha.html */; };
 		01ED08E720E38E57005E93CD /* PassKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01ED08E620E38E57005E93CD /* PassKit.framework */; };
@@ -144,8 +144,6 @@
 		012459E620E0CE4D00645535 /* ChangePassword.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChangePassword.m; sourceTree = "<group>"; };
 		012459E820E0EF6300645535 /* SideMenu.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SideMenu.h; sourceTree = "<group>"; };
 		012459E920E0EF6300645535 /* SideMenu.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SideMenu.m; sourceTree = "<group>"; };
-		0139493320DA287D00D0A32A /* Lora-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lora-Bold.ttf"; path = "../../../Downloads/Lora-Bold.ttf"; sourceTree = "<group>"; };
-		0139493420DA287D00D0A32A /* Lora-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lora-Regular.ttf"; path = "../../../Downloads/Lora-Regular.ttf"; sourceTree = "<group>"; };
 		013C0C6120D2764B004CB653 /* TextFieldEdit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TextFieldEdit.h; sourceTree = "<group>"; };
 		013C0C6220D2764B004CB653 /* TextFieldEdit.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TextFieldEdit.m; sourceTree = "<group>"; };
 		0156B81220ECA7ED00D79DE1 /* LocationsList.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LocationsList.h; sourceTree = "<group>"; };
@@ -167,6 +165,8 @@
 		01BA29B920EFA502005C6D9E /* ListOfRestuarents.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ListOfRestuarents.h; sourceTree = "<group>"; };
 		01BA29BA20EFA502005C6D9E /* ListOfRestuarents.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ListOfRestuarents.m; sourceTree = "<group>"; };
 		01C1D59120E220F900E3E4CC /* CLOrder.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CLOrder.entitlements; sourceTree = "<group>"; };
+		01CAC4932100A80E001F5BC6 /* Lora-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lora-Bold.ttf"; sourceTree = "<group>"; };
+		01CAC4942100A80E001F5BC6 /* Lora-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lora-Regular.ttf"; sourceTree = "<group>"; };
 		01D3A70F20F4971C00A2B015 /* libPayPalMobile.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libPayPalMobile.a; sourceTree = "<group>"; };
 		01D3A71020F4971C00A2B015 /* PayPalConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayPalConfiguration.h; sourceTree = "<group>"; };
 		01D3A71120F4971C00A2B015 /* PayPalFuturePaymentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayPalFuturePaymentViewController.h; sourceTree = "<group>"; };
@@ -381,8 +381,8 @@
 		0139493220DA285B00D0A32A /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				0139493320DA287D00D0A32A /* Lora-Bold.ttf */,
-				0139493420DA287D00D0A32A /* Lora-Regular.ttf */,
+				01CAC4932100A80E001F5BC6 /* Lora-Bold.ttf */,
+				01CAC4942100A80E001F5BC6 /* Lora-Regular.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -845,10 +845,8 @@
 				9F495DFE1D54735300793492 /* load-10 (dragged).tiff in Resources */,
 				9F495E0E1D54735300793492 /* load-26 (dragged).tiff in Resources */,
 				9F495DF81D54735300793492 /* load-4 (dragged).tiff in Resources */,
-				0139493620DA287D00D0A32A /* Lora-Regular.ttf in Resources */,
 				9F495EC61DA38EEE00D515B3 /* GoogleSignIn.bundle in Resources */,
 				9F495E0B1D54735300793492 /* load-23 (dragged).tiff in Resources */,
-				0139493520DA287D00D0A32A /* Lora-Bold.ttf in Resources */,
 				9F495E001D54735300793492 /* load-12 (dragged).tiff in Resources */,
 				9F495E111D54735300793492 /* load-29 (dragged).tiff in Resources */,
 				9FF8F02B1DF2AAF4002E6A0B /* Assets.xcassets in Resources */,
@@ -860,6 +858,7 @@
 				9F495DF91D54735300793492 /* load-5 (dragged).tiff in Resources */,
 				9F495DFF1D54735300793492 /* load-11 (dragged).tiff in Resources */,
 				9F495DF61D54735300793492 /* load-2 (dragged).tiff in Resources */,
+				01CAC4962100A80E001F5BC6 /* Lora-Regular.ttf in Resources */,
 				9F495DF51D54735300793492 /* load-1 (dragged).tiff in Resources */,
 				9F495E081D54735300793492 /* load-20 (dragged).tiff in Resources */,
 				9F495E0A1D54735300793492 /* load-22 (dragged).tiff in Resources */,
@@ -867,6 +866,7 @@
 				9F495DFC1D54735300793492 /* load-8 (dragged).tiff in Resources */,
 				9F495E031D54735300793492 /* load-15 (dragged).tiff in Resources */,
 				9F495DF71D54735300793492 /* load-3 (dragged).tiff in Resources */,
+				01CAC4952100A80E001F5BC6 /* Lora-Bold.ttf in Resources */,
 				9F495DFA1D54735300793492 /* load-6 (dragged).tiff in Resources */,
 				9F495E041D54735300793492 /* load-16 (dragged).tiff in Resources */,
 			);
