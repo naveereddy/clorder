@@ -20,7 +20,6 @@
 
 @implementation AccountUpdateVC {
     NSMutableArray *cardArray;
-    //    NSMutableDictionary *cardDic;
     NSUserDefaults *user;
     NSDictionary *payThrough;
     PKPaymentButton *applePay;
