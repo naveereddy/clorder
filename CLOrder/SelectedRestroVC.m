@@ -41,12 +41,7 @@
     user = [NSUserDefaults standardUserDefaults];
     [self.view setBackgroundColor:[UIColor whiteColor]];
     
-//    UIImageView *bgImg = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
-//    bgImg.image = [UIImage imageNamed:APP_BG_IMG];
-//    [self.view addSubview:bgImg];
-//    bgImg.contentMode = UIViewContentModeScaleAspectFill;
-    
-    UIImageView *logoImg = [[UIImageView alloc] initWithFrame:CGRectMake((self.view.frame.size.width/2)-125, self.view.frame.size.height/2-185, 250, 150)];
+    UIImageView *logoImg = [[UIImageView alloc] initWithFrame:CGRectMake((self.view.frame.size.width/2)-125, self.view.frame.size.height/2-220, 250, 150)];
     logoImg.image = [UIImage imageNamed:@"new_Logo"];
     [self.view addSubview:logoImg];
     logoImg.contentMode = UIViewContentModeScaleAspectFit;
@@ -111,7 +106,7 @@
         [self.view addSubview:deliveryBtn];
     }
     registerBtn=[UIButton buttonWithType:UIButtonTypeCustom];
-    registerBtn.frame = CGRectMake(self.view.frame.size.width/2+10, self.view.frame.size.height/2+140, self.view.frame.size.width/2-40, 60);
+    registerBtn.frame = CGRectMake(self.view.frame.size.width/2+10, self.view.frame.size.height/2+150, self.view.frame.size.width/2-40, 60);
     registerBtn.titleLabel.textColor = [UIColor blackColor];
     registerBtn.titleLabel.font = [UIFont boldSystemFontOfSize:14];
     [registerBtn setImage:[UIImage imageNamed:@"home-register"] forState:UIControlStateNormal];
@@ -194,7 +189,7 @@
 
     [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:0] forKey:@"AddMore"];
     
-    loginBtn.frame = CGRectMake(20, self.view.frame.size.height/2+140,(self.view.frame.size.width/2)-40, 60);
+    loginBtn.frame = CGRectMake(20, self.view.frame.size.height/2+150,(self.view.frame.size.width/2)-40, 60);
     [loginBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [loginBtn.titleLabel setFont:[UIFont fontWithName:@"Lora-Regular" size:16]];
 //    [loginBtn.layer setBorderWidth:1];

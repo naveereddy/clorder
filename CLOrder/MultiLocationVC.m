@@ -25,9 +25,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    UIGraphicsBeginImageContextWithOptions(CGSizeMake(CGRectGetWidth(self.view.frame), 44), NO, 0.0);
+    UIImage *blank = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    [self.navigationController.navigationBar setBackgroundImage:blank forBarMetrics:UIBarMetricsDefault];
+    [self.navigationController.navigationBar setBackgroundColor:APP_COLOR];
     
-    [self.navigationController.navigationBar setBackgroundColor:[UIColor clearColor]];
-    [self.navigationController.navigationBar setBarTintColor:APP_COLOR];
     self.title=@"All Locations";
     
     UIButton *leftBar = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -37,17 +40,17 @@
     [leftBar addTarget:self action:@selector(leftBarAct) forControlEvents:UIControlEventTouchUpInside];
 
     
-    mapVu=[[MKMapView alloc] initWithFrame:CGRectMake(0, 64, self.view.frame.size.width,200)];
+    mapVu=[[MKMapView alloc] initWithFrame:CGRectMake(0, 64, self.view.frame.size.width,(SCREEN_HEIGHT-64)/2)];
     mapVu.delegate=self;
     [self.view addSubview:mapVu];
     
-    mulLocation=[[UITableView alloc] initWithFrame:CGRectMake(0, 264, SCREEN_WIDTH, SCREEN_HEIGHT-200-64) style:UITableViewStylePlain];
+    mulLocation=[[UITableView alloc] initWithFrame:CGRectMake(0, (SCREEN_HEIGHT-64)/2+64, SCREEN_WIDTH, (SCREEN_HEIGHT-64)/2) style:UITableViewStylePlain];
     mulLocation.delegate=self;
     mulLocation.dataSource=self;
     [self.view addSubview:mulLocation];
     mulLocation.tableFooterView=[[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 0)];
     [mulLocation setSeparatorColor:[UIColor clearColor]];
-    
+//    NSMutableArray *cordinatesArray=[[NSMutableArray alloc] initWithCapacity:0];
     for (int i=0;i<locationsList.count; i++) {
         locationsObjects.latitude=[[[locationsList objectAtIndex:i] objectForKey:@"ClientLatititude"] doubleValue];
         locationsObjects.longitude=[[[locationsList objectAtIndex:i] objectForKey:@"ClientLongitude"] doubleValue];
@@ -61,6 +64,8 @@
     locationsObjects.latitude=[[[locationsList objectAtIndex:locationsList.count-1] objectForKey:@"ClientLatititude"] doubleValue];
     locationsObjects.longitude=[[[locationsList objectAtIndex:locationsList.count-1] objectForKey:@"ClientLongitude"] doubleValue];
     [self setCenter:locationsObjects forMap:mapVu];
+    
+
 }
 -(void)leftBarAct{
     [self.navigationController popViewControllerAnimated:YES];

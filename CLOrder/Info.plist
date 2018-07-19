@@ -86,7 +86,7 @@
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>OrderFoodOnline wants to access your photo library</string>
 	<key>OrderOnlineStatus</key>
-	<string></string>
+	<string>NO</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Lora-Regular.ttf</string>

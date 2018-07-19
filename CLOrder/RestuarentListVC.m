@@ -45,9 +45,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    [self.navigationController.navigationBar setBackgroundColor:[UIColor clearColor]];
+    [self.navigationController.navigationBar setBackgroundColor:APP_COLOR];
     [self.navigationController.navigationBar setBarTintColor:APP_COLOR];
-
     
     self.title=@"Order Food Online";
     
@@ -516,7 +515,7 @@
             NSDictionary *resObj = [NSJSONSerialization JSONObjectWithData:buffer options:NSJSONReadingAllowFragments error:&error];
             NSLog(@"Response :\n %@",resObj);
             NSArray *arry;
-            ![resObj isKindOfClass:[NSNull class]]?arry=(NSArray *)resObj:@"";
+            ![resObj isKindOfClass:[NSNull class]] && !([(NSArray *)resObj count]==1 && [[(NSArray *)resObj objectAtIndex:0] objectForKey:@"Cuisines"] != nil)?arry=(NSArray *)resObj:@"";
             if(arry && [arry count]){
                 for(int i=0; i<arry.count-1; i++){
                     ListOfRestuarents *res=[[ListOfRestuarents alloc] init];
@@ -564,6 +563,9 @@
     [label setTextAlignment:NSTextAlignmentCenter];
     [noResView addSubview:label];
     
+    [self.view addSubview:searchField];
+    [self.view addSubview:filterBtn];
+
 }
 -(void)leftBarAct{
     [self.navigationController popViewControllerAnimated:YES];

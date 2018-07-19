@@ -57,10 +57,9 @@
 -(void)autoCompleteApi:(NSString *)string
 {
     NSString *encode = [string stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet alphanumericCharacterSet]];
-    NSString *url=[NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/autocomplete/json?key=%@&input=%@",GOOGLE_API_KEY,encode];
+    NSString *url=[NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/autocomplete/json?key=%@&input=%@&components=country:us",GOOGLE_API_KEY,encode];
     [APIRequest googleAutoComplteApi:nil url:url completion:^(NSMutableData *buffer) {
         if(!buffer){
-            
         }else{
             [autoCompleteData removeAllObjects];
             NSError *error = nil;

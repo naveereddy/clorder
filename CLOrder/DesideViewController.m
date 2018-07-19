@@ -22,7 +22,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    if([ORDER_ONLINE isEqualToString:@"OrderOnlineApp"]){
+    
+    if([ORDER_ONLINE isEqualToString:@"YES"]){
         UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         MultiLocationVC *mul =[storyboard instantiateViewControllerWithIdentifier:@"orderOnlineMain"];
         UINavigationController *con=[[UINavigationController alloc] initWithRootViewController:mul];

@@ -71,13 +71,13 @@
     loginButton.readPermissions =@[@"public_profile", @"email"];
     [self.view addSubview:loginButton];
     
-    UIButton *facebookButton=[[UIButton alloc] initWithFrame:CGRectMake(80, SCREEN_HEIGHT/2+100, 50, 50)];
+    UIButton *facebookButton=[[UIButton alloc] initWithFrame:CGRectMake(70, SCREEN_HEIGHT/2+100, 50, 50)];
     [facebookButton setImage:[UIImage imageNamed:@"facebook"] forState:UIControlStateNormal];
     [facebookButton addTarget:self action:@selector(myButtonPressed) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:facebookButton];
     
     
-    UIButton *gmailButton=[[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH/2+40
+    UIButton *gmailButton=[[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH/2+70
                                                                      
                                                                      , SCREEN_HEIGHT/2+100, 50, 50)];
     [gmailButton setImage:[UIImage imageNamed:@"google"] forState:UIControlStateNormal];

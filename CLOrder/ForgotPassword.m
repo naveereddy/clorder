@@ -36,7 +36,7 @@
     
 //   NSString *filePath = [[NSBundle mainBundle] pathForResource:@"recapcha" ofType:@"html"];
     NSURL *nsurl=[NSURL URLWithString:@"http://api.clorder.com/recaptcha/index.html"];
-    webView.scrollView.scrollEnabled = YES;
+    webView.scrollView.scrollEnabled = NO;
     webView.userInteractionEnabled=YES;
     webView.delegate=self;
     NSURLRequest *req=[[NSURLRequest alloc] initWithURL:nsurl];

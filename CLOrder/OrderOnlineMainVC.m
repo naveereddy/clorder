@@ -21,9 +21,14 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    self.title=@"Order Food Online";
+    UIGraphicsBeginImageContextWithOptions(CGSizeMake(CGRectGetWidth(self.view.frame), 44), NO, 0.0);
+    UIImage *blank = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    [self.navigationController.navigationBar setBackgroundImage:blank forBarMetrics:UIBarMetricsDefault];
+    [self.navigationController.navigationBar setBackgroundColor:APP_COLOR];
     
-     searchField.delegate = self;
+    self.title=@"Order Food Online";
+    searchField.delegate = self;
     [searchField.layer addSublayer:[self bottomborderAdding:self.view.frame.size.width-70 height:40]];
     
     [bottomView.layer setShadowOpacity:1.0];
