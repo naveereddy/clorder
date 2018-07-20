@@ -149,7 +149,6 @@
 		1812B2B12100BEF90010D328 /* load-6 (dragged).tiff in Resources */ = {isa = PBXBuildFile; fileRef = 9F495DDC1D54735300793492 /* load-6 (dragged).tiff */; };
 		1812B2B22100BEF90010D328 /* load-16 (dragged).tiff in Resources */ = {isa = PBXBuildFile; fileRef = 9F495DE61D54735300793492 /* load-16 (dragged).tiff */; };
 		1812B2BA2100C2040010D328 /* Banana Leaf.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1812B2B92100C2040010D328 /* Banana Leaf.xcassets */; };
-		1812B2BC2100C7850010D328 /* google-services.json in Resources */ = {isa = PBXBuildFile; fileRef = 1812B2BB2100C7840010D328 /* google-services.json */; };
 		953FC6BA7A2F207F22C7EA27 /* libPods-CLOrder.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F57265C839B3CCBAED3E5E65 /* libPods-CLOrder.a */; };
 		9F0B15391D6C36ED003D4BBE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F0B152F1D6C36ED003D4BBE /* UIKit.framework */; };
 		9F20C4A51D07EE7500775381 /* Loader.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F20C4A41D07EE7500775381 /* Loader.m */; };
@@ -297,9 +296,7 @@
 		01E6F9DE20E240180080E414 /* recapcha.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = recapcha.html; sourceTree = "<group>"; };
 		01ED08E620E38E57005E93CD /* PassKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PassKit.framework; path = System/Library/Frameworks/PassKit.framework; sourceTree = SDKROOT; };
 		1812B2B62100BEF90010D328 /* Banana Leaf.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Banana Leaf.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		1812B2B72100BEF90010D328 /* Banana Leaf-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Banana Leaf-Info.plist"; path = "/Users/apple/Desktop/ClorderIOS/clorder/Banana Leaf-Info.plist"; sourceTree = "<absolute>"; };
 		1812B2B92100C2040010D328 /* Banana Leaf.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Banana Leaf.xcassets"; sourceTree = "<group>"; };
-		1812B2BB2100C7840010D328 /* google-services.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "google-services.json"; path = "../../../../ClorderIOS New UI Images/Banana Leaf/google-services.json"; sourceTree = "<group>"; };
 		1D0678E32D83A887B8F25F21 /* Pods-CLOrder.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CLOrder.release.xcconfig"; path = "Pods/Target Support Files/Pods-CLOrder/Pods-CLOrder.release.xcconfig"; sourceTree = "<group>"; };
 		541354FF4A505AA3F3802DC3 /* Pods-CLOrder.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CLOrder.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CLOrder/Pods-CLOrder.debug.xcconfig"; sourceTree = "<group>"; };
 		9F0B152F1D6C36ED003D4BBE /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -634,8 +631,6 @@
 		1812B2B82100C0C90010D328 /* Bnanana Leaf */ = {
 			isa = PBXGroup;
 			children = (
-				1812B2BB2100C7840010D328 /* google-services.json */,
-				1812B2B72100BEF90010D328 /* Banana Leaf-Info.plist */,
 				1812B2B92100C2040010D328 /* Banana Leaf.xcassets */,
 			);
 			path = "Bnanana Leaf";
@@ -1062,7 +1057,6 @@
 				1812B2AB2100BEF90010D328 /* load-22 (dragged).tiff in Resources */,
 				1812B2AC2100BEF90010D328 /* Main.storyboard in Resources */,
 				1812B2AD2100BEF90010D328 /* load-8 (dragged).tiff in Resources */,
-				1812B2BC2100C7850010D328 /* google-services.json in Resources */,
 				1812B2AE2100BEF90010D328 /* load-15 (dragged).tiff in Resources */,
 				1812B2AF2100BEF90010D328 /* load-3 (dragged).tiff in Resources */,
 				1812B2B02100BEF90010D328 /* Lora-Bold.ttf in Resources */,

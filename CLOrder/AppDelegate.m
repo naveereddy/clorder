@@ -19,7 +19,7 @@
 #import "SelectedRestroVC.h"
 
 
-static NSString * const kClientId = @"679446363010-t393n7nhk3shrq5mvd6jev39dldmh4sm.apps.googleusercontent.com";
+static NSString *kClientId ;
 
 @interface AppDelegate ()
 
@@ -52,6 +52,7 @@ static NSString * const kClientId = @"679446363010-t393n7nhk3shrq5mvd6jev39dldmh
 //    @"AT6cGxBwRvDtcg5ZovY3buRT28DbZP7MBRaHEON8YZvUUd1FSz6ZHNQ1ejvc"
 //    @"AiHdWrSoknctBzRntL9-oGotJkMvADGAVcX3y06XfaRtRllojh88rDlA" //Sandeep account sandbox
 //    @"AbpsMFPwYRRkGEt2XSRpUa2wKnLzrH569zYOo0ZqoCJjUqFAJgSuYkIaIRM2hDBnbBKfcLrIHin4zFDj" //Sandeep account Live
+    kClientId=[[[NSDictionary alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"GoogleService-Info" ofType:@"plist"]] objectForKey:@"CLIENT_ID"];
     [GIDSignIn sharedInstance].clientID = kClientId;
     [GIDSignIn sharedInstance].delegate = self;
     
