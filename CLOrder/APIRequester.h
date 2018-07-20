@@ -7,8 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-//#define REST_URL @"http://devapi.clorder.com/ClorderMobile"
-#define REST_URL @"https://api.clorder.com/ClorderMobile"
+#define REST_URL_DEV @"http://devapi.clorder.com"
+#define REST_URL @"https://api.clorder.com"
 typedef void (^RequestCallback)(NSMutableData *buffer);
 
 @interface APIRequester : NSObject <NSURLConnectionDelegate>

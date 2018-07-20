@@ -1,0 +1,22 @@
+PODS:
+  - Braintree/Apple-Pay (4.16.0):
+    - Braintree/Core
+  - Braintree/Core (4.16.0)
+  - HCSStarRatingView (1.5)
+
+DEPENDENCIES:
+  - Braintree/Apple-Pay
+  - HCSStarRatingView (~> 1.5)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Braintree
+    - HCSStarRatingView
+
+SPEC CHECKSUMS:
+  Braintree: 41b53612276bf3308d2299bec2b4c96594327662
+  HCSStarRatingView: 1d18f79654735514cd6f00e6d90e38cb6320dc31
+
+PODFILE CHECKSUM: c0589f3071787bbff326fff6a9f4a91dbfa1f812
+
+COCOAPODS: 1.5.3

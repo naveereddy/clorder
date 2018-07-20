@@ -19,8 +19,9 @@
     IBOutlet UIButton *newUserBtn;
     IBOutlet UIButton *forgotPassword;
     FBSDKLoginButton *loginButton;
+    IBOutlet UIButton *skipNowButton;
 }
-
+- (IBAction)skipNowAction:(id)sender;
 -(IBAction) signInAct: (id)sender;
 -(IBAction) guestUserAct: (id)sender;
 -(IBAction) newUserAct: (id)sender;

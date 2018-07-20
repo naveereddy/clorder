@@ -35,6 +35,7 @@
     NSMutableArray *imagesdataArray;
     UIView *mainBgView;
     NSUserDefaults *user;
+    UIButton *cartIcon;
 }
 
 - (void)viewDidLoad {
@@ -65,7 +66,7 @@
     [actionsView addSubview:leftArrow];
     
     UICollectionViewFlowLayout *layout=[[UICollectionViewFlowLayout alloc] init];
-    menuCollection=[[UICollectionView alloc] initWithFrame:CGRectMake(0, 64+40, SCREEN_WIDTH, SCREEN_HEIGHT-64-64-40) collectionViewLayout:layout];
+    menuCollection=[[UICollectionView alloc] initWithFrame:CGRectMake(0, 64+40, SCREEN_WIDTH, SCREEN_HEIGHT-64-40) collectionViewLayout:layout];
     [menuCollection setDataSource:self];
     [menuCollection setDelegate:self];
     [menuCollection registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"cellIdentifier"];
@@ -80,7 +81,6 @@
         if (!buffer){
             NSLog(@"Unknown ERROR");
         }else{
-            NSString *res = [[NSString alloc] initWithData:buffer encoding:NSUTF8StringEncoding];
             // handle the response here
             NSError *error = nil;
             NSDictionary *resObj = [NSJSONSerialization JSONObjectWithData:buffer options:NSJSONReadingAllowFragments error:&error];
@@ -102,17 +102,30 @@
         }
     }];
     
-    UIButton *cartIcon = [UIButton buttonWithType:UIButtonTypeCustom];
-    cartIcon.frame = CGRectMake(0, 0, 20, 20);
+    cartIcon = [UIButton buttonWithType:UIButtonTypeCustom];
+    cartIcon.frame = CGRectMake(0, 0, 44, 44);
+    [cartIcon setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [cartIcon.titleLabel setFont:[UIFont fontWithName:@"Lora-Bold" size:12]];
+    [cartIcon.titleLabel.layer setBorderColor:[[UIColor whiteColor] CGColor]];
+    [cartIcon.titleLabel.layer setBorderWidth:1];
+    [cartIcon.titleLabel.layer setCornerRadius:8];
+    cartIcon.titleLabel.layer.masksToBounds = YES;
+    [cartIcon.titleLabel setBackgroundColor:[UIColor blackColor]];
     [cartIcon setImage:[UIImage imageNamed:@"cart"] forState:UIControlStateNormal];
     [cartIcon addTarget:self action:@selector(cartBtnAct) forControlEvents:UIControlEventTouchUpInside];
+    cartIcon.titleEdgeInsets = UIEdgeInsetsMake(-10,0,0,0);
+    cartIcon.imageEdgeInsets = UIEdgeInsetsMake(10,10,0,0);
     UIBarButtonItem * rightBarItem1 = [[UIBarButtonItem alloc] initWithCustomView:cartIcon];
     self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:rightBarItem1, nil];
     
     
     UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     backBtn.frame = CGRectMake(0, 0, 20, 20);
-    [backBtn setImage:[UIImage imageNamed:@"hamburger_menu"] forState:UIControlStateNormal];
+    if ([[user objectForKey:@"userInfo"] objectForKey:@"UserId"] > 0) {
+        [backBtn setImage:[UIImage imageNamed:@"hamburger_menu"] forState:UIControlStateNormal];
+    }else{
+        [backBtn setImage:[UIImage imageNamed:@"left-arrow"] forState:UIControlStateNormal];
+    }
     UIBarButtonItem *leftBarItem = [[UIBarButtonItem alloc] initWithCustomView:backBtn];
     [backBtn addTarget:self action:@selector(toggleMenu:) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItems = [NSArray arrayWithObjects:leftBarItem, nil];
@@ -162,16 +175,15 @@
     [images addSubview:menuName];
     [menuName setText:[NSString stringWithFormat:@"%@", [[clientCategoriesArr objectAtIndex:indexPath.row] objectForKey:@"CategoryTitle"]]];
     
-    if(((Menu *)[imagesdataArray objectAtIndex:indexPath.row]).categoryId){
+    if(((Menu *)[imagesdataArray objectAtIndex:indexPath.row]).imagedata && indexPath.row == images.tag-100){
         images.image=[UIImage imageWithData:((Menu *)[imagesdataArray objectAtIndex:indexPath.row]).imagedata];
     }else{
        dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
-         NSInteger xedni = indexPath.row;
          NSString *path =@"https://s3.amazonaws.com/Clorder/Client/chickenplate-wb.png";
          NSData *dta = [NSData dataWithContentsOfURL:[NSURL URLWithString:path]];
          UIImage *image = [UIImage imageWithData:dta];
          dispatch_async(dispatch_get_main_queue(), ^(void){
-            if (indexPath.row == xedni){
+            if (indexPath.row == images.tag-100){
                 if(dta){
                     images.image=image;
                     if([imagesdataArray count] > indexPath.row){
@@ -185,7 +197,6 @@
              }
          });
         });
-
     }
     return cell;
 }
@@ -220,8 +231,12 @@
 }
 
 -(void)viewWillAppear:(BOOL)animated{
+    [cartIcon setTitle:[NSString stringWithFormat:@" %lu ",(unsigned long)[CartObj instance].itemsForCart.count] forState:UIControlStateNormal];
+    [cartIcon setNeedsLayout];
+    [cartIcon layoutIfNeeded];
+
     UIView *bottomView = [[UIView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT-64, SCREEN_WIDTH, 64)];
-    [self.view addSubview:bottomView];
+//    [self.view addSubview:bottomView];
     [bottomView setBackgroundColor:APP_COLOR];
     [bottomView setUserInteractionEnabled:YES];
     
@@ -426,6 +441,7 @@
 }
 
 - (void)toggleMenu:(UIButton *)sender {
+    if ([[user objectForKey:@"userInfo"] objectForKey:@"UserId"] > 0) {
     if (!mainBgView) {
         mainBgView = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
         mainBgView.backgroundColor = [UIColor clearColor];
@@ -459,6 +475,9 @@
         [UIView animateWithDuration:0.5 animations:^{
             [mainBgView viewWithTag:77].frame = CGRectMake(0, 0, CGRectGetWidth(mainBgView.frame)*0.75, CGRectGetHeight(mainBgView.frame));
         }];
+    }
+    }else{
+        [self.navigationController popViewControllerAnimated:YES];
     }
 }
 

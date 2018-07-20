@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 //#import "GoogleSignIn/GoogleSignIn.h"
+#import "AppDelegate.h"
 
 @interface SelectedRestroVC : UIViewController//<GIDSignInUIDelegate>
+@property (nonatomic, strong) AppDelegate *del;
 @end

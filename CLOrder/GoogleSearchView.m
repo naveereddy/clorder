@@ -16,7 +16,7 @@
 @end
 
 @implementation GoogleSearchView
-@synthesize object;
+@synthesize object,locationsObjects,objects;
 - (void)viewDidLoad {
     [super viewDidLoad];
     searchBars= [[UISearchBar alloc] init];
@@ -34,7 +34,7 @@
     self.navigationItem.leftBarButtonItems=[[NSArray alloc] initWithObjects: menuBarButton, nil];
     
     autoCompleteData=[[NSMutableArray alloc] initWithCapacity:0];
-    self.tableView.tableHeaderView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 1)];
+    self.tableView.tableHeaderView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 1)];
 }
 -(void)backButtonAction{
     [searchBars resignFirstResponder];
@@ -57,10 +57,9 @@
 -(void)autoCompleteApi:(NSString *)string
 {
     NSString *encode = [string stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet alphanumericCharacterSet]];
-    NSString *url=[NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/autocomplete/json?key=%@&input=%@",GOOGLE_API_KEY,encode];
+    NSString *url=[NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/autocomplete/json?key=%@&input=%@&components=country:us",GOOGLE_API_KEY,encode];
     [APIRequest googleAutoComplteApi:nil url:url completion:^(NSMutableData *buffer) {
         if(!buffer){
-            
         }else{
             [autoCompleteData removeAllObjects];
             NSError *error = nil;
@@ -118,8 +117,32 @@
 {
     [searchBars resignFirstResponder];
     NSString *string=[self splitigValues:indexPath.row label:@"textLabel" arry:[[NSMutableArray alloc]initWithArray:[self splitingTheData:indexPath.row section:indexPath.section]]];
-    [object addressSelection:string];
-    [self.navigationController popViewControllerAnimated:YES];
+    if(_fromOrderOnline){
+        NSString *encode = [[[[[autoCompleteData objectAtIndex:0]objectForKey:@"predictions"] objectAtIndex:indexPath.row] objectForKey:@"description"] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet alphanumericCharacterSet]];
+        [self gettingLatLong:[NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/textsearch/json?query=%@&key=%@",encode,GOOGLE_API_KEY]];
+    }else{
+        [object addressSelection:string locationDetails:locationsObjects];
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+}
+-(void)gettingLatLong:(NSString *)string{
+    [APIRequest gettingLatLong:nil url:string completion:^(NSMutableData *buffer) {
+        if(!buffer){
+            
+        }else{
+            NSError *error = nil;
+            NSDictionary *resObj = [NSJSONSerialization JSONObjectWithData:buffer options:NSJSONReadingAllowFragments error:&error];
+            NSLog(@"Response :\n %@",resObj);
+            if(![[resObj objectForKey:@"status"]  isEqualToString:@"ZERO_RESULTS"])
+            {
+                locationsObjects.latitude=[[[[[[resObj objectForKey:@"results"] objectAtIndex:0] objectForKey:@"geometry"] objectForKey:@"location"] objectForKey:@"lat"] doubleValue];
+                locationsObjects.longitude=[[[[[[resObj objectForKey:@"results"] objectAtIndex:0] objectForKey:@"geometry"] objectForKey:@"location"] objectForKey:@"lng"] doubleValue];
+                [objects addressSelection:[NSString stringWithFormat:@"%@", [[[resObj objectForKey:@"results"] objectAtIndex:0] objectForKey:@"formatted_address"]] locationDetails:locationsObjects];
+                [self.navigationController popViewControllerAnimated:YES];
+
+            }
+        }
+    }];
 }
 -(NSArray *)splitingTheData:(NSInteger)row section:(NSInteger)section
 {

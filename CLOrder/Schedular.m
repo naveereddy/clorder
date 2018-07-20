@@ -435,7 +435,7 @@
     dateTxt.inputAccessoryView=optionPickerTool;
     timeTxt.inputAccessoryView=optionPickerTool;
     
-    timePicker = [[UIPickerView alloc] initWithFrame:CGRectMake(20, self.frame.size.height-200, self.frame.size.width-40, 200)];
+    timePicker = [[UIPickerView alloc] initWithFrame:CGRectMake(20, self.frame.size.height-220, self.frame.size.width-40, 220)];
     timeTxt.inputView = timePicker;
     
     timePicker.delegate = self;

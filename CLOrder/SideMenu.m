@@ -87,7 +87,18 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     switch (indexPath.row) {
         case 0:
-            [_delegate.navigationController popToRootViewControllerAnimated:YES];
+        {
+            NSMutableArray *locationsary=[NSMutableArray arrayWithCapacity:0];
+            for (NSData *data in [[NSUserDefaults standardUserDefaults] objectForKey:@"Locations"]) {
+                NSDictionary *dic=[NSKeyedUnarchiver unarchiveObjectWithData:data];
+                [locationsary addObject:dic];
+            }
+            if([locationsary count] > 1){
+                [_delegate.navigationController popToViewController:[_delegate.navigationController.viewControllers objectAtIndex:1] animated:YES];
+            }else{
+                [_delegate.navigationController popToRootViewControllerAnimated:YES];
+            }
+        }
             break;
         case 1:
             [self myOrdersAction];

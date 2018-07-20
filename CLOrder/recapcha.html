@@ -1,0 +1,23 @@
+<html>
+    
+    <head>
+        <title>reCAPTCHA demo</title>
+        <script type="text/javascript">
+            var onloadCallback = function() {
+                grecaptcha.render('html_element', {
+                   'sitekey': '6LfsxmEUAAAAAKC4Z1TXKXknIuGc7pwul4c6-FsJ'
+                });
+            };
+        </script>
+    </head>
+    <body>
+        <form action="?" method="POST">
+            <div id="html_element"></div>
+            <br>
+        </form>
+        <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer>
+        </script>
+    </body>
+    
+</html>
+

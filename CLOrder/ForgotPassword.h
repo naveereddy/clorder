@@ -7,11 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+//#import "CLOrder-Swift.h"
+#import <WebKit/WebKit.h>
 
-@interface ForgotPassword : UIViewController<UITextFieldDelegate>{
+@interface ForgotPassword : UIViewController<UITextFieldDelegate,UIWebViewDelegate>{
 IBOutlet UITextField *email;
 IBOutlet UIButton *sendButton;
+IBOutlet  UIWebView *webView;
 }
 -(IBAction)sendAction: (id)sender;
-
 @end

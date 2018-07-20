@@ -28,17 +28,19 @@
     
     self.title = @"Registration";
     self.view.backgroundColor=[UIColor whiteColor];
-    [[CartObj instance].itemsForCart removeAllObjects];
-    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"subTotalPrice"];
-    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"cart"];
+    if(![[[NSUserDefaults standardUserDefaults] objectForKey:@"skipNow"] isEqualToString:@"skipNow"]){
+        [[CartObj instance].itemsForCart removeAllObjects];
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"subTotalPrice"];
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"cart"];
+    }
     UIButton *leftBar = [UIButton buttonWithType:UIButtonTypeCustom];
     leftBar.frame = CGRectMake(0, 0, 20, 20);
     [leftBar setImage:[UIImage imageNamed:@"left-arrow"] forState:UIControlStateNormal];
     UIBarButtonItem *leftBarItem = [[UIBarButtonItem alloc] initWithCustomView:leftBar];
     [leftBar addTarget:self action:@selector(leftBarAct) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItems = [NSArray arrayWithObject:leftBarItem];
-    termsurl=@"http://www.clorder.com/terms_conditions.html";
-    privacyurl=@"http://www.clorder.com/privacy_policy.html";
+    termsurl=@"http://www.clorder.com/terms-conditions.html";
+    privacyurl=@"http://www.clorder.com/privacy-policy.html";
     
 //    UIImageView *bgImg = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
 //    bgImg.image = [UIImage imageNamed:APP_BG_IMG];

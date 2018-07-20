@@ -27,7 +27,9 @@
     UIButton *registerBtn;
     UIView *dummyV;
     int currTimeInSec;
+    UIButton *locationMarker;
 }
+@synthesize  del;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -37,13 +39,9 @@
 
 -(void)createUI{
     user = [NSUserDefaults standardUserDefaults];
+    [self.view setBackgroundColor:[UIColor whiteColor]];
     
-//    UIImageView *bgImg = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
-//    bgImg.image = [UIImage imageNamed:APP_BG_IMG];
-//    [self.view addSubview:bgImg];
-//    bgImg.contentMode = UIViewContentModeScaleAspectFill;
-    
-    UIImageView *logoImg = [[UIImageView alloc] initWithFrame:CGRectMake((self.view.frame.size.width/2)-125, self.view.frame.size.height/2-185, 250, 150)];
+    UIImageView *logoImg = [[UIImageView alloc] initWithFrame:CGRectMake((self.view.frame.size.width/2)-125, self.view.frame.size.height/2-220, 250, 150)];
     logoImg.image = [UIImage imageNamed:@"new_Logo"];
     [self.view addSubview:logoImg];
     logoImg.contentMode = UIViewContentModeScaleAspectFit;
@@ -103,9 +101,12 @@
     }else if([[user objectForKey:@"DeliveryType"] integerValue] == 2){
         deliveryBtn.frame=CGRectMake(self.view.frame.size.width/2-(self.view.frame.size.width/4-10), self.view.frame.size.height/2+80, self.view.frame.size.width/2-20, 40);
         [self.view addSubview:deliveryBtn];
+    }else{
+        [self.view addSubview:pickupBtn];
+        [self.view addSubview:deliveryBtn];
     }
     registerBtn=[UIButton buttonWithType:UIButtonTypeCustom];
-    registerBtn.frame = CGRectMake(self.view.frame.size.width/2+10, self.view.frame.size.height/2+140, self.view.frame.size.width/2-40, 60);
+    registerBtn.frame = CGRectMake(self.view.frame.size.width/2+10, self.view.frame.size.height/2+150, self.view.frame.size.width/2-40, 60);
     registerBtn.titleLabel.textColor = [UIColor blackColor];
     registerBtn.titleLabel.font = [UIFont boldSystemFontOfSize:14];
     [registerBtn setImage:[UIImage imageNamed:@"home-register"] forState:UIControlStateNormal];
@@ -151,7 +152,17 @@
     weekdayNumber = (NSInteger)[[nowDateFormatter stringFromDate:now] integerValue]-1;
     
     loginBtn=[UIButton buttonWithType:UIButtonTypeCustom];
-
+    
+}
+-(void)markerAction{
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"cartPrice"];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"PaymentInformation"];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"subTotalPrice"];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"cart"];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"CouponDetails"];
+    [[CartObj instance].itemsForCart removeAllObjects];
+    [CartObj clearInstance];
+    [self.navigationController popViewControllerAnimated:NO];
 }
 -(void)registebtnAction{
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"userInfo"];
@@ -178,7 +189,7 @@
 
     [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:0] forKey:@"AddMore"];
     
-    loginBtn.frame = CGRectMake(20, self.view.frame.size.height/2+140,(self.view.frame.size.width/2)-40, 60);
+    loginBtn.frame = CGRectMake(20, self.view.frame.size.height/2+150,(self.view.frame.size.width/2)-40, 60);
     [loginBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [loginBtn.titleLabel setFont:[UIFont fontWithName:@"Lora-Regular" size:16]];
 //    [loginBtn.layer setBorderWidth:1];
@@ -203,12 +214,26 @@
     loginBtn.titleEdgeInsets = UIEdgeInsetsMake(30,-((self.view.frame.size.width/2)-40-65)/2,0,0);
     [loginBtn addTarget:self action:@selector(logInBtnAct) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:loginBtn];
+    
+    NSMutableArray *locationsary=[NSMutableArray arrayWithCapacity:0];
+    for (NSData *data in [[NSUserDefaults standardUserDefaults] objectForKey:@"Locations"]) {
+        NSDictionary *dic=[NSKeyedUnarchiver unarchiveObjectWithData:data];
+        [locationsary addObject:dic];
+    }
+    if([locationsary count] > 1){
+        UIWindow *window = [[[UIApplication sharedApplication] delegate] window];
+        locationMarker=[[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-70, 30, 50, 50)];
+        [locationMarker setImage:[UIImage imageNamed:@"loaction_marker"] forState:UIControlStateNormal];
+        [locationMarker addTarget:self action:@selector(markerAction) forControlEvents:UIControlEventTouchUpInside];
+        [window addSubview:locationMarker];
+        [window bringSubviewToFront:locationMarker];
+    }
 }
 - (void)viewWillDisappear:(BOOL)animated {
     [self.navigationController setNavigationBarHidden:NO animated:animated];
     [self.navigationController.navigationBar setBackgroundColor:APP_COLOR];
+    [locationMarker removeFromSuperview];
 }
-
 - (void)logInBtnAct {
     [user setObject:[NSNumber numberWithInt:0] forKey:@"OrderType"];
     if ([[user objectForKey:@"userInfo"] objectForKey:@"UserId"] > 0) {

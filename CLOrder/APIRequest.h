@@ -14,6 +14,7 @@
 + (void)registerClorderUser:(NSDictionary *)dict completion:(RequestCallback)cb;
 + (void)loginUser:(NSDictionary *)dict completion:(RequestCallback)cb;
 + (void)fetchClientSettings:(NSDictionary *)dict completion:(RequestCallback)cb;
++ (void)fetchChildClientSettings:(NSDictionary *)dict completion:(RequestCallback)cb;
 + (void)fetchClientMenu:(NSDictionary *)dict completion:(RequestCallback)cb;
 + (void)fetchClientItems:(NSDictionary *)dict completion:(RequestCallback)cb;
 + (void)fetchClientCategories:(NSDictionary *)dict completion:(RequestCallback)cb;
@@ -33,6 +34,10 @@
 + (void)fetchDiscount:(NSDictionary *)dict completion:(RequestCallback)cb;
 + (void)fetchRestTimeSlots:(NSDictionary *)dict completion:(RequestCallback)cb;
 + (void)googleAutoComplteApi:(NSDictionary *)dict url:(NSString *)url completion:(RequestCallback)cb;
-
++ (void)forgotPasswordApi:(NSDictionary *)dict completion:(RequestCallback)cb;
++ (void)confirmOrderPostPayment:(NSDictionary *)dict completion:(RequestCallback)cb;
++ (void)changePasswordApi:(NSDictionary *)dict completion:(RequestCallback)cb;
++ (void)gettingLatLong:(NSDictionary *)dict url:(NSString *)url completion:(RequestCallback)cb;
++ (void)searchLocationlist:(NSDictionary *)dict completion:(RequestCallback)cb;
 
 @end

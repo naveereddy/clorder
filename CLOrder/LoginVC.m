@@ -11,7 +11,6 @@
 #import "AccountUpdateVC.h"
 #import "SignUpView.h"
 #import "APIRequest.h"
-#import "ViewController.h"
 #import "AllDayMenuVC.h"
 #import "DeliveryVC.h"
 #import "CartObj.h"
@@ -72,15 +71,15 @@
     loginButton.readPermissions =@[@"public_profile", @"email"];
     [self.view addSubview:loginButton];
     
-    UIButton *facebookButton=[[UIButton alloc] initWithFrame:CGRectMake(80, SCREEN_HEIGHT/2+130, 50, 50)];
+    UIButton *facebookButton=[[UIButton alloc] initWithFrame:CGRectMake(70, SCREEN_HEIGHT/2+100, 50, 50)];
     [facebookButton setImage:[UIImage imageNamed:@"facebook"] forState:UIControlStateNormal];
     [facebookButton addTarget:self action:@selector(myButtonPressed) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:facebookButton];
     
     
-    UIButton *gmailButton=[[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH/2+40
+    UIButton *gmailButton=[[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH/2+70
                                                                      
-                                                                     , SCREEN_HEIGHT/2+130, 50, 50)];
+                                                                     , SCREEN_HEIGHT/2+100, 50, 50)];
     [gmailButton setImage:[UIImage imageNamed:@"google"] forState:UIControlStateNormal];
     [gmailButton addTarget:self action:@selector(myGmailButtonPressed) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:gmailButton];
@@ -232,9 +231,11 @@ didCompleteWithResult:(FBSDKLoginManagerLoginResult *)result
             NSError *error = nil;
             NSDictionary *resObj = [NSJSONSerialization JSONObjectWithData:buffer options:NSJSONReadingAllowFragments error:&error];
             NSLog(@"Response :\n %@",resObj);
-            
             if ([[resObj objectForKey:@"isSuccess"] boolValue] && [[resObj objectForKey:@"UserId"] intValue] > 0){
-                [[CartObj instance].itemsForCart removeAllObjects];
+                if(![[appUser objectForKey:@"skipNow"] isEqualToString:@"skipNow"]){
+                    [[CartObj instance].itemsForCart removeAllObjects];
+                }
+                [appUser removeObjectForKey:@"skipNow"];
                 [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"subTotalPrice"];
                 NSDictionary *userInfo = [[NSDictionary alloc] initWithObjectsAndKeys:
                                           [NSNumber numberWithInt:[[resObj objectForKey:@"UserId"] intValue]], @"UserId",
@@ -278,7 +279,6 @@ didCompleteWithResult:(FBSDKLoginManagerLoginResult *)result
 -(IBAction) signInAct: (id)sender{
     [email resignFirstResponder];
     [password resignFirstResponder];
-    
     if ([self textValidation]) {
         [APIRequest loginUser:[NSDictionary dictionaryWithObjectsAndKeys:CLIENT_ID, @"clientId", [NSString stringWithFormat:@"%@",email.text], @"Email",[NSString stringWithFormat:@"%@",password.text], @"Password", nil] completion:^(NSMutableData *buffer){
             if (!buffer){
@@ -290,9 +290,11 @@ didCompleteWithResult:(FBSDKLoginManagerLoginResult *)result
                 NSError *error = nil;
                 NSDictionary *resObj = [NSJSONSerialization JSONObjectWithData:buffer options:NSJSONReadingAllowFragments error:&error];
                 NSLog(@"Response :\n %@",resObj);
-                
                 if ([[resObj objectForKey:@"isSuccess"] boolValue] && [[resObj objectForKey:@"UserId"] intValue] > 0){
-                    [[CartObj instance].itemsForCart removeAllObjects];
+                    if(![[appUser objectForKey:@"skipNow"] isEqualToString:@"skipNow"]){
+                        [[CartObj instance].itemsForCart removeAllObjects];
+                    }
+                    [appUser removeObjectForKey:@"skipNow"];
                     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"subTotalPrice"];
                     NSDictionary *userInfo = [[NSDictionary alloc] initWithObjectsAndKeys:
                                               [resObj objectForKey:@"UserId"], @"UserId",
@@ -306,8 +308,6 @@ didCompleteWithResult:(FBSDKLoginManagerLoginResult *)result
                                               [[resObj objectForKey:@"UserAddress"] isKindOfClass:[NSNull class]]?[self blankUserAddress]:[resObj objectForKey:@"UserAddress"], @"UserAddress",
                                               nil];
                     [appUser setObject:userInfo forKey:@"userInfo"];
-                    
-                    
                     if (![[resObj objectForKey:@"PaymentInformation"] isKindOfClass:[NSNull class]]) {
                         [appUser setObject:[resObj objectForKey:@"PaymentInformation"] forKey:@"PaymentInformation"];
                     }
@@ -335,10 +335,7 @@ didCompleteWithResult:(FBSDKLoginManagerLoginResult *)result
         [alert setTag:100];
         [alert show];
     }
-    
-    
 }
-
 -(NSDictionary *)blankUserAddress{
     NSDictionary *dic = [[NSDictionary alloc] initWithObjectsAndKeys:
                          @"", @"Address1",
@@ -371,33 +368,35 @@ didCompleteWithResult:(FBSDKLoginManagerLoginResult *)result
 }
 
 -(IBAction) newUserAct: (id)sender{
-    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"userInfo"];
-    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"cartPrice"];
-    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"PaymentInformation"];
-    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"subTotalPrice"];
-    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"cart"];
-    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"CouponDetails"];
+    if(![[appUser objectForKey:@"skipNow"] isEqualToString:@"skipNow"]){
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"userInfo"];
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"cartPrice"];
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"PaymentInformation"];
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"subTotalPrice"];
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"cart"];
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"CouponDetails"];
+        
+        [[CartObj instance].itemsForCart removeAllObjects];
+        [CartObj clearInstance];
+    }
     
-    [[CartObj instance].itemsForCart removeAllObjects];
-    [CartObj clearInstance];
-
     SignUpView *signUpV = [[SignUpView alloc] init];
     signUpV.emailId = email.text;
     signUpV.password = password.text;
     [self.navigationController pushViewController:signUpV animated:YES];
 }
 -(IBAction) guestUserAct: (id)sender{
-    
-    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"userInfo"];
-    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"cartPrice"];
-    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"PaymentInformation"];
-    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"subTotalPrice"];
-    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"cart"];
-    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"CouponDetails"];
-    
-    [[CartObj instance].itemsForCart removeAllObjects];
-    [CartObj clearInstance];
-    
+    if(![[appUser objectForKey:@"skipNow"] isEqualToString:@"skipNow"]){
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"userInfo"];
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"cartPrice"];
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"PaymentInformation"];
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"subTotalPrice"];
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"cart"];
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"CouponDetails"];
+        
+        [[CartObj instance].itemsForCart removeAllObjects];
+        [CartObj clearInstance];
+    }
     if (orderType == 2 || orderType == 0 || orderType == 1) {
         DeliveryVC *nextView = [[DeliveryVC alloc] init];
         nextView.isGuest = YES;
@@ -417,6 +416,11 @@ didCompleteWithResult:(FBSDKLoginManagerLoginResult *)result
         [self.navigationController popViewControllerAnimated:YES];
     }
 }
+-(IBAction)skipNowAction:(id)sender{
+    [[NSUserDefaults standardUserDefaults] setObject:@"skipNow" forKey:@"skipNow"];
+    AllDayMenuVC *nextView = [[AllDayMenuVC alloc] init];
+    [self.navigationController pushViewController:nextView animated:YES];
+}
 -(IBAction) facebookAct: (id)sender{
     SignUpView *signUpV = [[SignUpView alloc] init];
     [self presentViewController:signUpV animated:YES completion:nil];
@@ -435,7 +439,6 @@ didCompleteWithResult:(FBSDKLoginManagerLoginResult *)result
 -(BOOL)textFieldShouldReturn:(UITextField *)textField{
     [textField resignFirstResponder];
     return YES;
-    
 }
 
 -(void)keyboardWasShown:(NSNotification *)notification{

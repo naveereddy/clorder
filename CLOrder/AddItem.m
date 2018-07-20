@@ -42,6 +42,8 @@
     NSMutableArray *cartOptArray;
     NSMutableArray *choiceTxtArr;
     int indexOfChoiceText;
+    UIButton *cartIcon;
+
 }
 
 @synthesize item, replaceIndex;
@@ -71,11 +73,24 @@
         quantity = [[item objectForKey:@"MinQuantity"] intValue];
     }
     
-    UIButton *carticon = [UIButton buttonWithType:UIButtonTypeCustom];
-    carticon.frame = CGRectMake(0, 0, 20, 20);
-    [carticon setImage:[UIImage imageNamed:@"cart"] forState:UIControlStateNormal];
-    [carticon addTarget:self action:@selector(cartAction) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem * rightBarItem1 = [[UIBarButtonItem alloc] initWithCustomView:carticon];
+    cartIcon = [UIButton buttonWithType:UIButtonTypeCustom];
+    cartIcon.frame = CGRectMake(0, 0, 44, 44);
+    [cartIcon setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [cartIcon.titleLabel setFont:[UIFont fontWithName:@"Lora-Bold" size:12]];
+    [cartIcon.titleLabel.layer setBorderColor:[[UIColor whiteColor] CGColor]];
+    [cartIcon.titleLabel setBackgroundColor:[UIColor blackColor]];
+    [cartIcon.titleLabel.layer setBorderWidth:1];
+    [cartIcon.titleLabel.layer setCornerRadius:8];
+    cartIcon.titleLabel.layer.masksToBounds = YES;
+    [cartIcon setNeedsLayout];
+    [cartIcon layoutIfNeeded];
+    [cartIcon setImage:[UIImage imageNamed:@"cart"] forState:UIControlStateNormal];
+    [cartIcon addTarget:self action:@selector(cartBtnAct) forControlEvents:UIControlEventTouchUpInside];
+    cartIcon.titleEdgeInsets = UIEdgeInsetsMake(-10,0,0,0);
+    cartIcon.imageEdgeInsets = UIEdgeInsetsMake(10,10,0,0);
+    UIBarButtonItem * rightBarItem1 = [[UIBarButtonItem alloc] initWithCustomView:cartIcon];
+    self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:rightBarItem1, nil];
+    
     
     self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:rightBarItem1, nil];
     
@@ -122,7 +137,11 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasShown:) name:UIKeyboardDidShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
 }
--(void) cartAction{
+-(void)viewWillAppear:(BOOL)animated{
+    [cartIcon setTitle:[NSString stringWithFormat:@" %lu ",(unsigned long)[CartObj instance].itemsForCart.count] forState:UIControlStateNormal];
+    
+}
+-(void) cartBtnAct{
     if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"AddMore"] boolValue]) {
         [self.navigationController popViewControllerAnimated:YES];
     }else{
@@ -839,82 +858,53 @@
     choiceDic = [[NSDictionary alloc] initWithDictionary:[[choiceArray objectAtIndex:index] objectAtIndex:row]];
 }
 -(void) addOrderAct {
-    
-    if (quantity > 0) {
-        
-        [item setObject:[NSNumber numberWithInt:quantity] forKey:@"Quantity"];
-        [item setObject:instructionTxt.text forKey:@"SpecialInstruction"];
-        //        BOOL added = false;
-        //        NSLog(@"Item to be added into cart-- \n%@", item);
-        if(!([CartObj instance]==NULL)){
-            //NSLog(@"No cartObj");
-            
-            if (self.replaceIndex >= 0) {
-                [[CartObj instance].itemsForCart replaceObjectAtIndex:self.replaceIndex withObject:item];
-            }else{
-                [[CartObj instance].itemsForCart addObject:item];
-            }
-            
-        }else{
-            NSLog(@"cartObj **");
-        }
-        
-        // NSLog(@"%@", [CartObj instance].itemsForCart);
-        NSUserDefaults *cart = [NSUserDefaults standardUserDefaults];
-        NSMutableArray *archiveArray = [[NSMutableArray alloc] init];
-        for (NSDictionary *personObject in [CartObj instance].itemsForCart) {
-            NSData *personEncodedObject = [NSKeyedArchiver archivedDataWithRootObject:personObject];
-            [archiveArray addObject:personEncodedObject];
-        }
-        [cart setObject: archiveArray forKey:@"cart"];
-        [self subTotalCalc];
-        //        CheckOut *checkOutView = [[CheckOut alloc] init];
-        //        checkOutView.replaceIndex = self.replaceIndex;
-        //        [self.navigationController pushViewController:checkOutView animated:YES];
-//        if (replaceIndex >= 0) {
-//            [self.navigationController popViewControllerAnimated:YES];
-//        }else{
-            NSArray *vcArr = [[NSArray alloc] initWithArray:[self.navigationController viewControllers]];
-            if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"AddMore"] boolValue]) {
-                for (UIViewController *controller in self.navigationController.viewControllers) {
-                    
-                    //Do not forget to import AnOldViewController.h
-                    if ([controller isKindOfClass:[CheckOut class]]) {
-                        
-                        [self.navigationController popToViewController:controller
-                                                              animated:YES];
-                        break;
-                    }
+        if (quantity > 0) {
+            [item setObject:[NSNumber numberWithInt:quantity] forKey:@"Quantity"];
+            [item setObject:instructionTxt.text forKey:@"SpecialInstruction"];
+            if(!([CartObj instance]==NULL)){
+                if (self.replaceIndex >= 0) {
+                    [[CartObj instance].itemsForCart replaceObjectAtIndex:self.replaceIndex withObject:item];
+                }else{
+                    [[CartObj instance].itemsForCart addObject:item];
                 }
-//                [self.navigationController popToViewController: [vcArr objectAtIndex:[vcArr count]-4]  animated:YES];
             }else{
-                //if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"OrderType"] intValue] == 2) {
-                  //  [self.navigationController popToViewController:[vcArr objectAtIndex:3]  animated:YES];
-               // }else{
-                    if ([[[[NSUserDefaults standardUserDefaults] objectForKey:@"userInfo"] objectForKey:@"UserId"] intValue]) {
+                NSLog(@"cartObj **");
+            }
+            NSUserDefaults *cart = [NSUserDefaults standardUserDefaults];
+            NSMutableArray *archiveArray = [[NSMutableArray alloc] init];
+            for (NSDictionary *personObject in [CartObj instance].itemsForCart) {
+                NSData *personEncodedObject = [NSKeyedArchiver archivedDataWithRootObject:personObject];
+                [archiveArray addObject:personEncodedObject];
+            }
+            [cart setObject: archiveArray forKey:@"cart"];
+            [self subTotalCalc];
+             NSArray *vcArr = [[NSArray alloc] initWithArray:[self.navigationController viewControllers]];
+                if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"AddMore"] boolValue]) {
                         for (UIViewController *controller in self.navigationController.viewControllers) {
-                            
-                            //Do not forget to import AnOldViewController.h
-                            if ([controller isKindOfClass:[AllDayMenuVC class]]) {
-                                
-                                [self.navigationController popToViewController:controller
-                                                                      animated:YES];
+                            if ([controller isKindOfClass:[CheckOut class]]) {
+                            [self.navigationController popToViewController:controller animated:YES];
                                 break;
                             }
                         }
-//                        [self.navigationController popToViewController:
-//                         [vcArr objectAtIndex:(2+[[[NSUserDefaults standardUserDefaults] objectForKey:@"popIndex"] intValue])]  animated:YES];
+                }else{
+                    if ([[[[NSUserDefaults standardUserDefaults] objectForKey:@"userInfo"] objectForKey:@"UserId"] intValue]) {
+                        for (UIViewController *controller in self.navigationController.viewControllers) {
+                            if ([controller isKindOfClass:[AllDayMenuVC class]]) {
+                                [self.navigationController popToViewController:controller animated:YES];
+                                break;
+                            }
+                        }
                     }else{
-                        [self.navigationController popToViewController:
-                         [vcArr objectAtIndex:(3+[[[NSUserDefaults standardUserDefaults] objectForKey:@"popIndex"] intValue])]  animated:YES];
+                        if(![[[NSUserDefaults standardUserDefaults] objectForKey:@"skipNow"] isEqualToString:@"skipNow"]){
+                            [self.navigationController popToViewController:
+                             [vcArr objectAtIndex:(3+[[[NSUserDefaults standardUserDefaults] objectForKey:@"popIndex"] intValue])]  animated:YES];
+                        }else{
+                            [self.navigationController popToViewController:
+                             [vcArr objectAtIndex:[vcArr count]-3] animated:YES];
+                        }
                     }
-                    
-                //}
             }
-//        }
-        
-        
-    }else{
+        }else{
         UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"" message:@"Quantity can not be 0" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
         [alert show];
     }

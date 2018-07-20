@@ -15,9 +15,11 @@
 #import <GoogleSignIn/GoogleSignIn.h>
 #import "APIRequest.h"
 #import "DeliveryAddress.h"
+#import "MultiLocationVC.h"
+#import "SelectedRestroVC.h"
 
 
-static NSString * const kClientId = @"679446363010-t393n7nhk3shrq5mvd6jev39dldmh4sm.apps.googleusercontent.com";
+static NSString *kClientId ;
 
 @interface AppDelegate ()
 
@@ -50,20 +52,22 @@ static NSString * const kClientId = @"679446363010-t393n7nhk3shrq5mvd6jev39dldmh
 //    @"AT6cGxBwRvDtcg5ZovY3buRT28DbZP7MBRaHEON8YZvUUd1FSz6ZHNQ1ejvc"
 //    @"AiHdWrSoknctBzRntL9-oGotJkMvADGAVcX3y06XfaRtRllojh88rDlA" //Sandeep account sandbox
 //    @"AbpsMFPwYRRkGEt2XSRpUa2wKnLzrH569zYOo0ZqoCJjUqFAJgSuYkIaIRM2hDBnbBKfcLrIHin4zFDj" //Sandeep account Live
+    kClientId=[[[NSDictionary alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"GoogleService-Info" ofType:@"plist"]] objectForKey:@"CLIENT_ID"];
     [GIDSignIn sharedInstance].clientID = kClientId;
     [GIDSignIn sharedInstance].delegate = self;
     
     [[FBSDKApplicationDelegate sharedInstance] application:application
                              didFinishLaunchingWithOptions:launchOptions];
-    
     NSDictionary *navbarTitleTextAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
-                                        [UIColor whiteColor],NSForegroundColorAttributeName,[UIFont fontWithName:@"Lora-Regular" size:18],NSFontAttributeName,nil];
-    [[UINavigationBar appearance] setTitleTextAttributes:navbarTitleTextAttributes];
+                                              [UIColor whiteColor],NSForegroundColorAttributeName,[UIFont fontWithName:@"Lora-Regular" size:18],NSFontAttributeName,nil];
+    [[UINavigationBar appearance] setTitleTextAttributes:navbarTitleTextAttributes];    
     UIView *statusBar = [[[UIApplication sharedApplication] valueForKey:@"statusBarWindow"] valueForKey:@"statusBar"];
     if ([statusBar respondsToSelector:@selector(setBackgroundColor:)]) {
         statusBar.backgroundColor = APP_COLOR;
     }
     [self.window setTintColor:APP_COLOR];
+    self.window.backgroundColor = [UIColor whiteColor];
+    [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"%@",[[[NSDictionary alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Info" ofType:@"plist"]] objectForKey:@"ClientId"]] forKey:@"MainClientId"];
     return YES;
 }
 
@@ -87,7 +91,7 @@ static NSString * const kClientId = @"679446363010-t393n7nhk3shrq5mvd6jev39dldmh
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
-    [self fetchClientSettings];
+//    [self fetchClientSettings];
     [[CartObj instance].itemsForCart removeAllObjects];
     for (NSData *data in [[NSUserDefaults standardUserDefaults] objectForKey:@"cart"]) {
 //        NSLog(@"%@", [NSKeyedUnarchiver unarchiveObjectWithData:data]);
@@ -96,38 +100,15 @@ static NSString * const kClientId = @"679446363010-t393n7nhk3shrq5mvd6jev39dldmh
     [FBSDKAppEvents activateApp];
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
 }
-
-- (void)applicationWillTerminate:(UIApplication *)application {
-    [[CartObj instance].itemsForCart removeAllObjects];
-    [[NSUserDefaults standardUserDefaults] removeObjectForKey: @"BusinessHours"];
-    [[NSUserDefaults standardUserDefaults] removeObjectForKey: @"MinDelivery"];
-    [[NSUserDefaults standardUserDefaults] removeObjectForKey: @"clientLat"];
-    [[NSUserDefaults standardUserDefaults] removeObjectForKey: @"clientLon"];
-    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"cart"];
-    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"subTotalPrice"];
-    // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-}
-
 -(void) fetchClientSettings{
-    [APIRequest fetchClientSettings:[NSDictionary dictionaryWithObjectsAndKeys:CLIENT_ID, @"clientId", nil] completion:^(NSMutableData *buffer) {
+    [APIRequest fetchClientSettings:[NSDictionary dictionaryWithObjectsAndKeys:CLIENT_ID,@"clientId", nil] completion:^(NSMutableData *buffer) {
         if (!buffer){
             NSLog(@"Unknown ERROR");
-            //            [Loader showErrorAlert:NETWORK_ERROR_MSG];
         }else{
-            
-            NSString *res = [[NSString alloc] initWithData:buffer encoding:NSUTF8StringEncoding];
             // handle the response here
             NSError *error = nil;
             NSDictionary *resObj = [NSJSONSerialization JSONObjectWithData:buffer options:NSJSONReadingAllowFragments error:&error];
             NSLog(@"Response :\n %@",resObj);
-            
-//            NSDate *now = [NSDate date];
-//            NSDateFormatter *nowDateFormatter = [[NSDateFormatter alloc] init];
-//            NSArray *daysOfWeek = @[@"",@"Su",@"M",@"T",@"W",@"Th",@"F",@"S"];
-//            [nowDateFormatter setDateFormat:@"e"];
-//            weekdayNumber = (NSInteger)[[nowDateFormatter stringFromDate:now] integerValue];
-//            NSLog(@"Day of Week: %@",[daysOfWeek objectAtIndex:weekdayNumber]);
-            
             if ([[resObj objectForKey:@"isSuccess"] boolValue] &&
                 ![[resObj objectForKey:@"ClientSettings"] isKindOfClass:[NSNull class]] &&
                 [[[resObj objectForKey:@"ClientSettings"] objectForKey:@"BusinessHours"] count]) {
@@ -140,12 +121,12 @@ static NSString * const kClientId = @"679446363010-t393n7nhk3shrq5mvd6jev39dldmh
                 [[NSUserDefaults standardUserDefaults] setObject:[[resObj objectForKey:@"ClientSettings"] objectForKey:@"PickupTimeOffset"] forKey:@"PickupTimeOffset"];
                 [[NSUserDefaults standardUserDefaults] setObject:[[resObj objectForKey:@"ClientSettings"] objectForKey:@"MinDelivery"] forKey:@"MinDelivery"];
                 [[NSUserDefaults standardUserDefaults] setObject:[[resObj objectForKey:@"ClientSettings"] objectForKey:@"maxCashValue"] forKey:@"maxCashValue"];
-
                 [[NSUserDefaults standardUserDefaults] setObject:[[resObj objectForKey:@"ClientSettings"] objectForKey:@"clientLat"] forKey:@"clientLat"];
                 [[NSUserDefaults standardUserDefaults] setObject:[[resObj objectForKey:@"ClientSettings"] objectForKey:@"clientLon"] forKey:@"clientLon"];
                 [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:[[resObj objectForKey:@"isRestOpen"] boolValue]] forKey:@"isRestOpen"];
                 [[NSUserDefaults standardUserDefaults] setObject:[[resObj objectForKey:@"ClientSettings"] objectForKey:@"ClientName"] forKey:@"ClientName"];
                 [[NSUserDefaults standardUserDefaults] setObject:[[resObj objectForKey:@"ClientSettings"] objectForKey:@"PhoneNumber"] forKey:@"ClientPhone"];
+                [[NSUserDefaults standardUserDefaults] setObject:[[resObj objectForKey:@"ClientSettings"] objectForKey:@"PaymentSetting"] forKey:@"PaymentSetting"];
                 [[NSUserDefaults standardUserDefaults] setObject:[[resObj objectForKey:@"ClientSettings"] objectForKey:@"ShippingOptionId"] forKey:@"ShippingOptionId"];
                 [[NSUserDefaults standardUserDefaults] setObject:[[resObj objectForKey:@"ClientSettings"] objectForKey:@"DeliveryType"] forKey:@"DeliveryType"];
                 NSLog(@"address %@,%@",[resObj objectForKey:@"DeliveryAddresses"],[resObj objectForKey:@"clientId"]);
@@ -155,16 +136,11 @@ static NSString * const kClientId = @"679446363010-t393n7nhk3shrq5mvd6jev39dldmh
                         NSMutableArray *addressAarry=[[NSMutableArray alloc] initWithCapacity:0];
                         for(NSDictionary *obj in [resObj objectForKey:@"DeliveryAddresses"]){
                             NSMutableDictionary *dic=[[NSMutableDictionary alloc] init];
-//                            DeliveryAddress *devly=[[DeliveryAddress alloc] init];
-//                            devly.Address1=[[obj objectForKey:@"Address1"] isKindOfClass:[NSNull class]] ? @"":[obj objectForKey:@"Address1"];
-//                            devly.Address2=[[obj objectForKey:@"Address2"] isKindOfClass:[NSNull class]] ? @"":[obj objectForKey:@"Address2"];
-//                            devly.City=[[obj objectForKey:@"City"] isKindOfClass:[NSNull class]]? @"":[obj objectForKey:@"City"];
-//                            devly.ZipPostalCode=[[obj objectForKey:@"ZipPostalCode"] isKindOfClass:[NSNull class]]? @"":[obj objectForKey:@"ZipPostalCode"];
-                          [dic setObject:[[obj objectForKey:@"Address1"] isKindOfClass:[NSNull class]] ? @"":[obj objectForKey:@"Address1"] forKey:@"Address1"];
-                          [dic setObject:[[obj objectForKey:@"Address2"] isKindOfClass:[NSNull class]] ? @"":[obj objectForKey:@"Address2"] forKey:@"Address2"];
-                          [dic setObject:[[obj objectForKey:@"City"] isKindOfClass:[NSNull class]]? @"":[obj objectForKey:@"City"] forKey:@"City"];
-                          [dic setObject:[[obj objectForKey:@"ZipPostalCode"] isKindOfClass:[NSNull class]]? @"":[obj objectForKey:@"ZipPostalCode"] forKey:@"ZipPostalCode"];
-                          [addressAarry addObject:dic];
+                            [dic setObject:[[obj objectForKey:@"Address1"] isKindOfClass:[NSNull class]] ? @"":[obj objectForKey:@"Address1"] forKey:@"Address1"];
+                            [dic setObject:[[obj objectForKey:@"Address2"] isKindOfClass:[NSNull class]] ? @"":[obj objectForKey:@"Address2"] forKey:@"Address2"];
+                            [dic setObject:[[obj objectForKey:@"City"] isKindOfClass:[NSNull class]]? @"":[obj objectForKey:@"City"] forKey:@"City"];
+                            [dic setObject:[[obj objectForKey:@"ZipPostalCode"] isKindOfClass:[NSNull class]]? @"":[obj objectForKey:@"ZipPostalCode"] forKey:@"ZipPostalCode"];
+                            [addressAarry addObject:dic];
                         }
                         [[NSUserDefaults standardUserDefaults] setObject:addressAarry forKey:@"DeliveryAddresses"];
                     }else{
@@ -178,17 +154,24 @@ static NSString * const kClientId = @"679446363010-t393n7nhk3shrq5mvd6jev39dldmh
                 }
                 if ([resObj objectForKey:@"EnableTip"] && [[resObj objectForKey:@"EnableTip"] boolValue]) {
                     [[NSUserDefaults standardUserDefaults] setObject:[[resObj objectForKey:@"ClientSettings"] objectForKey:@"DefaultTip"] forKey:@"DefaultTip"];
-
                 }else{
                     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"DefaultTip"];
                 }
                 NSLog(@"%@\n%@", [[NSUserDefaults standardUserDefaults] objectForKey:@"TipIndex"],[[NSUserDefaults standardUserDefaults] objectForKey:@"DefaultTip"]);
-
             }
         }
     }];
 }
-
+- (void)applicationWillTerminate:(UIApplication *)application {
+    [[CartObj instance].itemsForCart removeAllObjects];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey: @"BusinessHours"];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey: @"MinDelivery"];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey: @"clientLat"];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey: @"clientLon"];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"cart"];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"subTotalPrice"];
+    // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
 - (BOOL)application:(UIApplication *)application
             openURL:(NSURL *)url
   sourceApplication:(NSString *)sourceApplication

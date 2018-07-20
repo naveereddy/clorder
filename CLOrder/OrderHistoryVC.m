@@ -24,14 +24,10 @@
 @synthesize  fromhamburger;
 - (void)viewDidLoad {
     [super viewDidLoad];
-//    UIImageView *bgImg = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
-//    bgImg.image = [UIImage imageNamed:APP_BG_IMG];
-//    [self.view addSubview:bgImg];
+
     self.view.backgroundColor=[UIColor whiteColor];
     self.title = [NSString stringWithFormat:@"%@",@"Order History"];
-    
 
-    
     UIButton *leftBar = [UIButton buttonWithType:UIButtonTypeCustom];
     leftBar.frame = CGRectMake(0, 0, 20, 20);
     [leftBar setImage:[UIImage imageNamed:@"left-arrow"] forState:UIControlStateNormal];
@@ -103,7 +99,16 @@
     if(fromhamburger){
         [self.navigationController popViewControllerAnimated:YES];
     }else{
-        [self.navigationController popToRootViewControllerAnimated:YES];
+        NSMutableArray *locationsary=[NSMutableArray arrayWithCapacity:0];
+        for (NSData *data in [[NSUserDefaults standardUserDefaults] objectForKey:@"Locations"]) {
+            NSDictionary *dic=[NSKeyedUnarchiver unarchiveObjectWithData:data];
+            [locationsary addObject:dic];
+        }
+        if([locationsary count] > 1){
+            [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:1] animated:YES];
+        }else{
+            [self.navigationController popToRootViewControllerAnimated:YES];
+        }
     }
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{

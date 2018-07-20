@@ -18,6 +18,7 @@
 #import "AllDayMenuVC.h"
 //#import "ScheduleView.h"
 #import "Schedular.h"
+#import "LoginVC.h"
 
 @implementation CheckOut{
     NSArray *tipArray;
@@ -156,7 +157,7 @@
     addItemBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     addItemBtn.frame = CGRectMake(SCREEN_WIDTH/2-75, SCREEN_HEIGHT-90, 150, 30);
     addItemBtn.layer.cornerRadius = 3.0;
-    [addItemBtn setBackgroundColor:APP_BLUE_COLOR];
+    [addItemBtn setBackgroundColor:APP_COLOR];
     [addItemBtn setTitle:@"ADD MORE" forState:UIControlStateNormal];
     [addItemBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [addItemBtn addTarget:self action:@selector(addItemBtnAct) forControlEvents:UIControlEventTouchUpInside];
@@ -1067,12 +1068,6 @@
     }else{
         NSArray *vcArr = [[NSArray alloc] initWithArray:[self.navigationController viewControllers]];
         [user setObject:[NSNumber numberWithBool:0] forKey:@"AddMore"];
-//        if ([[user objectForKey:@"OrderType"] intValue] == 2) {
-//            [self.navigationController popToViewController:[vcArr objectAtIndex:0]  animated:YES];
-//        }else{
-//            [self.navigationController popToViewController:[vcArr objectAtIndex:(2+[[user objectForKey:@"popIndex"] intValue])]  animated:YES];
-//        }
-//        NSLog(@"%@", [[CartObj instance].userInfo objectForKey:@"UserId"]);
         int index = 0;
         for (UIViewController *vc in vcArr) {
             if ([vc isKindOfClass:[AllDayMenuVC class]]) {
@@ -1394,61 +1389,44 @@
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"Restaurant is closed at the moment" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles: nil];
         [alert show];
     }
-    
-    
 }
 
 -(void)proceedForOrder:(UIButton *)sender{
     NSLog(@"%@", [CartObj instance].itemsForCart);
-
-    if (fetchTaxFailed || fetchDeliveryFailed) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"Something went wrong, please try again" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles: nil];
-        [alert setTag:200];
-        [alert show];
-    }else if([[user objectForKey:@"isRestOpen"] boolValue]){
-//        BOOL goForOrder = NO;
-//        
-//        if ([[user objectForKey:@"OrderType"] intValue] == 1) {
-//            goForOrder = [self checkPickUpClosed];
-//        }
-//        
-//        if ([[user objectForKey:@"OrderType"] intValue] == 2) {
-//            goForOrder = [self checkPickUpClosed] && [self checkDeliveryClosed];
-//        }
-        
-        [user setObject:[CartObj instance].cartPrice forKey:@"cartPrice"];
-        if ([CartObj instance].itemsForCart.count) {
-//            if (goForOrder) {
-                if ([[user objectForKey:@"OrderType"] intValue] == 2 && (subTotal < [[user objectForKey:@"MinDelivery"] doubleValue]) && [[[CartObj instance]itemsForCart] count]) {
-                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:[NSString stringWithFormat:@"For delivery orders, Subtotal should be greater than $%.2lf.", [[user objectForKey:@"MinDelivery"] doubleValue]] delegate:self cancelButtonTitle:@"Ok" otherButtonTitles: nil];
-                    [alert show];
-                }else if ([[user objectForKey:@"OrderType"] intValue] == 2 &&  fetchDeliveryFailed && [[user objectForKey:@"ShippingOptionId"] intValue] == 4) {
-                    [self requestDelivery];
-                }
-                else{
-                   if ([user objectForKey:@"OrderDate"] && [user objectForKey: @"OrderTime"] && ([[[CartObj instance].userInfo objectForKey:@"UserId"] intValue] || !sender)) {
-                        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Confirm Order Time" message:[NSString stringWithFormat:@"Your order is scheduled for %@, %@", [user objectForKey:@"OrderDate"], [user objectForKey: @"OrderTime"]] delegate:self cancelButtonTitle:@"Change" otherButtonTitles: @"Confirm", nil];
-                        [alert setTag:300];
-                        [alert show];
-                    }else{
-                        [self checkOutBtnAct];
-                    }
-                    
-                    
-                    
-                    
-                    //                  ScheduleDeliveryVC *scheduleOrderV = [[ScheduleDeliveryVC alloc] init];
-                    //                  [self.navigationController pushViewController:scheduleOrderV animated:YES];
-                }
-//            }else{
-//                [self closeRestMsg];
-//            }
-        }else{
-            [self leftBarAct];
-        }
+    if([[user objectForKey:@"skipNow"] isEqualToString:@"skipNow"]){
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        LoginVC *nextView = [storyboard instantiateViewControllerWithIdentifier:@"LoginView"];
+        [self.navigationController pushViewController:nextView animated:YES];
     }else{
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"Restaurant is closed today" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles: nil];
-        [alert show];
+            if (fetchTaxFailed || fetchDeliveryFailed) {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"Something went wrong, please try again" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles: nil];
+            [alert setTag:200];
+            [alert show];
+        }else if([[user objectForKey:@"isRestOpen"] boolValue]){
+            [user setObject:[CartObj instance].cartPrice forKey:@"cartPrice"];
+            if ([CartObj instance].itemsForCart.count) {
+                    if ([[user objectForKey:@"OrderType"] intValue] == 2 && (subTotal < [[user objectForKey:@"MinDelivery"] doubleValue]) && [[[CartObj instance]itemsForCart] count]) {
+                        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:[NSString stringWithFormat:@"For delivery orders, Subtotal should be greater than $%.2lf.", [[user objectForKey:@"MinDelivery"] doubleValue]] delegate:self cancelButtonTitle:@"Ok" otherButtonTitles: nil];
+                        [alert show];
+                    }else if ([[user objectForKey:@"OrderType"] intValue] == 2 &&  fetchDeliveryFailed && [[user objectForKey:@"ShippingOptionId"] intValue] == 4) {
+                        [self requestDelivery];
+                    }
+                    else{
+                       if ([user objectForKey:@"OrderDate"] && [user objectForKey: @"OrderTime"] && ([[[CartObj instance].userInfo objectForKey:@"UserId"] intValue] || !sender)) {
+                            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Confirm Order Time" message:[NSString stringWithFormat:@"Your order is scheduled for %@, %@", [user objectForKey:@"OrderDate"], [user objectForKey: @"OrderTime"]] delegate:self cancelButtonTitle:@"Change" otherButtonTitles: @"Confirm", nil];
+                            [alert setTag:300];
+                            [alert show];
+                        }else{
+                            [self checkOutBtnAct];
+                        }
+                    }
+            }else{
+                [self leftBarAct];
+            }
+        }else{
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"Restaurant is closed today" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles: nil];
+            [alert show];
+        }
     }
 }
 -(void)closeRestMsg{
@@ -1479,7 +1457,6 @@
             AccountUpdateVC *nextView = [[AccountUpdateVC alloc] init];
             [self.navigationController pushViewController:nextView animated:YES];
         }else{
-//            [user removeObjectForKey:@"OrderDate"];
             [self checkOutBtnAct];
         }
         
