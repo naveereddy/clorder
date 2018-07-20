@@ -31,6 +31,125 @@
 		01D3A71720F4971C00A2B015 /* libPayPalMobile.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 01D3A70F20F4971C00A2B015 /* libPayPalMobile.a */; };
 		01E6F9DF20E240180080E414 /* recapcha.html in Resources */ = {isa = PBXBuildFile; fileRef = 01E6F9DE20E240180080E414 /* recapcha.html */; };
 		01ED08E720E38E57005E93CD /* PassKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01ED08E620E38E57005E93CD /* PassKit.framework */; };
+		1812B23B2100BEF90010D328 /* AccountUpdateVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F22957D1CFD5B6C0037A1E5 /* AccountUpdateVC.m */; };
+		1812B23C2100BEF90010D328 /* MultiLocationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0115E34A20EBAE5500A86D87 /* MultiLocationVC.m */; };
+		1812B23D2100BEF90010D328 /* SideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 012459E920E0EF6300645535 /* SideMenu.m */; };
+		1812B23E2100BEF90010D328 /* ViewCouponVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FF7E6911D2E4807003CC992 /* ViewCouponVC.m */; };
+		1812B23F2100BEF90010D328 /* AddItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F4CB2231CBD304200A10531 /* AddItem.m */; };
+		1812B2402100BEF90010D328 /* OrderConfirmationV.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F3C78741D06A58C004205D8 /* OrderConfirmationV.m */; };
+		1812B2412100BEF90010D328 /* LocationsList.m in Sources */ = {isa = PBXBuildFile; fileRef = 0156B81320ECA7ED00D79DE1 /* LocationsList.m */; };
+		1812B2422100BEF90010D328 /* ListOfRestuarents.m in Sources */ = {isa = PBXBuildFile; fileRef = 01BA29BA20EFA502005C6D9E /* ListOfRestuarents.m */; };
+		1812B2432100BEF90010D328 /* SignUpView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F54CB7D1D0FD8BC00C28351 /* SignUpView.m */; };
+		1812B2442100BEF90010D328 /* PayDetailStp1.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FA69E9D1CFC71A100EE9912 /* PayDetailStp1.m */; };
+		1812B2452100BEF90010D328 /* DeliveryVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F50808F1D2130D90028B9FD /* DeliveryVC.m */; };
+		1812B2462100BEF90010D328 /* CardcellForRes.m in Sources */ = {isa = PBXBuildFile; fileRef = 01BA29B720EFA3D5005C6D9E /* CardcellForRes.m */; };
+		1812B2472100BEF90010D328 /* MapViewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0100639720F4ED94009FEE6C /* MapViewVC.m */; };
+		1812B2482100BEF90010D328 /* Luhn.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FCE88A21D9A89610017F7EC /* Luhn.m */; };
+		1812B2492100BEF90010D328 /* EditProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 012459E320E0CE3100645535 /* EditProfile.m */; };
+		1812B24A2100BEF90010D328 /* DeliveryAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = 011B777F20DBFFD400C3C65E /* DeliveryAddress.m */; };
+		1812B24B2100BEF90010D328 /* OrderHistoryVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F74D3FD1D63434700CA4517 /* OrderHistoryVC.m */; };
+		1812B24C2100BEF90010D328 /* ExplorePlaces.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F4CB2261CBD306B00A10531 /* ExplorePlaces.m */; };
+		1812B24D2100BEF90010D328 /* SelectedRestroVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FA69E9A1CFC506100EE9912 /* SelectedRestroVC.m */; };
+		1812B24E2100BEF90010D328 /* CheckOut.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F4CB2291CBD3E9200A10531 /* CheckOut.m */; };
+		1812B24F2100BEF90010D328 /* Schedular.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD4CBDB1E1237D5009E5251 /* Schedular.m */; };
+		1812B2502100BEF90010D328 /* PaymentDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F2295801CFDD3750037A1E5 /* PaymentDetails.m */; };
+		1812B2512100BEF90010D328 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F25D6F31D093DC100DDE135 /* Reachability.m */; };
+		1812B2522100BEF90010D328 /* CartObj.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F573A1C1D33B958007BF1F5 /* CartObj.m */; };
+		1812B2532100BEF90010D328 /* LoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F2264E71D1914E200C57BF4 /* LoginVC.m */; };
+		1812B2542100BEF90010D328 /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = 015F67A320D906FD001D9F7F /* Item.m */; };
+		1812B2552100BEF90010D328 /* Loader.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F20C4A41D07EE7500775381 /* Loader.m */; };
+		1812B2562100BEF90010D328 /* LocationContact.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FFBD2381D055EA1000F961A /* LocationContact.m */; };
+		1812B2572100BEF90010D328 /* TextFieldEdit.m in Sources */ = {isa = PBXBuildFile; fileRef = 013C0C6220D2764B004CB653 /* TextFieldEdit.m */; };
+		1812B2582100BEF90010D328 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F4CB1EC1CBCD87800A10531 /* AppDelegate.m */; };
+		1812B2592100BEF90010D328 /* GoogleSearchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0175E7F120DBE1370081A306 /* GoogleSearchView.m */; };
+		1812B25A2100BEF90010D328 /* Menu.m in Sources */ = {isa = PBXBuildFile; fileRef = 015F679F20D8E4FC001D9F7F /* Menu.m */; };
+		1812B25B2100BEF90010D328 /* APIRequester.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F36CE8E1D126825003B4874 /* APIRequester.m */; };
+		1812B25C2100BEF90010D328 /* APIRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F36CE8B1D1267CC003B4874 /* APIRequest.m */; };
+		1812B25D2100BEF90010D328 /* ScheduleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F9CDE221DED6FD200FA63A8 /* ScheduleView.m */; };
+		1812B25E2100BEF90010D328 /* HistoryOrderDtlV.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FDC30D71D743F15007E2E0F /* HistoryOrderDtlV.m */; };
+		1812B25F2100BEF90010D328 /* CardIO.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F3FDBE11DC09F1A003F5AA5 /* CardIO.m */; };
+		1812B2602100BEF90010D328 /* AllDayMenuVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F4CB21D1CBCFE9000A10531 /* AllDayMenuVC.m */; };
+		1812B2612100BEF90010D328 /* ItemVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F4CB2201CBD1F4800A10531 /* ItemVC.m */; };
+		1812B2622100BEF90010D328 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F4CB1E91CBCD87800A10531 /* main.m */; };
+		1812B2632100BEF90010D328 /* RestuarentListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 01BA29B420EF89D5005C6D9E /* RestuarentListVC.m */; };
+		1812B2642100BEF90010D328 /* AddCardVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F2264EA1D1967F100C57BF4 /* AddCardVC.m */; };
+		1812B2652100BEF90010D328 /* DesideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0115E34D20EBC4CF00A86D87 /* DesideViewController.m */; };
+		1812B2662100BEF90010D328 /* OrderOnlineMainVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 01BA29B120EF3F83005C6D9E /* OrderOnlineMainVC.m */; };
+		1812B2672100BEF90010D328 /* ChangePassword.m in Sources */ = {isa = PBXBuildFile; fileRef = 012459E620E0CE4D00645535 /* ChangePassword.m */; };
+		1812B2682100BEF90010D328 /* ForgotPassword.m in Sources */ = {isa = PBXBuildFile; fileRef = 012459E020E0CE1B00645535 /* ForgotPassword.m */; };
+		1812B26A2100BEF90010D328 /* libBraintree.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 016469EE20F49922001109C3 /* libBraintree.a */; };
+		1812B26B2100BEF90010D328 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FFBD23A1D055FFC000F961A /* CoreLocation.framework */; };
+		1812B26C2100BEF90010D328 /* PassKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01ED08E620E38E57005E93CD /* PassKit.framework */; };
+		1812B26D2100BEF90010D328 /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F3FDBFC1DC0A070003F5AA5 /* SafariServices.framework */; };
+		1812B26E2100BEF90010D328 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F3FDBFA1DC0A054003F5AA5 /* MobileCoreServices.framework */; };
+		1812B26F2100BEF90010D328 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F3FDBF81DC0A045003F5AA5 /* MessageUI.framework */; };
+		1812B2702100BEF90010D328 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F3FDBF61DC0A030003F5AA5 /* CoreMedia.framework */; };
+		1812B2712100BEF90010D328 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F3FDBF41DC0A018003F5AA5 /* AVFoundation.framework */; };
+		1812B2722100BEF90010D328 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F3FDBF21DC0A00E003F5AA5 /* AudioToolbox.framework */; };
+		1812B2732100BEF90010D328 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F3FDBF01DC0A000003F5AA5 /* Accelerate.framework */; };
+		1812B2742100BEF90010D328 /* GoogleNetworkingUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F495EB41DA38EEE00D515B3 /* GoogleNetworkingUtilities.framework */; };
+		1812B2752100BEF90010D328 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F495E7B1DA3826500D515B3 /* Security.framework */; };
+		1812B2762100BEF90010D328 /* GoogleSymbolUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F495EBA1DA38EEE00D515B3 /* GoogleSymbolUtilities.framework */; };
+		1812B2772100BEF90010D328 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F495E791DA3824A00D515B3 /* Foundation.framework */; };
+		1812B2782100BEF90010D328 /* libCardIO.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F3FDBE91DC09F1A003F5AA5 /* libCardIO.a */; };
+		1812B2792100BEF90010D328 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F495EB01DA38EEE00D515B3 /* FBSDKLoginKit.framework */; };
+		1812B27A2100BEF90010D328 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F495E771DA3823200D515B3 /* AssetsLibrary.framework */; };
+		1812B27B2100BEF90010D328 /* GoogleAuthUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F495EB31DA38EEE00D515B3 /* GoogleAuthUtilities.framework */; };
+		1812B27C2100BEF90010D328 /* GoogleAppUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F495EB21DA38EEE00D515B3 /* GoogleAppUtilities.framework */; };
+		1812B27D2100BEF90010D328 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F495EB11DA38EEE00D515B3 /* FBSDKShareKit.framework */; };
+		1812B27E2100BEF90010D328 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F495EAF1DA38EEE00D515B3 /* FBSDKCoreKit.framework */; };
+		1812B27F2100BEF90010D328 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F495E751DA3821D00D515B3 /* AddressBook.framework */; };
+		1812B2802100BEF90010D328 /* libPayPalMobile.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 01D3A70F20F4971C00A2B015 /* libPayPalMobile.a */; };
+		1812B2812100BEF90010D328 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F495E731DA3807D00D515B3 /* SystemConfiguration.framework */; };
+		1812B2822100BEF90010D328 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F495EAE1DA38EEE00D515B3 /* Bolts.framework */; };
+		1812B2832100BEF90010D328 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F495E711DA3807200D515B3 /* CoreData.framework */; };
+		1812B2842100BEF90010D328 /* GoogleOpenSource.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F495EB51DA38EEE00D515B3 /* GoogleOpenSource.framework */; };
+		1812B2852100BEF90010D328 /* GoogleSignIn.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F495EB91DA38EEE00D515B3 /* GoogleSignIn.framework */; };
+		1812B2862100BEF90010D328 /* libopencv_core.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F3FDBEA1DC09F1A003F5AA5 /* libopencv_core.a */; };
+		1812B2872100BEF90010D328 /* libopencv_imgproc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F3FDBEB1DC09F1A003F5AA5 /* libopencv_imgproc.a */; };
+		1812B2882100BEF90010D328 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F0B152F1D6C36ED003D4BBE /* UIKit.framework */; };
+		1812B2892100BEF90010D328 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F25D6F91D098B5000DDE135 /* MapKit.framework */; };
+		1812B28A2100BEF90010D328 /* libPods-CLOrder.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F57265C839B3CCBAED3E5E65 /* libPods-CLOrder.a */; };
+		1812B28C2100BEF90010D328 /* address.json in Resources */ = {isa = PBXBuildFile; fileRef = 0175E7EC20DBBD7C0081A306 /* address.json */; };
+		1812B28D2100BEF90010D328 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9FFC63B51DDD8CC10061FD6B /* GoogleService-Info.plist */; };
+		1812B28E2100BEF90010D328 /* load-17 (dragged).tiff in Resources */ = {isa = PBXBuildFile; fileRef = 9F495DE71D54735300793492 /* load-17 (dragged).tiff */; };
+		1812B28F2100BEF90010D328 /* load-27 (dragged).tiff in Resources */ = {isa = PBXBuildFile; fileRef = 9F495DF11D54735300793492 /* load-27 (dragged).tiff */; };
+		1812B2902100BEF90010D328 /* load-9 (dragged).tiff in Resources */ = {isa = PBXBuildFile; fileRef = 9F495DDF1D54735300793492 /* load-9 (dragged).tiff */; };
+		1812B2912100BEF90010D328 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F4CB1F61CBCD87800A10531 /* LaunchScreen.storyboard */; };
+		1812B2922100BEF90010D328 /* load-30 (dragged).tiff in Resources */ = {isa = PBXBuildFile; fileRef = 9F495DF41D54735300793492 /* load-30 (dragged).tiff */; };
+		1812B2932100BEF90010D328 /* load-7 (dragged).tiff in Resources */ = {isa = PBXBuildFile; fileRef = 9F495DDD1D54735300793492 /* load-7 (dragged).tiff */; };
+		1812B2942100BEF90010D328 /* load-13 (dragged).tiff in Resources */ = {isa = PBXBuildFile; fileRef = 9F495DE31D54735300793492 /* load-13 (dragged).tiff */; };
+		1812B2952100BEF90010D328 /* load-18 (dragged).tiff in Resources */ = {isa = PBXBuildFile; fileRef = 9F495DE81D54735300793492 /* load-18 (dragged).tiff */; };
+		1812B2962100BEF90010D328 /* load-25 (dragged).tiff in Resources */ = {isa = PBXBuildFile; fileRef = 9F495DEF1D54735300793492 /* load-25 (dragged).tiff */; };
+		1812B2972100BEF90010D328 /* load-21 (dragged).tiff in Resources */ = {isa = PBXBuildFile; fileRef = 9F495DEB1D54735300793492 /* load-21 (dragged).tiff */; };
+		1812B2982100BEF90010D328 /* load-10 (dragged).tiff in Resources */ = {isa = PBXBuildFile; fileRef = 9F495DE01D54735300793492 /* load-10 (dragged).tiff */; };
+		1812B2992100BEF90010D328 /* load-26 (dragged).tiff in Resources */ = {isa = PBXBuildFile; fileRef = 9F495DF01D54735300793492 /* load-26 (dragged).tiff */; };
+		1812B29A2100BEF90010D328 /* load-4 (dragged).tiff in Resources */ = {isa = PBXBuildFile; fileRef = 9F495DDA1D54735300793492 /* load-4 (dragged).tiff */; };
+		1812B29B2100BEF90010D328 /* GoogleSignIn.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 9F495EB81DA38EEE00D515B3 /* GoogleSignIn.bundle */; };
+		1812B29C2100BEF90010D328 /* load-23 (dragged).tiff in Resources */ = {isa = PBXBuildFile; fileRef = 9F495DED1D54735300793492 /* load-23 (dragged).tiff */; };
+		1812B29D2100BEF90010D328 /* load-12 (dragged).tiff in Resources */ = {isa = PBXBuildFile; fileRef = 9F495DE21D54735300793492 /* load-12 (dragged).tiff */; };
+		1812B29E2100BEF90010D328 /* load-29 (dragged).tiff in Resources */ = {isa = PBXBuildFile; fileRef = 9F495DF31D54735300793492 /* load-29 (dragged).tiff */; };
+		1812B2A02100BEF90010D328 /* load-28 (dragged).tiff in Resources */ = {isa = PBXBuildFile; fileRef = 9F495DF21D54735300793492 /* load-28 (dragged).tiff */; };
+		1812B2A12100BEF90010D328 /* load-14 (dragged).tiff in Resources */ = {isa = PBXBuildFile; fileRef = 9F495DE41D54735300793492 /* load-14 (dragged).tiff */; };
+		1812B2A22100BEF90010D328 /* load-19 (dragged).tiff in Resources */ = {isa = PBXBuildFile; fileRef = 9F495DE91D54735300793492 /* load-19 (dragged).tiff */; };
+		1812B2A32100BEF90010D328 /* load-24 (dragged).tiff in Resources */ = {isa = PBXBuildFile; fileRef = 9F495DEE1D54735300793492 /* load-24 (dragged).tiff */; };
+		1812B2A42100BEF90010D328 /* recapcha.html in Resources */ = {isa = PBXBuildFile; fileRef = 01E6F9DE20E240180080E414 /* recapcha.html */; };
+		1812B2A52100BEF90010D328 /* load-5 (dragged).tiff in Resources */ = {isa = PBXBuildFile; fileRef = 9F495DDB1D54735300793492 /* load-5 (dragged).tiff */; };
+		1812B2A62100BEF90010D328 /* load-11 (dragged).tiff in Resources */ = {isa = PBXBuildFile; fileRef = 9F495DE11D54735300793492 /* load-11 (dragged).tiff */; };
+		1812B2A72100BEF90010D328 /* load-2 (dragged).tiff in Resources */ = {isa = PBXBuildFile; fileRef = 9F495DD81D54735300793492 /* load-2 (dragged).tiff */; };
+		1812B2A82100BEF90010D328 /* Lora-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 01CAC4942100A80E001F5BC6 /* Lora-Regular.ttf */; };
+		1812B2A92100BEF90010D328 /* load-1 (dragged).tiff in Resources */ = {isa = PBXBuildFile; fileRef = 9F495DD71D54735300793492 /* load-1 (dragged).tiff */; };
+		1812B2AA2100BEF90010D328 /* load-20 (dragged).tiff in Resources */ = {isa = PBXBuildFile; fileRef = 9F495DEA1D54735300793492 /* load-20 (dragged).tiff */; };
+		1812B2AB2100BEF90010D328 /* load-22 (dragged).tiff in Resources */ = {isa = PBXBuildFile; fileRef = 9F495DEC1D54735300793492 /* load-22 (dragged).tiff */; };
+		1812B2AC2100BEF90010D328 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F4CB1F11CBCD87800A10531 /* Main.storyboard */; };
+		1812B2AD2100BEF90010D328 /* load-8 (dragged).tiff in Resources */ = {isa = PBXBuildFile; fileRef = 9F495DDE1D54735300793492 /* load-8 (dragged).tiff */; };
+		1812B2AE2100BEF90010D328 /* load-15 (dragged).tiff in Resources */ = {isa = PBXBuildFile; fileRef = 9F495DE51D54735300793492 /* load-15 (dragged).tiff */; };
+		1812B2AF2100BEF90010D328 /* load-3 (dragged).tiff in Resources */ = {isa = PBXBuildFile; fileRef = 9F495DD91D54735300793492 /* load-3 (dragged).tiff */; };
+		1812B2B02100BEF90010D328 /* Lora-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 01CAC4932100A80E001F5BC6 /* Lora-Bold.ttf */; };
+		1812B2B12100BEF90010D328 /* load-6 (dragged).tiff in Resources */ = {isa = PBXBuildFile; fileRef = 9F495DDC1D54735300793492 /* load-6 (dragged).tiff */; };
+		1812B2B22100BEF90010D328 /* load-16 (dragged).tiff in Resources */ = {isa = PBXBuildFile; fileRef = 9F495DE61D54735300793492 /* load-16 (dragged).tiff */; };
+		1812B2BA2100C2040010D328 /* Banana Leaf.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1812B2B92100C2040010D328 /* Banana Leaf.xcassets */; };
+		1812B2BC2100C7850010D328 /* google-services.json in Resources */ = {isa = PBXBuildFile; fileRef = 1812B2BB2100C7840010D328 /* google-services.json */; };
 		953FC6BA7A2F207F22C7EA27 /* libPods-CLOrder.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F57265C839B3CCBAED3E5E65 /* libPods-CLOrder.a */; };
 		9F0B15391D6C36ED003D4BBE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F0B152F1D6C36ED003D4BBE /* UIKit.framework */; };
 		9F20C4A51D07EE7500775381 /* Loader.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F20C4A41D07EE7500775381 /* Loader.m */; };
@@ -177,6 +296,10 @@
 		01D3A71620F4971C00A2B015 /* PayPalProfileSharingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayPalProfileSharingViewController.h; sourceTree = "<group>"; };
 		01E6F9DE20E240180080E414 /* recapcha.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = recapcha.html; sourceTree = "<group>"; };
 		01ED08E620E38E57005E93CD /* PassKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PassKit.framework; path = System/Library/Frameworks/PassKit.framework; sourceTree = SDKROOT; };
+		1812B2B62100BEF90010D328 /* Banana Leaf.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Banana Leaf.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1812B2B72100BEF90010D328 /* Banana Leaf-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Banana Leaf-Info.plist"; path = "/Users/apple/Desktop/ClorderIOS/clorder/Banana Leaf-Info.plist"; sourceTree = "<absolute>"; };
+		1812B2B92100C2040010D328 /* Banana Leaf.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Banana Leaf.xcassets"; sourceTree = "<group>"; };
+		1812B2BB2100C7840010D328 /* google-services.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "google-services.json"; path = "../../../../ClorderIOS New UI Images/Banana Leaf/google-services.json"; sourceTree = "<group>"; };
 		1D0678E32D83A887B8F25F21 /* Pods-CLOrder.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CLOrder.release.xcconfig"; path = "Pods/Target Support Files/Pods-CLOrder/Pods-CLOrder.release.xcconfig"; sourceTree = "<group>"; };
 		541354FF4A505AA3F3802DC3 /* Pods-CLOrder.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CLOrder.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CLOrder/Pods-CLOrder.debug.xcconfig"; sourceTree = "<group>"; };
 		9F0B152F1D6C36ED003D4BBE /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -314,6 +437,46 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		1812B2692100BEF90010D328 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1812B26A2100BEF90010D328 /* libBraintree.a in Frameworks */,
+				1812B26B2100BEF90010D328 /* CoreLocation.framework in Frameworks */,
+				1812B26C2100BEF90010D328 /* PassKit.framework in Frameworks */,
+				1812B26D2100BEF90010D328 /* SafariServices.framework in Frameworks */,
+				1812B26E2100BEF90010D328 /* MobileCoreServices.framework in Frameworks */,
+				1812B26F2100BEF90010D328 /* MessageUI.framework in Frameworks */,
+				1812B2702100BEF90010D328 /* CoreMedia.framework in Frameworks */,
+				1812B2712100BEF90010D328 /* AVFoundation.framework in Frameworks */,
+				1812B2722100BEF90010D328 /* AudioToolbox.framework in Frameworks */,
+				1812B2732100BEF90010D328 /* Accelerate.framework in Frameworks */,
+				1812B2742100BEF90010D328 /* GoogleNetworkingUtilities.framework in Frameworks */,
+				1812B2752100BEF90010D328 /* Security.framework in Frameworks */,
+				1812B2762100BEF90010D328 /* GoogleSymbolUtilities.framework in Frameworks */,
+				1812B2772100BEF90010D328 /* Foundation.framework in Frameworks */,
+				1812B2782100BEF90010D328 /* libCardIO.a in Frameworks */,
+				1812B2792100BEF90010D328 /* FBSDKLoginKit.framework in Frameworks */,
+				1812B27A2100BEF90010D328 /* AssetsLibrary.framework in Frameworks */,
+				1812B27B2100BEF90010D328 /* GoogleAuthUtilities.framework in Frameworks */,
+				1812B27C2100BEF90010D328 /* GoogleAppUtilities.framework in Frameworks */,
+				1812B27D2100BEF90010D328 /* FBSDKShareKit.framework in Frameworks */,
+				1812B27E2100BEF90010D328 /* FBSDKCoreKit.framework in Frameworks */,
+				1812B27F2100BEF90010D328 /* AddressBook.framework in Frameworks */,
+				1812B2802100BEF90010D328 /* libPayPalMobile.a in Frameworks */,
+				1812B2812100BEF90010D328 /* SystemConfiguration.framework in Frameworks */,
+				1812B2822100BEF90010D328 /* Bolts.framework in Frameworks */,
+				1812B2832100BEF90010D328 /* CoreData.framework in Frameworks */,
+				1812B2842100BEF90010D328 /* GoogleOpenSource.framework in Frameworks */,
+				1812B2852100BEF90010D328 /* GoogleSignIn.framework in Frameworks */,
+				1812B2862100BEF90010D328 /* libopencv_core.a in Frameworks */,
+				1812B2872100BEF90010D328 /* libopencv_imgproc.a in Frameworks */,
+				1812B2882100BEF90010D328 /* UIKit.framework in Frameworks */,
+				1812B2892100BEF90010D328 /* MapKit.framework in Frameworks */,
+				1812B28A2100BEF90010D328 /* libPods-CLOrder.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9F4CB1E21CBCD87700A10531 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -369,6 +532,11 @@
 		01178D6C20F7600400F76269 /* OtherFiles */ = {
 			isa = PBXGroup;
 			children = (
+				9F5080751D20F63F0028B9FD /* ClorderLoader */,
+				9FCE88A11D9A89610017F7EC /* Luhn.h */,
+				9FCE88A21D9A89610017F7EC /* Luhn.m */,
+				9F4CB1F61CBCD87800A10531 /* LaunchScreen.storyboard */,
+				9F4CB1F11CBCD87800A10531 /* Main.storyboard */,
 				0139493220DA285B00D0A32A /* Resources */,
 				9FFBD2371D055EA1000F961A /* LocationContact.h */,
 				9FFBD2381D055EA1000F961A /* LocationContact.m */,
@@ -463,6 +631,16 @@
 			path = CardIO/PayPalMobile;
 			sourceTree = "<group>";
 		};
+		1812B2B82100C0C90010D328 /* Bnanana Leaf */ = {
+			isa = PBXGroup;
+			children = (
+				1812B2BB2100C7840010D328 /* google-services.json */,
+				1812B2B72100BEF90010D328 /* Banana Leaf-Info.plist */,
+				1812B2B92100C2040010D328 /* Banana Leaf.xcassets */,
+			);
+			path = "Bnanana Leaf";
+			sourceTree = "<group>";
+		};
 		2C5732B81F1C9AD100FA660C /* Account */ = {
 			isa = PBXGroup;
 			children = (
@@ -529,6 +707,7 @@
 		9F0D29661E002D5200C7EA2B /* OrderFoodOnline */ = {
 			isa = PBXGroup;
 			children = (
+				9FFC63B51DDD8CC10061FD6B /* GoogleService-Info.plist */,
 				9FF8F02A1DF2AAF4002E6A0B /* Assets.xcassets */,
 				9F4CB1F91CBCD87800A10531 /* Info.plist */,
 			);
@@ -640,6 +819,7 @@
 			isa = PBXGroup;
 			children = (
 				9F4CB1E51CBCD87700A10531 /* CLOrder.app */,
+				1812B2B62100BEF90010D328 /* Banana Leaf.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -665,14 +845,9 @@
 		9F4CB1E81CBCD87800A10531 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				1812B2B82100C0C90010D328 /* Bnanana Leaf */,
 				9F0D29661E002D5200C7EA2B /* OrderFoodOnline */,
-				9F5080751D20F63F0028B9FD /* ClorderLoader */,
-				9F4CB1F11CBCD87800A10531 /* Main.storyboard */,
-				9F4CB1F61CBCD87800A10531 /* LaunchScreen.storyboard */,
 				9F4CB1E91CBCD87800A10531 /* main.m */,
-				9FCE88A11D9A89610017F7EC /* Luhn.h */,
-				9FCE88A21D9A89610017F7EC /* Luhn.m */,
-				9FFC63B51DDD8CC10061FD6B /* GoogleService-Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -726,6 +901,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		1812B2382100BEF90010D328 /* Banana Leaf */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1812B2B32100BEF90010D328 /* Build configuration list for PBXNativeTarget "Banana Leaf" */;
+			buildPhases = (
+				1812B2392100BEF90010D328 /* [CP] Check Pods Manifest.lock */,
+				1812B23A2100BEF90010D328 /* Sources */,
+				1812B2692100BEF90010D328 /* Frameworks */,
+				1812B28B2100BEF90010D328 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Banana Leaf";
+			productName = CLOrder;
+			productReference = 1812B2B62100BEF90010D328 /* Banana Leaf.app */;
+			productType = "com.apple.product-type.application";
+		};
 		9F4CB1E41CBCD87700A10531 /* CLOrder */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9F4CB2121CBCD87800A10531 /* Build configuration list for PBXNativeTarget "CLOrder" */;
@@ -753,6 +946,10 @@
 				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = "Vegunta's";
 				TargetAttributes = {
+					1812B2382100BEF90010D328 = {
+						DevelopmentTeam = 79PM7TJ9YE;
+						ProvisioningStyle = Manual;
+					};
 					9F4CB1E41CBCD87700A10531 = {
 						CreatedOnToolsVersion = 7.3;
 						DevelopmentTeam = 79PM7TJ9YE;
@@ -821,11 +1018,59 @@
 			projectRoot = "";
 			targets = (
 				9F4CB1E41CBCD87700A10531 /* CLOrder */,
+				1812B2382100BEF90010D328 /* Banana Leaf */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		1812B28B2100BEF90010D328 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1812B28C2100BEF90010D328 /* address.json in Resources */,
+				1812B28D2100BEF90010D328 /* GoogleService-Info.plist in Resources */,
+				1812B28E2100BEF90010D328 /* load-17 (dragged).tiff in Resources */,
+				1812B28F2100BEF90010D328 /* load-27 (dragged).tiff in Resources */,
+				1812B2902100BEF90010D328 /* load-9 (dragged).tiff in Resources */,
+				1812B2912100BEF90010D328 /* LaunchScreen.storyboard in Resources */,
+				1812B2922100BEF90010D328 /* load-30 (dragged).tiff in Resources */,
+				1812B2932100BEF90010D328 /* load-7 (dragged).tiff in Resources */,
+				1812B2942100BEF90010D328 /* load-13 (dragged).tiff in Resources */,
+				1812B2952100BEF90010D328 /* load-18 (dragged).tiff in Resources */,
+				1812B2962100BEF90010D328 /* load-25 (dragged).tiff in Resources */,
+				1812B2972100BEF90010D328 /* load-21 (dragged).tiff in Resources */,
+				1812B2982100BEF90010D328 /* load-10 (dragged).tiff in Resources */,
+				1812B2992100BEF90010D328 /* load-26 (dragged).tiff in Resources */,
+				1812B29A2100BEF90010D328 /* load-4 (dragged).tiff in Resources */,
+				1812B2BA2100C2040010D328 /* Banana Leaf.xcassets in Resources */,
+				1812B29B2100BEF90010D328 /* GoogleSignIn.bundle in Resources */,
+				1812B29C2100BEF90010D328 /* load-23 (dragged).tiff in Resources */,
+				1812B29D2100BEF90010D328 /* load-12 (dragged).tiff in Resources */,
+				1812B29E2100BEF90010D328 /* load-29 (dragged).tiff in Resources */,
+				1812B2A02100BEF90010D328 /* load-28 (dragged).tiff in Resources */,
+				1812B2A12100BEF90010D328 /* load-14 (dragged).tiff in Resources */,
+				1812B2A22100BEF90010D328 /* load-19 (dragged).tiff in Resources */,
+				1812B2A32100BEF90010D328 /* load-24 (dragged).tiff in Resources */,
+				1812B2A42100BEF90010D328 /* recapcha.html in Resources */,
+				1812B2A52100BEF90010D328 /* load-5 (dragged).tiff in Resources */,
+				1812B2A62100BEF90010D328 /* load-11 (dragged).tiff in Resources */,
+				1812B2A72100BEF90010D328 /* load-2 (dragged).tiff in Resources */,
+				1812B2A82100BEF90010D328 /* Lora-Regular.ttf in Resources */,
+				1812B2A92100BEF90010D328 /* load-1 (dragged).tiff in Resources */,
+				1812B2AA2100BEF90010D328 /* load-20 (dragged).tiff in Resources */,
+				1812B2AB2100BEF90010D328 /* load-22 (dragged).tiff in Resources */,
+				1812B2AC2100BEF90010D328 /* Main.storyboard in Resources */,
+				1812B2AD2100BEF90010D328 /* load-8 (dragged).tiff in Resources */,
+				1812B2BC2100C7850010D328 /* google-services.json in Resources */,
+				1812B2AE2100BEF90010D328 /* load-15 (dragged).tiff in Resources */,
+				1812B2AF2100BEF90010D328 /* load-3 (dragged).tiff in Resources */,
+				1812B2B02100BEF90010D328 /* Lora-Bold.ttf in Resources */,
+				1812B2B12100BEF90010D328 /* load-6 (dragged).tiff in Resources */,
+				1812B2B22100BEF90010D328 /* load-16 (dragged).tiff in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9F4CB1E31CBCD87700A10531 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -875,6 +1120,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		1812B2392100BEF90010D328 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CLOrder-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		55DC7AF9A2A10B87EE0E372E /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -896,6 +1159,59 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		1812B23A2100BEF90010D328 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1812B23B2100BEF90010D328 /* AccountUpdateVC.m in Sources */,
+				1812B23C2100BEF90010D328 /* MultiLocationVC.m in Sources */,
+				1812B23D2100BEF90010D328 /* SideMenu.m in Sources */,
+				1812B23E2100BEF90010D328 /* ViewCouponVC.m in Sources */,
+				1812B23F2100BEF90010D328 /* AddItem.m in Sources */,
+				1812B2402100BEF90010D328 /* OrderConfirmationV.m in Sources */,
+				1812B2412100BEF90010D328 /* LocationsList.m in Sources */,
+				1812B2422100BEF90010D328 /* ListOfRestuarents.m in Sources */,
+				1812B2432100BEF90010D328 /* SignUpView.m in Sources */,
+				1812B2442100BEF90010D328 /* PayDetailStp1.m in Sources */,
+				1812B2452100BEF90010D328 /* DeliveryVC.m in Sources */,
+				1812B2462100BEF90010D328 /* CardcellForRes.m in Sources */,
+				1812B2472100BEF90010D328 /* MapViewVC.m in Sources */,
+				1812B2482100BEF90010D328 /* Luhn.m in Sources */,
+				1812B2492100BEF90010D328 /* EditProfile.m in Sources */,
+				1812B24A2100BEF90010D328 /* DeliveryAddress.m in Sources */,
+				1812B24B2100BEF90010D328 /* OrderHistoryVC.m in Sources */,
+				1812B24C2100BEF90010D328 /* ExplorePlaces.m in Sources */,
+				1812B24D2100BEF90010D328 /* SelectedRestroVC.m in Sources */,
+				1812B24E2100BEF90010D328 /* CheckOut.m in Sources */,
+				1812B24F2100BEF90010D328 /* Schedular.m in Sources */,
+				1812B2502100BEF90010D328 /* PaymentDetails.m in Sources */,
+				1812B2512100BEF90010D328 /* Reachability.m in Sources */,
+				1812B2522100BEF90010D328 /* CartObj.m in Sources */,
+				1812B2532100BEF90010D328 /* LoginVC.m in Sources */,
+				1812B2542100BEF90010D328 /* Item.m in Sources */,
+				1812B2552100BEF90010D328 /* Loader.m in Sources */,
+				1812B2562100BEF90010D328 /* LocationContact.m in Sources */,
+				1812B2572100BEF90010D328 /* TextFieldEdit.m in Sources */,
+				1812B2582100BEF90010D328 /* AppDelegate.m in Sources */,
+				1812B2592100BEF90010D328 /* GoogleSearchView.m in Sources */,
+				1812B25A2100BEF90010D328 /* Menu.m in Sources */,
+				1812B25B2100BEF90010D328 /* APIRequester.m in Sources */,
+				1812B25C2100BEF90010D328 /* APIRequest.m in Sources */,
+				1812B25D2100BEF90010D328 /* ScheduleView.m in Sources */,
+				1812B25E2100BEF90010D328 /* HistoryOrderDtlV.m in Sources */,
+				1812B25F2100BEF90010D328 /* CardIO.m in Sources */,
+				1812B2602100BEF90010D328 /* AllDayMenuVC.m in Sources */,
+				1812B2612100BEF90010D328 /* ItemVC.m in Sources */,
+				1812B2622100BEF90010D328 /* main.m in Sources */,
+				1812B2632100BEF90010D328 /* RestuarentListVC.m in Sources */,
+				1812B2642100BEF90010D328 /* AddCardVC.m in Sources */,
+				1812B2652100BEF90010D328 /* DesideViewController.m in Sources */,
+				1812B2662100BEF90010D328 /* OrderOnlineMainVC.m in Sources */,
+				1812B2672100BEF90010D328 /* ChangePassword.m in Sources */,
+				1812B2682100BEF90010D328 /* ForgotPassword.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9F4CB1E11CBCD87700A10531 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -971,6 +1287,87 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		1812B2B42100BEF90010D328 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 541354FF4A505AA3F3802DC3 /* Pods-CLOrder.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = CLOrder/CLOrder.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Clorder, Inc (79PM7TJ9YE)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Clorder, Inc (79PM7TJ9YE)";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 79PM7TJ9YE;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)";
+				GCC_NO_COMMON_BLOCKS = NO;
+				INFOPLIST_FILE = "$(SRCROOT)/Banana Leaf-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/CLOrder/PayPalMobile",
+					"$(PROJECT_DIR)/CardIO",
+					"$(PROJECT_DIR)/PayPalMobile",
+					"$(PROJECT_DIR)/CardIO/PayPalMobile",
+				);
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-lc++",
+					"-ObjC",
+					"$(inherited)",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.clorder.bananaleaf;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "21515def-730d-41fb-a11f-927276bdbbc6";
+				PROVISIONING_PROFILE_SPECIFIER = bananaLeaf;
+				SWIFT_OBJC_BRIDGING_HEADER = "CLOrder-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		1812B2B52100BEF90010D328 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1D0678E32D83A887B8F25F21 /* Pods-CLOrder.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = CLOrder/CLOrder.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Clorder, Inc (79PM7TJ9YE)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Clorder, Inc (79PM7TJ9YE)";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 79PM7TJ9YE;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)";
+				GCC_NO_COMMON_BLOCKS = NO;
+				INFOPLIST_FILE = "$(SRCROOT)/Banana Leaf-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/CLOrder/PayPalMobile",
+					"$(PROJECT_DIR)/CardIO",
+					"$(PROJECT_DIR)/PayPalMobile",
+					"$(PROJECT_DIR)/CardIO/PayPalMobile",
+				);
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-lc++",
+					"-ObjC",
+					"$(inherited)",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.clorder.bananaleaf;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "21515def-730d-41fb-a11f-927276bdbbc6";
+				PROVISIONING_PROFILE_SPECIFIER = bananaLeaf;
+				SWIFT_OBJC_BRIDGING_HEADER = "CLOrder-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
 		9F4CB2101CBCD87800A10531 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1068,8 +1465,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = CLOrder/CLOrder.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Satish Varma (7647XDBJ67)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Satish Varma (7647XDBJ67)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Clorder, Inc (79PM7TJ9YE)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Clorder, Inc (79PM7TJ9YE)";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 79PM7TJ9YE;
 				ENABLE_BITCODE = NO;
@@ -1091,10 +1488,10 @@
 					"-ObjC",
 					"$(inherited)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.clorder.orderOnlineTest;
+				PRODUCT_BUNDLE_IDENTIFIER = com.clorder.bananaleaf;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "e7513886-f1ce-4858-87ac-13ea18927d5f";
-				PROVISIONING_PROFILE_SPECIFIER = OrderFoodOnlineTEST;
+				PROVISIONING_PROFILE = "21515def-730d-41fb-a11f-927276bdbbc6";
+				PROVISIONING_PROFILE_SPECIFIER = bananaLeaf;
 				SWIFT_OBJC_BRIDGING_HEADER = "CLOrder-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -1109,8 +1506,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = CLOrder/CLOrder.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Satish Varma (7647XDBJ67)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Satish Varma (7647XDBJ67)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Clorder, Inc (79PM7TJ9YE)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Clorder, Inc (79PM7TJ9YE)";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 79PM7TJ9YE;
 				ENABLE_BITCODE = NO;
@@ -1132,10 +1529,10 @@
 					"-ObjC",
 					"$(inherited)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.clorder.orderOnlineTest;
+				PRODUCT_BUNDLE_IDENTIFIER = com.clorder.bananaleaf;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "e7513886-f1ce-4858-87ac-13ea18927d5f";
-				PROVISIONING_PROFILE_SPECIFIER = OrderFoodOnlineTEST;
+				PROVISIONING_PROFILE = "21515def-730d-41fb-a11f-927276bdbbc6";
+				PROVISIONING_PROFILE_SPECIFIER = bananaLeaf;
 				SWIFT_OBJC_BRIDGING_HEADER = "CLOrder-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1145,6 +1542,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		1812B2B32100BEF90010D328 /* Build configuration list for PBXNativeTarget "Banana Leaf" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1812B2B42100BEF90010D328 /* Debug */,
+				1812B2B52100BEF90010D328 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		9F4CB1E01CBCD87700A10531 /* Build configuration list for PBXProject "CLOrder" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
