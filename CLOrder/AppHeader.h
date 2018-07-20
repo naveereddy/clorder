@@ -10,7 +10,7 @@
 #define AppHeader_h
 
 #define CLIENT_ID [[NSUserDefaults standardUserDefaults] objectForKey:@"MainClientId"]
-#define ORDER_ONLINE [NSString stringWithFormat:@"%@",[[NSBundle mainBundle] objectForInfoDictionaryKey:@"OrderOnlineStatus"]]
+#define ORDER_ONLINE [NSString stringWithFormat:@"%@",[[[NSDictionary alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Info" ofType:@"plist"]] objectForKey:@"OrderOnlineStatus"]]
 
 
 #define SANBOX_MERCHNAT @"merchant.com.clorder.OrderOnlineBrianTreeTest"

@@ -15,6 +15,9 @@
 		012459E420E0CE3100645535 /* EditProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 012459E320E0CE3100645535 /* EditProfile.m */; };
 		012459E720E0CE4D00645535 /* ChangePassword.m in Sources */ = {isa = PBXBuildFile; fileRef = 012459E620E0CE4D00645535 /* ChangePassword.m */; };
 		012459EA20E0EF6300645535 /* SideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 012459E920E0EF6300645535 /* SideMenu.m */; };
+		012CB06E2101FB5A007645B4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 012CB06B2101FB59007645B4 /* Assets.xcassets */; };
+		012CB06F2101FB5A007645B4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 012CB06C2101FB5A007645B4 /* GoogleService-Info.plist */; };
+		012CB0702101FC9C007645B4 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 012CB06A2101FB59007645B4 /* Info.plist */; };
 		013C0C6320D2764B004CB653 /* TextFieldEdit.m in Sources */ = {isa = PBXBuildFile; fileRef = 013C0C6220D2764B004CB653 /* TextFieldEdit.m */; };
 		0156B81420ECA7ED00D79DE1 /* LocationsList.m in Sources */ = {isa = PBXBuildFile; fileRef = 0156B81320ECA7ED00D79DE1 /* LocationsList.m */; };
 		015F67A020D8E4FC001D9F7F /* Menu.m in Sources */ = {isa = PBXBuildFile; fileRef = 015F679F20D8E4FC001D9F7F /* Menu.m */; };
@@ -111,7 +114,6 @@
 		1812B2892100BEF90010D328 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F25D6F91D098B5000DDE135 /* MapKit.framework */; };
 		1812B28A2100BEF90010D328 /* libPods-CLOrder.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F57265C839B3CCBAED3E5E65 /* libPods-CLOrder.a */; };
 		1812B28C2100BEF90010D328 /* address.json in Resources */ = {isa = PBXBuildFile; fileRef = 0175E7EC20DBBD7C0081A306 /* address.json */; };
-		1812B28D2100BEF90010D328 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9FFC63B51DDD8CC10061FD6B /* GoogleService-Info.plist */; };
 		1812B28E2100BEF90010D328 /* load-17 (dragged).tiff in Resources */ = {isa = PBXBuildFile; fileRef = 9F495DE71D54735300793492 /* load-17 (dragged).tiff */; };
 		1812B28F2100BEF90010D328 /* load-27 (dragged).tiff in Resources */ = {isa = PBXBuildFile; fileRef = 9F495DF11D54735300793492 /* load-27 (dragged).tiff */; };
 		1812B2902100BEF90010D328 /* load-9 (dragged).tiff in Resources */ = {isa = PBXBuildFile; fileRef = 9F495DDF1D54735300793492 /* load-9 (dragged).tiff */; };
@@ -239,10 +241,8 @@
 		9FD4CBDC1E1237D5009E5251 /* Schedular.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD4CBDB1E1237D5009E5251 /* Schedular.m */; };
 		9FDC30D81D743F15007E2E0F /* HistoryOrderDtlV.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FDC30D71D743F15007E2E0F /* HistoryOrderDtlV.m */; };
 		9FF7E6921D2E4807003CC992 /* ViewCouponVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FF7E6911D2E4807003CC992 /* ViewCouponVC.m */; };
-		9FF8F02B1DF2AAF4002E6A0B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9FF8F02A1DF2AAF4002E6A0B /* Assets.xcassets */; };
 		9FFBD2391D055EA1000F961A /* LocationContact.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FFBD2381D055EA1000F961A /* LocationContact.m */; };
 		9FFBD23B1D055FFC000F961A /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FFBD23A1D055FFC000F961A /* CoreLocation.framework */; };
-		9FFC63B61DDD8CC10061FD6B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9FFC63B51DDD8CC10061FD6B /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -262,6 +262,9 @@
 		012459E620E0CE4D00645535 /* ChangePassword.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChangePassword.m; sourceTree = "<group>"; };
 		012459E820E0EF6300645535 /* SideMenu.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SideMenu.h; sourceTree = "<group>"; };
 		012459E920E0EF6300645535 /* SideMenu.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SideMenu.m; sourceTree = "<group>"; };
+		012CB06A2101FB59007645B4 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = orderFoodOnline/Info.plist; sourceTree = "<group>"; };
+		012CB06B2101FB59007645B4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = orderFoodOnline/Assets.xcassets; sourceTree = "<group>"; };
+		012CB06C2101FB5A007645B4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "orderFoodOnline/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		013C0C6120D2764B004CB653 /* TextFieldEdit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TextFieldEdit.h; sourceTree = "<group>"; };
 		013C0C6220D2764B004CB653 /* TextFieldEdit.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TextFieldEdit.m; sourceTree = "<group>"; };
 		0156B81220ECA7ED00D79DE1 /* LocationsList.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LocationsList.h; sourceTree = "<group>"; };
@@ -391,7 +394,6 @@
 		9F4CB1EC1CBCD87800A10531 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		9F4CB1F21CBCD87800A10531 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9F4CB1F71CBCD87800A10531 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		9F4CB1F91CBCD87800A10531 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9F4CB21B1CBCD9E700A10531 /* AppHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppHeader.h; sourceTree = "<group>"; };
 		9F4CB21C1CBCFE9000A10531 /* AllDayMenuVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllDayMenuVC.h; sourceTree = "<group>"; };
 		9F4CB21D1CBCFE9000A10531 /* AllDayMenuVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllDayMenuVC.m; sourceTree = "<group>"; };
@@ -425,11 +427,9 @@
 		9FDC30D71D743F15007E2E0F /* HistoryOrderDtlV.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryOrderDtlV.m; sourceTree = "<group>"; };
 		9FF7E6901D2E4807003CC992 /* ViewCouponVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewCouponVC.h; sourceTree = "<group>"; };
 		9FF7E6911D2E4807003CC992 /* ViewCouponVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewCouponVC.m; sourceTree = "<group>"; };
-		9FF8F02A1DF2AAF4002E6A0B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9FFBD2371D055EA1000F961A /* LocationContact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationContact.h; sourceTree = "<group>"; };
 		9FFBD2381D055EA1000F961A /* LocationContact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationContact.m; sourceTree = "<group>"; };
 		9FFBD23A1D055FFC000F961A /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		9FFC63B51DDD8CC10061FD6B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F57265C839B3CCBAED3E5E65 /* libPods-CLOrder.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CLOrder.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -702,9 +702,9 @@
 		9F0D29661E002D5200C7EA2B /* OrderFoodOnline */ = {
 			isa = PBXGroup;
 			children = (
-				9FFC63B51DDD8CC10061FD6B /* GoogleService-Info.plist */,
-				9FF8F02A1DF2AAF4002E6A0B /* Assets.xcassets */,
-				9F4CB1F91CBCD87800A10531 /* Info.plist */,
+				012CB06B2101FB59007645B4 /* Assets.xcassets */,
+				012CB06C2101FB5A007645B4 /* GoogleService-Info.plist */,
+				012CB06A2101FB59007645B4 /* Info.plist */,
 			);
 			name = OrderFoodOnline;
 			sourceTree = "<group>";
@@ -1024,7 +1024,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				1812B28C2100BEF90010D328 /* address.json in Resources */,
-				1812B28D2100BEF90010D328 /* GoogleService-Info.plist in Resources */,
 				1812B28E2100BEF90010D328 /* load-17 (dragged).tiff in Resources */,
 				1812B28F2100BEF90010D328 /* load-27 (dragged).tiff in Resources */,
 				1812B2902100BEF90010D328 /* load-9 (dragged).tiff in Resources */,
@@ -1069,8 +1068,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				012CB0702101FC9C007645B4 /* Info.plist in Resources */,
 				0175E7EF20DBC4440081A306 /* address.json in Resources */,
-				9FFC63B61DDD8CC10061FD6B /* GoogleService-Info.plist in Resources */,
 				9F495E051D54735300793492 /* load-17 (dragged).tiff in Resources */,
 				9F495E0F1D54735300793492 /* load-27 (dragged).tiff in Resources */,
 				9F495DFD1D54735300793492 /* load-9 (dragged).tiff in Resources */,
@@ -1087,9 +1086,10 @@
 				9F495EC61DA38EEE00D515B3 /* GoogleSignIn.bundle in Resources */,
 				9F495E0B1D54735300793492 /* load-23 (dragged).tiff in Resources */,
 				9F495E001D54735300793492 /* load-12 (dragged).tiff in Resources */,
+				012CB06F2101FB5A007645B4 /* GoogleService-Info.plist in Resources */,
 				9F495E111D54735300793492 /* load-29 (dragged).tiff in Resources */,
-				9FF8F02B1DF2AAF4002E6A0B /* Assets.xcassets in Resources */,
 				9F495E101D54735300793492 /* load-28 (dragged).tiff in Resources */,
+				012CB06E2101FB5A007645B4 /* Assets.xcassets in Resources */,
 				9F495E021D54735300793492 /* load-14 (dragged).tiff in Resources */,
 				9F495E071D54735300793492 /* load-19 (dragged).tiff in Resources */,
 				9F495E0C1D54735300793492 /* load-24 (dragged).tiff in Resources */,
@@ -1466,7 +1466,7 @@
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)";
 				GCC_NO_COMMON_BLOCKS = NO;
-				INFOPLIST_FILE = CLOrder/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/CLOrder/orderFoodOnline/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
@@ -1507,7 +1507,7 @@
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)";
 				GCC_NO_COMMON_BLOCKS = NO;
-				INFOPLIST_FILE = CLOrder/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/CLOrder/orderFoodOnline/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (

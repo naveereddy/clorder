@@ -67,7 +67,7 @@ static NSString *kClientId ;
     }
     [self.window setTintColor:APP_COLOR];
     self.window.backgroundColor = [UIColor whiteColor];
-    [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"%@",[[NSBundle mainBundle] objectForInfoDictionaryKey:@"ClientId"]] forKey:@"MainClientId"];
+    [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"%@",[[[NSDictionary alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Info" ofType:@"plist"]] objectForKey:@"ClientId"]] forKey:@"MainClientId"];
     return YES;
 }
 
