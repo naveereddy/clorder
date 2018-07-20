@@ -858,82 +858,53 @@
     choiceDic = [[NSDictionary alloc] initWithDictionary:[[choiceArray objectAtIndex:index] objectAtIndex:row]];
 }
 -(void) addOrderAct {
-    
-    if (quantity > 0) {
-        
-        [item setObject:[NSNumber numberWithInt:quantity] forKey:@"Quantity"];
-        [item setObject:instructionTxt.text forKey:@"SpecialInstruction"];
-        //        BOOL added = false;
-        //        NSLog(@"Item to be added into cart-- \n%@", item);
-        if(!([CartObj instance]==NULL)){
-            //NSLog(@"No cartObj");
-            
-            if (self.replaceIndex >= 0) {
-                [[CartObj instance].itemsForCart replaceObjectAtIndex:self.replaceIndex withObject:item];
-            }else{
-                [[CartObj instance].itemsForCart addObject:item];
-            }
-            
-        }else{
-            NSLog(@"cartObj **");
-        }
-        
-        // NSLog(@"%@", [CartObj instance].itemsForCart);
-        NSUserDefaults *cart = [NSUserDefaults standardUserDefaults];
-        NSMutableArray *archiveArray = [[NSMutableArray alloc] init];
-        for (NSDictionary *personObject in [CartObj instance].itemsForCart) {
-            NSData *personEncodedObject = [NSKeyedArchiver archivedDataWithRootObject:personObject];
-            [archiveArray addObject:personEncodedObject];
-        }
-        [cart setObject: archiveArray forKey:@"cart"];
-        [self subTotalCalc];
-        //        CheckOut *checkOutView = [[CheckOut alloc] init];
-        //        checkOutView.replaceIndex = self.replaceIndex;
-        //        [self.navigationController pushViewController:checkOutView animated:YES];
-//        if (replaceIndex >= 0) {
-//            [self.navigationController popViewControllerAnimated:YES];
-//        }else{
-            NSArray *vcArr = [[NSArray alloc] initWithArray:[self.navigationController viewControllers]];
-            if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"AddMore"] boolValue]) {
-                for (UIViewController *controller in self.navigationController.viewControllers) {
-                    
-                    //Do not forget to import AnOldViewController.h
-                    if ([controller isKindOfClass:[CheckOut class]]) {
-                        
-                        [self.navigationController popToViewController:controller
-                                                              animated:YES];
-                        break;
-                    }
+        if (quantity > 0) {
+            [item setObject:[NSNumber numberWithInt:quantity] forKey:@"Quantity"];
+            [item setObject:instructionTxt.text forKey:@"SpecialInstruction"];
+            if(!([CartObj instance]==NULL)){
+                if (self.replaceIndex >= 0) {
+                    [[CartObj instance].itemsForCart replaceObjectAtIndex:self.replaceIndex withObject:item];
+                }else{
+                    [[CartObj instance].itemsForCart addObject:item];
                 }
-//                [self.navigationController popToViewController: [vcArr objectAtIndex:[vcArr count]-4]  animated:YES];
             }else{
-                //if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"OrderType"] intValue] == 2) {
-                  //  [self.navigationController popToViewController:[vcArr objectAtIndex:3]  animated:YES];
-               // }else{
-                    if ([[[[NSUserDefaults standardUserDefaults] objectForKey:@"userInfo"] objectForKey:@"UserId"] intValue]) {
+                NSLog(@"cartObj **");
+            }
+            NSUserDefaults *cart = [NSUserDefaults standardUserDefaults];
+            NSMutableArray *archiveArray = [[NSMutableArray alloc] init];
+            for (NSDictionary *personObject in [CartObj instance].itemsForCart) {
+                NSData *personEncodedObject = [NSKeyedArchiver archivedDataWithRootObject:personObject];
+                [archiveArray addObject:personEncodedObject];
+            }
+            [cart setObject: archiveArray forKey:@"cart"];
+            [self subTotalCalc];
+             NSArray *vcArr = [[NSArray alloc] initWithArray:[self.navigationController viewControllers]];
+                if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"AddMore"] boolValue]) {
                         for (UIViewController *controller in self.navigationController.viewControllers) {
-                            
-                            //Do not forget to import AnOldViewController.h
-                            if ([controller isKindOfClass:[AllDayMenuVC class]]) {
-                                
-                                [self.navigationController popToViewController:controller
-                                                                      animated:YES];
+                            if ([controller isKindOfClass:[CheckOut class]]) {
+                            [self.navigationController popToViewController:controller animated:YES];
                                 break;
                             }
                         }
-//                        [self.navigationController popToViewController:
-//                         [vcArr objectAtIndex:(2+[[[NSUserDefaults standardUserDefaults] objectForKey:@"popIndex"] intValue])]  animated:YES];
+                }else{
+                    if ([[[[NSUserDefaults standardUserDefaults] objectForKey:@"userInfo"] objectForKey:@"UserId"] intValue]) {
+                        for (UIViewController *controller in self.navigationController.viewControllers) {
+                            if ([controller isKindOfClass:[AllDayMenuVC class]]) {
+                                [self.navigationController popToViewController:controller animated:YES];
+                                break;
+                            }
+                        }
                     }else{
-                        [self.navigationController popToViewController:
-                         [vcArr objectAtIndex:(3+[[[NSUserDefaults standardUserDefaults] objectForKey:@"popIndex"] intValue])]  animated:YES];
+                        if(![[[NSUserDefaults standardUserDefaults] objectForKey:@"skipNow"] isEqualToString:@"skipNow"]){
+                            [self.navigationController popToViewController:
+                             [vcArr objectAtIndex:(3+[[[NSUserDefaults standardUserDefaults] objectForKey:@"popIndex"] intValue])]  animated:YES];
+                        }else{
+                            [self.navigationController popToViewController:
+                             [vcArr objectAtIndex:[vcArr count]-3] animated:YES];
+                        }
                     }
-                    
-                //}
             }
-//        }
-        
-        
-    }else{
+        }else{
         UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"" message:@"Quantity can not be 0" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
         [alert show];
     }

@@ -1068,12 +1068,6 @@
     }else{
         NSArray *vcArr = [[NSArray alloc] initWithArray:[self.navigationController viewControllers]];
         [user setObject:[NSNumber numberWithBool:0] forKey:@"AddMore"];
-//        if ([[user objectForKey:@"OrderType"] intValue] == 2) {
-//            [self.navigationController popToViewController:[vcArr objectAtIndex:0]  animated:YES];
-//        }else{
-//            [self.navigationController popToViewController:[vcArr objectAtIndex:(2+[[user objectForKey:@"popIndex"] intValue])]  animated:YES];
-//        }
-//        NSLog(@"%@", [[CartObj instance].userInfo objectForKey:@"UserId"]);
         int index = 0;
         for (UIViewController *vc in vcArr) {
             if ([vc isKindOfClass:[AllDayMenuVC class]]) {

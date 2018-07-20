@@ -121,7 +121,11 @@
     
     UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     backBtn.frame = CGRectMake(0, 0, 20, 20);
-    [backBtn setImage:[UIImage imageNamed:@"hamburger_menu"] forState:UIControlStateNormal];
+    if ([[user objectForKey:@"userInfo"] objectForKey:@"UserId"] > 0) {
+        [backBtn setImage:[UIImage imageNamed:@"hamburger_menu"] forState:UIControlStateNormal];
+    }else{
+        [backBtn setImage:[UIImage imageNamed:@"left-arrow"] forState:UIControlStateNormal];
+    }
     UIBarButtonItem *leftBarItem = [[UIBarButtonItem alloc] initWithCustomView:backBtn];
     [backBtn addTarget:self action:@selector(toggleMenu:) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItems = [NSArray arrayWithObjects:leftBarItem, nil];
@@ -437,6 +441,7 @@
 }
 
 - (void)toggleMenu:(UIButton *)sender {
+    if ([[user objectForKey:@"userInfo"] objectForKey:@"UserId"] > 0) {
     if (!mainBgView) {
         mainBgView = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
         mainBgView.backgroundColor = [UIColor clearColor];
@@ -470,6 +475,9 @@
         [UIView animateWithDuration:0.5 animations:^{
             [mainBgView viewWithTag:77].frame = CGRectMake(0, 0, CGRectGetWidth(mainBgView.frame)*0.75, CGRectGetHeight(mainBgView.frame));
         }];
+    }
+    }else{
+        [self.navigationController popViewControllerAnimated:YES];
     }
 }
 

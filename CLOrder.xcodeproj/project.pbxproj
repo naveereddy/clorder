@@ -1465,8 +1465,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = CLOrder/CLOrder.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Clorder, Inc (79PM7TJ9YE)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Clorder, Inc (79PM7TJ9YE)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Satish Varma (7647XDBJ67)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Satish Varma (7647XDBJ67)";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 79PM7TJ9YE;
 				ENABLE_BITCODE = NO;
@@ -1488,10 +1488,10 @@
 					"-ObjC",
 					"$(inherited)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.clorder.bananaleaf;
+				PRODUCT_BUNDLE_IDENTIFIER = com.clorder.orderOnlineTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "21515def-730d-41fb-a11f-927276bdbbc6";
-				PROVISIONING_PROFILE_SPECIFIER = bananaLeaf;
+				PROVISIONING_PROFILE = "4364142c-9ee2-408c-9359-a52750ba10c0";
+				PROVISIONING_PROFILE_SPECIFIER = OrderFoodOnlineTEST;
 				SWIFT_OBJC_BRIDGING_HEADER = "CLOrder-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -1506,8 +1506,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = CLOrder/CLOrder.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Clorder, Inc (79PM7TJ9YE)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Clorder, Inc (79PM7TJ9YE)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Satish Varma (7647XDBJ67)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Satish Varma (7647XDBJ67)";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 79PM7TJ9YE;
 				ENABLE_BITCODE = NO;
@@ -1529,10 +1529,10 @@
 					"-ObjC",
 					"$(inherited)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.clorder.bananaleaf;
+				PRODUCT_BUNDLE_IDENTIFIER = com.clorder.orderOnlineTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "21515def-730d-41fb-a11f-927276bdbbc6";
-				PROVISIONING_PROFILE_SPECIFIER = bananaLeaf;
+				PROVISIONING_PROFILE = "4364142c-9ee2-408c-9359-a52750ba10c0";
+				PROVISIONING_PROFILE_SPECIFIER = OrderFoodOnlineTEST;
 				SWIFT_OBJC_BRIDGING_HEADER = "CLOrder-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
