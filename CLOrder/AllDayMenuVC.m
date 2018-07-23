@@ -179,7 +179,13 @@
         images.image=[UIImage imageWithData:((Menu *)[imagesdataArray objectAtIndex:indexPath.row]).imagedata];
     }else{
        dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
-         NSString *path =@"https://s3.amazonaws.com/Clorder/Client/chickenplate-wb.png";
+           NSDictionary *dic=[clientCategoriesArr objectAtIndex:indexPath.row];
+           NSString *path;
+           if([[dic allKeys] containsObject:@"CategoryImageURL"]){
+               path=[dic objectForKey:@"CategoryImageURL"];
+           }else{
+               path=@"https://s3.amazonaws.com/Clorder/Client/chickenplate-wb.png";
+           }
          NSData *dta = [NSData dataWithContentsOfURL:[NSURL URLWithString:path]];
          UIImage *image = [UIImage imageWithData:dta];
          dispatch_async(dispatch_get_main_queue(), ^(void){

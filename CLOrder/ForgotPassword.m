@@ -34,9 +34,8 @@
     email.leftViewMode= UITextFieldViewModeAlways;
     email.leftView= [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"email-palceholder"]];
     
-//   NSString *filePath = [[NSBundle mainBundle] pathForResource:@"recapcha" ofType:@"html"];
     NSURL *nsurl=[NSURL URLWithString:@"http://api.clorder.com/recaptcha/index.html"];
-    webView.scrollView.scrollEnabled = NO;
+    webView.scrollView.scrollEnabled = YES;
     webView.userInteractionEnabled=YES;
     webView.delegate=self;
     NSURLRequest *req=[[NSURLRequest alloc] initWithURL:nsurl];
@@ -44,7 +43,6 @@
     [AppDelegate loaderShow:YES];
 }
 -(void)viewWillDisappear:(BOOL)animated{
-//    [webView removeFromSuperview];
 }
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType{
     NSLog(@"URL from webview %@",request.URL);
@@ -60,6 +58,10 @@
     NSLog(@"verification string %@",string);
 }
 - (void)webViewDidFinishLoad:(UIWebView *)webView{
+    NSString *center=@"document.getElementById('html_element').style.textAlign = 'center';";
+    NSString *width = @"document.getElementById('html_element').nextSibling.removeAttr('width')";
+    [webView stringByEvaluatingJavaScriptFromString:center];
+    [webView stringByEvaluatingJavaScriptFromString:width];
     [AppDelegate loaderShow:NO];
 }
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error{
