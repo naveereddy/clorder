@@ -1398,7 +1398,7 @@
         LoginVC *nextView = [storyboard instantiateViewControllerWithIdentifier:@"LoginView"];
         [self.navigationController pushViewController:nextView animated:YES];
     }else{
-            if (fetchTaxFailed || fetchDeliveryFailed) {
+        if (fetchTaxFailed || fetchDeliveryFailed) {
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"Something went wrong, please try again" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles: nil];
             [alert setTag:200];
             [alert show];

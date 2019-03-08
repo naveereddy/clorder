@@ -16,8 +16,6 @@
 		012459E720E0CE4D00645535 /* ChangePassword.m in Sources */ = {isa = PBXBuildFile; fileRef = 012459E620E0CE4D00645535 /* ChangePassword.m */; };
 		012459EA20E0EF6300645535 /* SideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 012459E920E0EF6300645535 /* SideMenu.m */; };
 		012CB06E2101FB5A007645B4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 012CB06B2101FB59007645B4 /* Assets.xcassets */; };
-		012CB06F2101FB5A007645B4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 012CB06C2101FB5A007645B4 /* GoogleService-Info.plist */; };
-		012CB0702101FC9C007645B4 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 012CB06A2101FB59007645B4 /* Info.plist */; };
 		013C0C6320D2764B004CB653 /* TextFieldEdit.m in Sources */ = {isa = PBXBuildFile; fileRef = 013C0C6220D2764B004CB653 /* TextFieldEdit.m */; };
 		0156B81420ECA7ED00D79DE1 /* LocationsList.m in Sources */ = {isa = PBXBuildFile; fileRef = 0156B81320ECA7ED00D79DE1 /* LocationsList.m */; };
 		015F67A020D8E4FC001D9F7F /* Menu.m in Sources */ = {isa = PBXBuildFile; fileRef = 015F679F20D8E4FC001D9F7F /* Menu.m */; };
@@ -152,6 +150,9 @@
 		1812B2B22100BEF90010D328 /* load-16 (dragged).tiff in Resources */ = {isa = PBXBuildFile; fileRef = 9F495DE61D54735300793492 /* load-16 (dragged).tiff */; };
 		1812B2BA2100C2040010D328 /* Banana Leaf.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1812B2B92100C2040010D328 /* Banana Leaf.xcassets */; };
 		953FC6BA7A2F207F22C7EA27 /* libPods-CLOrder.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F57265C839B3CCBAED3E5E65 /* libPods-CLOrder.a */; };
+		982D0D41222F6D2A0079B424 /* Banana Leaf-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 982D0D40222F6D2A0079B424 /* Banana Leaf-Info.plist */; };
+		98EB68FC21C015E90015FFBC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 012CB06C2101FB5A007645B4 /* GoogleService-Info.plist */; };
+		98EB68FE21C01CE70015FFBC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 012CB06C2101FB5A007645B4 /* GoogleService-Info.plist */; };
 		9F0B15391D6C36ED003D4BBE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F0B152F1D6C36ED003D4BBE /* UIKit.framework */; };
 		9F20C4A51D07EE7500775381 /* Loader.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F20C4A41D07EE7500775381 /* Loader.m */; };
 		9F2264E81D1914E200C57BF4 /* LoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F2264E71D1914E200C57BF4 /* LoginVC.m */; };
@@ -302,6 +303,7 @@
 		1812B2B92100C2040010D328 /* Banana Leaf.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Banana Leaf.xcassets"; sourceTree = "<group>"; };
 		1D0678E32D83A887B8F25F21 /* Pods-CLOrder.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CLOrder.release.xcconfig"; path = "Pods/Target Support Files/Pods-CLOrder/Pods-CLOrder.release.xcconfig"; sourceTree = "<group>"; };
 		541354FF4A505AA3F3802DC3 /* Pods-CLOrder.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CLOrder.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CLOrder/Pods-CLOrder.debug.xcconfig"; sourceTree = "<group>"; };
+		982D0D40222F6D2A0079B424 /* Banana Leaf-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Banana Leaf-Info.plist"; sourceTree = "<group>"; };
 		9F0B152F1D6C36ED003D4BBE /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		9F20C4A31D07EE7500775381 /* Loader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Loader.h; sourceTree = "<group>"; };
 		9F20C4A41D07EE7500775381 /* Loader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Loader.m; sourceTree = "<group>"; };
@@ -631,6 +633,7 @@
 		1812B2B82100C0C90010D328 /* Bnanana Leaf */ = {
 			isa = PBXGroup;
 			children = (
+				982D0D40222F6D2A0079B424 /* Banana Leaf-Info.plist */,
 				1812B2B92100C2040010D328 /* Banana Leaf.xcassets */,
 			);
 			path = "Bnanana Leaf";
@@ -942,8 +945,13 @@
 				ORGANIZATIONNAME = "Vegunta's";
 				TargetAttributes = {
 					1812B2382100BEF90010D328 = {
-						DevelopmentTeam = 79PM7TJ9YE;
+						DevelopmentTeam = A339L8W434;
 						ProvisioningStyle = Manual;
+						SystemCapabilities = {
+							com.apple.ApplePay = {
+								enabled = 0;
+							};
+						};
 					};
 					9F4CB1E41CBCD87700A10531 = {
 						CreatedOnToolsVersion = 7.3;
@@ -1023,6 +1031,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				98EB68FC21C015E90015FFBC /* GoogleService-Info.plist in Resources */,
 				1812B28C2100BEF90010D328 /* address.json in Resources */,
 				1812B28E2100BEF90010D328 /* load-17 (dragged).tiff in Resources */,
 				1812B28F2100BEF90010D328 /* load-27 (dragged).tiff in Resources */,
@@ -1034,6 +1043,7 @@
 				1812B2952100BEF90010D328 /* load-18 (dragged).tiff in Resources */,
 				1812B2962100BEF90010D328 /* load-25 (dragged).tiff in Resources */,
 				1812B2972100BEF90010D328 /* load-21 (dragged).tiff in Resources */,
+				982D0D41222F6D2A0079B424 /* Banana Leaf-Info.plist in Resources */,
 				1812B2982100BEF90010D328 /* load-10 (dragged).tiff in Resources */,
 				1812B2992100BEF90010D328 /* load-26 (dragged).tiff in Resources */,
 				1812B29A2100BEF90010D328 /* load-4 (dragged).tiff in Resources */,
@@ -1068,7 +1078,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				012CB0702101FC9C007645B4 /* Info.plist in Resources */,
+				98EB68FE21C01CE70015FFBC /* GoogleService-Info.plist in Resources */,
 				0175E7EF20DBC4440081A306 /* address.json in Resources */,
 				9F495E051D54735300793492 /* load-17 (dragged).tiff in Resources */,
 				9F495E0F1D54735300793492 /* load-27 (dragged).tiff in Resources */,
@@ -1086,7 +1096,6 @@
 				9F495EC61DA38EEE00D515B3 /* GoogleSignIn.bundle in Resources */,
 				9F495E0B1D54735300793492 /* load-23 (dragged).tiff in Resources */,
 				9F495E001D54735300793492 /* load-12 (dragged).tiff in Resources */,
-				012CB06F2101FB5A007645B4 /* GoogleService-Info.plist in Resources */,
 				9F495E111D54735300793492 /* load-29 (dragged).tiff in Resources */,
 				9F495E101D54735300793492 /* load-28 (dragged).tiff in Resources */,
 				012CB06E2101FB5A007645B4 /* Assets.xcassets in Resources */,
@@ -1287,11 +1296,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = CLOrder/CLOrder.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Clorder, Inc (79PM7TJ9YE)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Clorder, Inc (79PM7TJ9YE)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: thukkani reddy (U899KE9786)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: thukkani reddy (U899KE9786)";
 				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = 79PM7TJ9YE;
+				DEVELOPMENT_TEAM = A339L8W434;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)";
 				GCC_NO_COMMON_BLOCKS = NO;
@@ -1311,10 +1319,10 @@
 					"-ObjC",
 					"$(inherited)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.clorder.bananaleaf;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mobigesture.commonapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "21515def-730d-41fb-a11f-927276bdbbc6";
-				PROVISIONING_PROFILE_SPECIFIER = bananaLeaf;
+				PROVISIONING_PROFILE_SPECIFIER = "Common Profile";
 				SWIFT_OBJC_BRIDGING_HEADER = "CLOrder-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -1328,11 +1336,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = CLOrder/CLOrder.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Clorder, Inc (79PM7TJ9YE)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Clorder, Inc (79PM7TJ9YE)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: thukkani reddy (U899KE9786)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: thukkani reddy (U899KE9786)";
 				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = 79PM7TJ9YE;
+				DEVELOPMENT_TEAM = A339L8W434;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)";
 				GCC_NO_COMMON_BLOCKS = NO;
@@ -1352,10 +1359,10 @@
 					"-ObjC",
 					"$(inherited)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.clorder.bananaleaf;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mobigesture.commonapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "21515def-730d-41fb-a11f-927276bdbbc6";
-				PROVISIONING_PROFILE_SPECIFIER = bananaLeaf;
+				PROVISIONING_PROFILE_SPECIFIER = "Common Profile";
 				SWIFT_OBJC_BRIDGING_HEADER = "CLOrder-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;

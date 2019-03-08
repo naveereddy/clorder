@@ -100,6 +100,12 @@
     if (![nameText.text length]) {
         errorMsg = @"Please enter valid Name";
         [nameText becomeFirstResponder];
+    }else if ([phoneText.text length] != 10 ) {
+        errorMsg = @"Please enter valid Phone Number";
+        [phoneText becomeFirstResponder];
+    }else if (![self validateEmailDomain] || ![self validateEmailWithString:emailText.text]) {
+        errorMsg = @"Please enter valid EmailId";
+        [emailText becomeFirstResponder];
     }else if (![addressText.text length]) {
         errorMsg = @"Please enter valid address";
         [addressText becomeFirstResponder];
@@ -109,12 +115,6 @@
     }else if ([zipText.text length] != 5) {
         errorMsg = @"Please enter valid Zip Code";
         [zipText becomeFirstResponder];
-    }else if ([phoneText.text length] != 10 ) {
-        errorMsg = @"Please enter valid Phone Number";
-        [phoneText becomeFirstResponder];
-    }else if (![self validateEmailDomain] || ![self validateEmailWithString:emailText.text]) {
-        errorMsg = @"Please enter valid EmailId";
-        [emailText becomeFirstResponder];
     }
     
     if (errorMsg.length) {
@@ -520,6 +520,12 @@
     return YES;
 }
 -(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
+    if (textField == phoneText){
+        if (textField.text.length >= 10 && range.length == 0)
+        {
+            return NO; // return NO to not change text
+        }
+    }
     if (textField == nameText) {
         NSCharacterSet *myCharSet = [NSCharacterSet characterSetWithCharactersInString:@"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ.- "];
         
@@ -530,7 +536,20 @@
     return YES;
 }
 -(void)addressSelection:(NSString *)address locationDetails:(CLLocationCoordinate2D )location{
-    addressText.text=address;
+    NSArray *adrresArray =[address componentsSeparatedByString:@","];
+    addressText.text= [adrresArray objectAtIndex:0];
+    if(adrresArray.count > 1){
+        cityText.text = [adrresArray objectAtIndex:1];
+    }
+    if (adrresArray.count > 2){
+        NSString *string = [[adrresArray objectAtIndex:2] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+        if ([string rangeOfString:@" "].location == NSNotFound){
+            zipText.text = @"";
+        }else{
+            zipText.text = ((NSArray*)[string componentsSeparatedByString:@" "]).count > 1?[[string componentsSeparatedByString:@" "] objectAtIndex:1]: @"";
+        }
+        
+    }
 }
 
 @end

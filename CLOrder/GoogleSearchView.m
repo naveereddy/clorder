@@ -117,13 +117,8 @@
 {
     [searchBars resignFirstResponder];
     NSString *string=[self splitigValues:indexPath.row label:@"textLabel" arry:[[NSMutableArray alloc]initWithArray:[self splitingTheData:indexPath.row section:indexPath.section]]];
-    if(_fromOrderOnline){
-        NSString *encode = [[[[[autoCompleteData objectAtIndex:0]objectForKey:@"predictions"] objectAtIndex:indexPath.row] objectForKey:@"description"] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet alphanumericCharacterSet]];
-        [self gettingLatLong:[NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/textsearch/json?query=%@&key=%@",encode,GOOGLE_API_KEY]];
-    }else{
-        [object addressSelection:string locationDetails:locationsObjects];
-        [self.navigationController popViewControllerAnimated:YES];
-    }
+    NSString *encode = [[[[[autoCompleteData objectAtIndex:0]objectForKey:@"predictions"] objectAtIndex:indexPath.row] objectForKey:@"description"] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet alphanumericCharacterSet]];
+    [self gettingLatLong:[NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/textsearch/json?query=%@&key=%@",encode,GOOGLE_API_KEY]];
 }
 -(void)gettingLatLong:(NSString *)string{
     [APIRequest gettingLatLong:nil url:string completion:^(NSMutableData *buffer) {
@@ -137,7 +132,11 @@
             {
                 locationsObjects.latitude=[[[[[[resObj objectForKey:@"results"] objectAtIndex:0] objectForKey:@"geometry"] objectForKey:@"location"] objectForKey:@"lat"] doubleValue];
                 locationsObjects.longitude=[[[[[[resObj objectForKey:@"results"] objectAtIndex:0] objectForKey:@"geometry"] objectForKey:@"location"] objectForKey:@"lng"] doubleValue];
-                [objects addressSelection:[NSString stringWithFormat:@"%@", [[[resObj objectForKey:@"results"] objectAtIndex:0] objectForKey:@"formatted_address"]] locationDetails:locationsObjects];
+                if(_fromOrderOnline){
+                    [objects addressSelection:[NSString stringWithFormat:@"%@", [[[resObj objectForKey:@"results"] objectAtIndex:0] objectForKey:@"formatted_address"]] locationDetails:locationsObjects];
+                }else{
+                    [object addressSelection:[NSString stringWithFormat:@"%@", [[[resObj objectForKey:@"results"] objectAtIndex:0] objectForKey:@"formatted_address"]] locationDetails:locationsObjects];
+                }
                 [self.navigationController popViewControllerAnimated:YES];
 
             }

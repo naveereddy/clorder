@@ -63,7 +63,7 @@
     [applePay setBackgroundColor:APP_COLOR];
     applePay.tag=128;
     [applePay addTarget:self action:@selector(applePayBtnAct) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:applePay];
+//    [self.view addSubview:applePay];
     [applePay setTitle:@"Apple pay" forState:UIControlStateNormal];
      applePay.titleLabel.font = APP_FONT_BOLD_18;
     
@@ -83,7 +83,7 @@
     [payWithCard setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [payWithCard setBackgroundColor:APP_COLOR];
     payWithCard.tag=2;
-    [payWithCard addTarget:self action:@selector(saveBtnAct) forControlEvents:UIControlEventTouchUpInside];
+    [payWithCard addTarget:self action:@selector(payWithCard) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:payWithCard];
     [payWithCard setTitle:@"Pay With Card" forState:UIControlStateNormal];
     payWithCard.titleLabel.font = APP_FONT_BOLD_18;
@@ -355,6 +355,21 @@
         }else{
             [self.navigationController popToRootViewControllerAnimated:YES];
         }
+    }
+}
+-(void)payWithCard {
+      if ([[CartObj instance].itemsForCart count]) {
+          if (cardArray.count > 0){
+              [user setObject:[NSNumber numberWithInteger:2] forKey:@"PaymentType"];
+              payThrough = [[NSDictionary alloc] initWithDictionary:[cardArray objectAtIndex:0]];
+              UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:[NSString stringWithFormat:@"Pay bill trough card with card number: %@", [payThrough objectForKey:@"CreditCardNumber"]] delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Ok", nil];
+              [alert setTag:5000];
+              [alert show];
+          }else{
+            payThrough =[[NSDictionary alloc] init];
+              UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Please add cards for payment" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles: nil];
+              [alert show];
+          }
     }
 }
 

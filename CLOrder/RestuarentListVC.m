@@ -514,6 +514,16 @@
             NSError *error = nil;
             NSDictionary *resObj = [NSJSONSerialization JSONObjectWithData:buffer options:NSJSONReadingAllowFragments error:&error];
             NSLog(@"Response :\n %@",resObj);
+            NSArray *keys = [resObj allKeys];
+            if([keys containsObject:@"message"]){
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                                message:[resObj objectForKey:@"message"]
+                                                               delegate:self
+                                                      cancelButtonTitle:@"OK"
+                                                      otherButtonTitles:nil];
+                [alert show];
+                return;
+            }
             NSArray *arry;
             ![resObj isKindOfClass:[NSNull class]] && !([(NSArray *)resObj count]==1 && [[(NSArray *)resObj objectAtIndex:0] objectForKey:@"Cuisines"] != nil)?arry=(NSArray *)resObj:@"";
             if(arry && [arry count]){
