@@ -12,6 +12,9 @@
 #import "APIRequest.h"
 #import "LocationsList.h"
 #import "SelectedRestroVC.h"
+
+#define mapDistance 200000
+
 @interface MultiLocationVC ()
 {
     UITableView *mulLocation;
@@ -140,6 +143,7 @@
                 [[NSUserDefaults standardUserDefaults] setObject:[[resObj objectForKey:@"ClientSettings"] objectForKey:@"PhoneNumber"] forKey:@"ClientPhone"];
                 [[NSUserDefaults standardUserDefaults] setObject:[[resObj objectForKey:@"ClientSettings"] objectForKey:@"PaymentSetting"] forKey:@"PaymentSetting"];
                 [[NSUserDefaults standardUserDefaults] setObject:[[resObj objectForKey:@"ClientSettings"] objectForKey:@"ShippingOptionId"] forKey:@"ShippingOptionId"];
+                [[NSUserDefaults standardUserDefaults] setObject:[[resObj objectForKey:@"ClientSettings"] objectForKey:@"TimeZone"] forKey:@"TimeZone"];
                 [[NSUserDefaults standardUserDefaults] setObject:[[resObj objectForKey:@"ClientSettings"] objectForKey:@"DeliveryType"] forKey:@"DeliveryType"];
                 NSLog(@"address %@,%@",[resObj objectForKey:@"DeliveryAddresses"],[resObj objectForKey:@"clientId"]);
                 if([[[resObj objectForKey:@"ClientSettings"] objectForKey:@"ShippingOptionId"] integerValue] == 2){
@@ -212,10 +216,8 @@
     [mapView addAnnotation:mapAnnotation];
 }
 - (void)setCenter:(CLLocationCoordinate2D)location forMap:(MKMapView *)mapView{
-    float mapSpanY= 0.09;
-    float mapSpanX = mapSpanY * mapView.frame.size.width / mapView.frame.size.height;
-    MKCoordinateSpan span = MKCoordinateSpanMake(mapSpanX, mapSpanY);
-    MKCoordinateRegion region = MKCoordinateRegionMake(CLLocationCoordinate2DMake(location.latitude, location.longitude), span);
+    MKCoordinateRegion region =
+    MKCoordinateRegionMakeWithDistance(location, mapDistance, mapDistance);
     [mapView setRegion:region animated:YES];
 }
 -(void)gettingLatLong:(NSString *)string index:(int)index{

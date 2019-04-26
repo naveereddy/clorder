@@ -19,6 +19,7 @@
 //#import "ScheduleView.h"
 #import "Schedular.h"
 #import "LoginVC.h"
+#import "AppDelegate.h"
 
 @implementation CheckOut{
     NSArray *tipArray;
@@ -1183,8 +1184,8 @@
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"MM/dd/YYYY"];
     NSString *orderDate = [formatter stringFromDate:[NSDate date]];
-//    [user setObject:[formatter stringFromDate:[NSDate date]] forKey:@"OrderDate"];
-    formatter.timeZone = [NSTimeZone timeZoneWithName:@"GMT-8"];
+    AppDelegate * appDel = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    formatter.timeZone = [NSTimeZone timeZoneWithAbbreviation:[appDel findTimeZoneId:[user objectForKey:@"TimeZone"]]];
     NSLog(@"%@", [[CartObj instance].userInfo objectForKey:@"timeArr"]);
     [formatter setDateFormat:@"hh:mm a"];
     NSString *orderTime = [formatter stringFromDate:[NSDate date]];
@@ -1206,7 +1207,8 @@
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
         [formatter setDateFormat:@"MM/dd/YYYY"];
         [user setObject:[formatter stringFromDate:[NSDate date]] forKey:@"OrderDate"];
-        formatter.timeZone = [NSTimeZone timeZoneWithName:@"GMT-8"];
+        AppDelegate * appDel = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+        formatter.timeZone = [NSTimeZone timeZoneWithAbbreviation:[appDel findTimeZoneId:[user objectForKey:@"TimeZone"]]];
         NSLog(@"%@", [[CartObj instance].userInfo objectForKey:@"timeArr"]);
         [formatter setDateFormat:@"hh:mm a"];
         [user setObject:[formatter stringFromDate:[NSDate date]] forKey:@"OrderTime"];

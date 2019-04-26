@@ -13,6 +13,7 @@
 #import "CartObj.h"
 #import "DeliveryVC.h"
 #import "Schedular.h"
+#import "AppDelegate.h"
 
 @interface HistoryOrderDtlV (){
     NSMutableArray *itemArr;
@@ -147,7 +148,8 @@
         formatter.timeZone = [NSTimeZone timeZoneWithAbbreviation:@"UTC"];
         [formatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSS"];
         NSDate *placedDt = [formatter dateFromString:[resObj objectForKey:@"CreatedDate"]];
-        formatter.timeZone = [NSTimeZone timeZoneWithAbbreviation:@"GMT-8"];
+        AppDelegate * appDel = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+        formatter.timeZone = [NSTimeZone timeZoneWithAbbreviation:[appDel findTimeZoneId:[user objectForKey:@"TimeZone"]]];
         [formatter setDateFormat:@"yyyy-MM-dd hh:mm a"];
         
         UILabel *placedDateLbl = [[UILabel alloc] initWithFrame:CGRectMake(10, 50, SCREEN_WIDTH-20, 20)];
@@ -158,7 +160,7 @@
         formatter.timeZone = [NSTimeZone timeZoneWithAbbreviation:@"UTC"];
         [formatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss"];
         placedDt = [formatter dateFromString:[resObj objectForKey:@"OrderDate"]];
-        formatter.timeZone = [NSTimeZone timeZoneWithAbbreviation:@"GMT-8"];
+        formatter.timeZone = [NSTimeZone timeZoneWithAbbreviation:[appDel findTimeZoneId:[user objectForKey:@"TimeZone"]]];
 
 //        [formatter setDateFormat:@"EEE yyyy-MM-dd hh:mm a"];
         [formatter setDateFormat:@"yyyy-MM-dd hh:mm a"];
@@ -512,7 +514,8 @@
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"MM/dd/YYYY"];
     [user setObject:[formatter stringFromDate:[NSDate date]] forKey:@"OrderDate"];
-    formatter.timeZone = [NSTimeZone timeZoneWithName:@"GMT-8"];
+    AppDelegate * appDel = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    formatter.timeZone = [NSTimeZone timeZoneWithAbbreviation:[appDel findTimeZoneId:[user objectForKey:@"TimeZone"]]];
     NSLog(@"%@", [[CartObj instance].userInfo objectForKey:@"timeArr"]);
     [formatter setDateFormat:@"hh:mm a"];
     [user setObject:[formatter stringFromDate:[NSDate date]] forKey:@"OrderTime"];

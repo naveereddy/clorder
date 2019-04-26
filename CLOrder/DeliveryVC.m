@@ -41,7 +41,7 @@
         self.title = @"Customer Address";
 
     }else if ([[user objectForKey:@"OrderType"] intValue] == 2 ){
-        self.title = @"Deliver Address";
+        self.title = @"Delivery  Address";
     }
     [self setUIForView];
     

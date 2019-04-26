@@ -12,6 +12,7 @@
 #import "LoginVC.h"
 #import "CheckOut.h"
 #import "HistoryOrderDtlV.h"
+#import "AppDelegate.h"
 
 
 @interface OrderHistoryVC (){
@@ -170,7 +171,8 @@
     dateForma.timeZone = [NSTimeZone timeZoneWithName:@"GMT"];
     [dateForma setDateFormat:@"MM/dd/yyyy hh:mm:ss a"];
     date = [dateForma dateFromString:[NSString stringWithFormat:@"%@",[[orderHistoryArr objectAtIndex:indexPath.row] objectForKey:@"OrderDate"]]];
-    dateForma.timeZone = [NSTimeZone timeZoneWithName:@"GMT-8"];
+    AppDelegate * appDel = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    dateForma.timeZone = [NSTimeZone timeZoneWithAbbreviation:[appDel findTimeZoneId:[[NSUserDefaults standardUserDefaults] objectForKey:@"TimeZone"]]];
     // Convert to new Date Format
     [dateForma setDateFormat:@"dd-MMM-yyyy hh:mm a"];
     NSString *newDate = [dateForma stringFromDate:date];

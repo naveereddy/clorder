@@ -222,7 +222,7 @@
     }
     if([locationsary count] > 1){
         UIWindow *window = [[[UIApplication sharedApplication] delegate] window];
-        locationMarker=[[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-70, 30, 50, 50)];
+        locationMarker=[[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-70, 60, 50, 50)];
         [locationMarker setImage:[UIImage imageNamed:@"loaction_marker"] forState:UIControlStateNormal];
         [locationMarker addTarget:self action:@selector(markerAction) forControlEvents:UIControlEventTouchUpInside];
         [window addSubview:locationMarker];
@@ -294,6 +294,7 @@
                 [user setObject:[[resObj objectForKey:@"ClientSettings"] objectForKey:@"PhoneNumber"] forKey:@"ClientPhone"];
                 [user setObject:[NSNumber numberWithBool:[[resObj objectForKey:@"isRestOpen"] boolValue]] forKey:@"isRestOpen"];
                 [user setObject:[[resObj objectForKey:@"ClientSettings"] objectForKey:@"ShippingOptionId"] forKey:@"ShippingOptionId"];
+                [user setObject:[[resObj objectForKey:@"ClientSettings"] objectForKey:@"TimeZone"] forKey:@"TimeZone"];
                 NSLog(@"address %@,%@",[resObj objectForKey:@"DeliveryAddresses"],[resObj objectForKey:@"clientId"]);
                 if([[[resObj objectForKey:@"ClientSettings"] objectForKey:@"ShippingOptionId"] integerValue] == 2){
                     if([resObj objectForKey:@"DeliveryAddresses"]){
@@ -435,7 +436,8 @@
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"MM/dd/YYYY"];
     [user setObject:[formatter stringFromDate:[NSDate date]] forKey:@"OrderDate"];
-    formatter.timeZone = [NSTimeZone timeZoneWithName:@"GMT-8"];
+    AppDelegate * appDel = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    formatter.timeZone = [NSTimeZone timeZoneWithAbbreviation:[appDel findTimeZoneId:[user objectForKey:@"TimeZone"]]];
     NSLog(@"%@", [[CartObj instance].userInfo objectForKey:@"timeArr"]);
     [formatter setDateFormat:@"hh:mm a"];
     [user setObject:[formatter stringFromDate:[NSDate date]] forKey:@"OrderTime"];

@@ -11,6 +11,7 @@
 #import "AccountUpdateVC.h"
 #import "APIRequest.h"
 #import "CartObj.h"
+#import "AppDelegate.h"
 @implementation ScheduleView{
     UITextField *dateTxt;
     UIDatePicker *datePicker;
@@ -275,7 +276,8 @@
         NSDateFormatter *nowDateFormatter = [[NSDateFormatter alloc] init];
         [nowDateFormatter setDateFormat:@"MM/dd/yyyy"];
         now =  [dfltDt length]? [nowDateFormatter dateFromString:dfltDt] :datePicker.date;
-        [nowDateFormatter setTimeZone:[NSTimeZone timeZoneWithName:@"GMT-8"]];
+        AppDelegate * appDel = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+        nowDateFormatter.timeZone = [NSTimeZone timeZoneWithAbbreviation:[appDel findTimeZoneId:[user objectForKey:@"TimeZone"]]];
 
         [nowDateFormatter setDateFormat:@"e"];
         weekDayNumber = (NSInteger)[[nowDateFormatter stringFromDate:now] integerValue]-1;
@@ -460,8 +462,9 @@
                 NSDate *now =  [dfltDt length]? [formatter dateFromString:dfltDt] :datePicker.date;
                 NSString *dt1 = [formatter stringFromDate:[NSDate date]];
                 NSString *dt2 = [formatter stringFromDate:now];
-                formatter.timeZone = [NSTimeZone timeZoneWithName:@"GMT-8"];
-                
+                AppDelegate * appDel = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+                formatter.timeZone = [NSTimeZone timeZoneWithAbbreviation:[appDel findTimeZoneId:[user objectForKey:@"TimeZone"]]];
+
                 if ([timeDisplayArr count]>1) {
                     
                     [[CartObj instance].userInfo setObject:[formatter stringFromDate:datePicker.date] forKey:@"OrderDate"];
@@ -561,7 +564,8 @@
 - (void)changeUIForOrderNow{
     
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    formatter.timeZone = [NSTimeZone timeZoneWithName:@"GMT-8"];
+    AppDelegate * appDel = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    formatter.timeZone = [NSTimeZone timeZoneWithAbbreviation:[appDel findTimeZoneId:[user objectForKey:@"TimeZone"]]];
     [formatter setDateFormat:@"hh:mm a"];
     int currTime = [self timeInSeconds:[formatter stringFromDate:[NSDate date]]];
     int start = [[[CartObj instance].userInfo objectForKey:@"timeArr"] count]? [self timeInSeconds:[[[CartObj instance].userInfo objectForKey:@"timeArr"] objectAtIndex:0]]:0;

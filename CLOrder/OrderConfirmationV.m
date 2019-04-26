@@ -11,6 +11,7 @@
 #import <MapKit/MapKit.h>
 #import "CartObj.h"
 #import "APIRequest.h"
+#import "AppDelegate.h"
 
 @implementation OrderConfirmationV{
     NSUserDefaults *user;
@@ -322,7 +323,8 @@
     NSDate *date = [[NSDate alloc] init];
     dateForma.timeZone = [NSTimeZone timeZoneWithName:@"GMT"];
     date = [dateForma dateFromString:[NSString stringWithFormat:@"%@",[[CartObj instance].userInfo objectForKey:@"OrderDate"]]];
-    dateForma.timeZone = [NSTimeZone timeZoneWithName:@"GMT-8"];
+    AppDelegate * appDel = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    dateForma.timeZone = [NSTimeZone timeZoneWithAbbreviation:[appDel findTimeZoneId:[user objectForKey:@"TimeZone"]]];
     // Convert to new Date Format
     [dateForma setDateFormat:@"dd-MMM-yyyy hh:mm a"];
     NSString *newDate = [dateForma stringFromDate:date];

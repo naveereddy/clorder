@@ -128,6 +128,7 @@ static NSString *kClientId ;
                 [[NSUserDefaults standardUserDefaults] setObject:[[resObj objectForKey:@"ClientSettings"] objectForKey:@"PhoneNumber"] forKey:@"ClientPhone"];
                 [[NSUserDefaults standardUserDefaults] setObject:[[resObj objectForKey:@"ClientSettings"] objectForKey:@"PaymentSetting"] forKey:@"PaymentSetting"];
                 [[NSUserDefaults standardUserDefaults] setObject:[[resObj objectForKey:@"ClientSettings"] objectForKey:@"ShippingOptionId"] forKey:@"ShippingOptionId"];
+                [[NSUserDefaults standardUserDefaults] setObject:[[resObj objectForKey:@"ClientSettings"] objectForKey:@"TimeZone"] forKey:@"TimeZone"];
                 [[NSUserDefaults standardUserDefaults] setObject:[[resObj objectForKey:@"ClientSettings"] objectForKey:@"DeliveryType"] forKey:@"DeliveryType"];
                 NSLog(@"address %@,%@",[resObj objectForKey:@"DeliveryAddresses"],[resObj objectForKey:@"clientId"]);
                 if([[[resObj objectForKey:@"ClientSettings"] objectForKey:@"ShippingOptionId"] integerValue] == 2){
@@ -214,6 +215,22 @@ didSignInForUser:(GIDGoogleUser *)user
     NSString *email = user.profile.email;
 }
 
+-(NSDictionary *)getJsonFromTimezoneFile {
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"address" ofType:@"json"];
+    NSData *jsonData = [[NSData alloc] initWithContentsOfFile:filePath];
+    NSError *error = nil;
+    return  [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingAllowFragments error:&error];
+}
+
+-(NSString *)findTimeZoneId: (NSString *)timeZonekey {
+    NSArray *timeZones = [[self getJsonFromTimezoneFile] objectForKey:@"timeZones"];
+    for(int i =0; i < timeZones.count; i ++){
+        if([timeZonekey isEqualToString:[[timeZones objectAtIndex:i] objectForKey:@"key"]]){
+            return [[timeZones objectAtIndex:i] objectForKey:@"abbr"];
+        }
+    }
+    return @"GMT-8";
+}
 
 - (void)signIn:(GIDSignIn *)signIn
 didDisconnectWithUser:(GIDGoogleUser *)user

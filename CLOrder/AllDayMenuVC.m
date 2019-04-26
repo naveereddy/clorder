@@ -21,6 +21,7 @@
 #import "CartObj.h"
 #import "Menu.h"
 #import "SideMenu.h"
+#import "AppDelegate.h"
 
 
 @implementation AllDayMenuVC{
@@ -180,11 +181,11 @@
     }else{
        dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
            NSDictionary *dic=[clientCategoriesArr objectAtIndex:indexPath.row];
-           NSString *path;
+           NSString *path = @"";
            if([[dic allKeys] containsObject:@"CategoryImageURL"]){
                path=[dic objectForKey:@"CategoryImageURL"];
            }else{
-               path=@"https://s3.amazonaws.com/Clorder/Client/chickenplate-wb.png";
+//               path=@"https://s3.amazonaws.com/Clorder/Client/chickenplate-wb.png";
            }
          NSData *dta = [NSData dataWithContentsOfURL:[NSURL URLWithString:path]];
          UIImage *image = [UIImage imageWithData:dta];
@@ -428,7 +429,8 @@
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
         [formatter setDateFormat:@"MM/dd/YYYY"];
         [[NSUserDefaults standardUserDefaults] setObject:[formatter stringFromDate:[NSDate date]] forKey:@"OrderDate"];
-        formatter.timeZone = [NSTimeZone timeZoneWithName:@"GMT-8"];
+        AppDelegate * appDel = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+        formatter.timeZone = [NSTimeZone timeZoneWithAbbreviation:[appDel findTimeZoneId:[user objectForKey:@"TimeZone"]]];
         NSLog(@"%@", [[CartObj instance].userInfo objectForKey:@"timeArr"]);
         [formatter setDateFormat:@"hh:mm a"];
         [[NSUserDefaults standardUserDefaults] setObject:[formatter stringFromDate:[NSDate date]] forKey:@"OrderTime"];

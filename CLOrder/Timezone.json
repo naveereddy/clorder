@@ -1,0 +1,80 @@
+{
+    "timeZones":
+                [
+                 {
+                     "key" : "Atlantic Standard Time",
+                     "id"  : "America/Halifax",
+                     "abbr": "AST"
+                 },
+                 {
+                     "key" : "Eastern Standard Time",
+                     "id"  : "America/New_York",
+                     "abbr": "EST"
+                 },
+                 {
+                     "key" : "Central Standard Time",
+                     "id"  : "America/Chicago",
+                     "abbr": "CST"
+
+                 },
+                 {
+                     "key" : "Mountain Standard Time",
+                     "id"  : "America/Denver",
+                     "abbr": "MST"
+
+                 },
+                 {
+                     "key" : "Pacific Standard Time"
+                     "id"  : "America/Los_Angeles",
+                     "abbr": "PST"
+
+                 },
+                 {
+                     "key" : "Alaskan Standard Time"
+                     "id"  : "America/Juneau",
+                     "abbr": "AKST"
+
+                 },
+                 {
+                     "key" : "Hawaiian Standard Time"
+                     "id"  : "Pacific/Honolulu",
+                     "abbr": "HST"
+
+                 },
+                 {
+                     "key" : "Atlantic Daylight Time"
+                     "id"  : "America/Halifax",
+                     "abbr": "ADT"
+
+                 },
+                 {
+                     "key" : "Eastern Daylight Time"
+                     "id"  : "America/New_York",
+                     "abbr": "EDT"
+
+                 },
+                 {
+                     "key" : "Central Daylight Time"
+                     "id"  : "America/Chicago",
+                     "abbr": "CDT"
+
+                 },
+                 {
+                     "key" : "Mountain Daylight Time"
+                     "id"  : "America/Denver",
+                     "abbr": "MDT"
+
+                 },
+                 {
+                     "key" : "Pacific Daylight Time"
+                     "id"  : "America/Los_Angeles",
+                     "abbr": "PDT"
+
+                 },
+                 {
+                     "key" : "Alaskan Daylight Time"
+                     "id"  : "America/Juneau",
+                     "abbr": "AKDT"
+                 }
+                ]
+}

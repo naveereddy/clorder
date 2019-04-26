@@ -16,6 +16,7 @@
 @property (strong, nonatomic) UIWindow *window;
 
 +(void)loaderShow:(BOOL)val;
+-(NSString *)findTimeZoneId: (NSString *)timeZonekey;
 
 @end
 

@@ -96,7 +96,8 @@
                 NSDate *setDate =  [dfltDt length]? [formatter dateFromString:dfltDt] :datePicker.date;
                 NSString *dt1 = [formatter stringFromDate:[NSDate date]];
                 NSString *dt2 = [formatter stringFromDate:setDate];
-                formatter.timeZone = [NSTimeZone timeZoneWithName:@"GMT-8"];
+                AppDelegate * appDel = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+                formatter.timeZone = [NSTimeZone timeZoneWithAbbreviation:[appDel findTimeZoneId:[user objectForKey:@"TimeZone"]]];
                 
 //                [timeDisplayArr removeAllObjects];
 //                [timeDisplayArr addObject:@"Closed"];
