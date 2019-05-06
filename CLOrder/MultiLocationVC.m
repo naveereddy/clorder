@@ -13,7 +13,7 @@
 #import "LocationsList.h"
 #import "SelectedRestroVC.h"
 
-#define mapDistance 200000
+#define mapDistance 250000
 
 @interface MultiLocationVC ()
 {

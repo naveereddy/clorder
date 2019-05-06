@@ -271,7 +271,13 @@
                 AllDayMenuVC *nextView = [[AllDayMenuVC alloc] init];
                 [self.navigationController pushViewController:nextView animated:YES];
             }else{
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:[NSString stringWithFormat:@"%@", [resObj objectForKey:@"status"]] delegate:self cancelButtonTitle:@"Ok" otherButtonTitles: nil];
+                NSString *status;
+                if ([[resObj objectForKey:@"status"] isKindOfClass:[NSNull class]]){
+                    status = @"Please try again later.";
+                }else{
+                    status = [resObj objectForKey:@"status"];
+                }
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:[NSString stringWithFormat:@"%@", status] delegate:self cancelButtonTitle:@"Ok" otherButtonTitles: nil];
                 [alert show];
             }
             
